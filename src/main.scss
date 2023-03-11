@@ -1,0 +1,263 @@
+@import url("https://fonts.cdnfonts.com/css/sf-pro-display");
+
+* {
+	margin: 0px;
+	font-family: "SF Pro Display", sans-serif;
+}
+body {
+	-ms-overflow-style: none; /* Internet Explorer 10+ */
+	scrollbar-width: none; /* Firefox */
+	scroll-behavior: smooth;
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+}
+
+.main {
+	background-image: url("./assets/1.avif");
+	background-size: cover;
+	background-attachment: fixed;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	min-height: 100vh;
+}
+
+.navbar {
+	height: 44px;
+	background: rgba(75, 75, 75, 0.3);
+	backdrop-filter: blur(17.5px);
+	width: 100%;
+	position: fixed;
+	z-index: 9999;
+	ul {
+		width: 100%;
+		list-style: none;
+		justify-content: space-evenly;
+		align-items: center;
+		display: inline-flex;
+		li {
+			padding: 10px;
+			font-size: 20px;
+			a {
+				text-decoration: none;
+				color: #ffffff;
+			}
+		}
+	}
+	.logo-navbar {
+		height: 30px;
+	}
+}
+
+@media (max-width: 700px) {
+	.landing-layer {
+		flex-direction: column !important;
+	}
+	.landing-title {
+		font-size: 50px !important;
+	}
+}
+.landing-layer {
+	display: flex;
+	position: fixed;
+	justify-content: center;
+	align-items: center;
+	height: 80vh;
+	width: 80vw;
+	padding: 50px;
+	background: rgba(255, 255, 255, 0.3);
+	flex-wrap: wrap;
+	backdrop-filter: blur(17.5px);
+	box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.18);
+	z-index: 4;
+
+	border: 0.2rem solid #fff;
+	border-radius: 2rem;
+	padding: 0.4em;
+	box-shadow: 0 0 0.2rem #fff, 0 0 0.2rem #fff, 0 0 2rem #bf13fe, 0 0 0.8rem #e625ff, 0 0 2.8rem #fb00ff, inset 0 0 1.3rem #aa00ff;
+	.landing-title {
+		font-size: 100px;
+		margin: 20px;
+		color: #ffffff;
+	}
+	.logo {
+		height: 100px;
+		margin: 20px;
+	}
+}
+.home-body {
+	min-height: 90vh;
+    padding-bottom: 90px;
+	z-index: 5;
+	width: 100%;
+	position: relative;
+	background-color: #2d3949;
+	.minicards {
+		display: flex;
+		justify-content: space-around;
+		align-items: center;
+		flex-direction: row;
+		flex-wrap: wrap;
+		padding: 40px;
+		.mini-card {
+			display: flex;
+			flex-direction: row;
+			align-items: center;
+			margin: 20px;
+			transition: all 0.3s;
+			background-color: #59595938;
+			height: 100px;
+			width: 300px;
+			border-radius: 11px;
+			padding: 10px;
+			.icon {
+				color: #ffffff;
+				width: 50px;
+				height: 100%;
+				display: flex;
+				justify-content: center;
+				align-items: center;
+				margin-left: 10px;
+			}
+			.text {
+				padding: 10px;
+				color: #ffffff;
+				margin-left: 10px;
+				.description {
+					margin-top: 8px;
+					color: #9f9f9f;
+				}
+			}
+		}
+		.mini-card:hover {
+			scale: 1.05;
+			background-color: #7e7e7e38;
+		}
+	}
+	.index-product-cards {
+		margin-top: 90px;
+		margin-bottom: 90px;
+
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		flex-wrap: wrap;
+		flex-direction: row;
+		padding-right: 20px;
+		.card {
+			background-color: #c1d0e4;
+			display: flex;
+			margin: 60px 20px 20px 20px;
+			justify-content: center;
+			align-items: flex-end;
+			flex-wrap: wrap;
+			align-content: space-between;
+
+			height: 350px;
+			min-width: 250px;
+			max-width: 250px;
+			border-radius: 30px;
+			.back {
+				background-color: transparent;
+				height: 50%;
+				display: flex;
+				justify-content: center;
+				align-items: flex-start;
+
+				.image {
+					transform: translate(0%, -30%);
+					width: 90%;
+				}
+			}
+			.text {
+				transition: all 0.3s;
+				width: 100%;
+				height: 30px;
+				background-color: #ffffff;
+				border-radius: 30px;
+				padding: 20px;
+				overflow: hidden;
+				.stars {
+					.star {
+						font-size: 15px;
+						color: #ffe600;
+						padding: 3px;
+					}
+				}
+			}
+		}
+		.card:hover {
+			.text {
+				height: 120px !important;
+			}
+		}
+		.texto-productos {
+			color: #ffffff;
+			width: 250px;
+			margin: 20px;
+			padding: 20px 0;
+		}
+	}
+	.section-title {
+		width: 100%;
+		color: #ffffff;
+		margin-top: 50px;
+		font-size: 35px;
+		text-align: center;
+	}
+	.image-grid {
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		width: 100%;
+		.left {
+			width: 40%;
+			margin: 10px;
+			img {
+				width: 100%;
+			}
+		}
+		.right {
+			width: 40%;
+			padding: 10px;
+			img {
+				width: 95%;
+			}
+		}
+	}
+	.plants-care {
+		margin-top: 90px;
+		width: 100%;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		.left {
+			width: 40%;
+			.title {
+				color: #ffffff;
+				font-size: 35px;
+			}
+			.description {
+				color: #9f9f9f;
+				font-size: 20px;
+			}
+            ul{
+                list-style: none;
+                li{
+                    font-size: 25px;
+                    color: #ffffff;
+                    padding: 8px;
+                    svg{
+                        margin-right: 10px;
+                    }
+                }
+            }
+		}
+		.right {
+			width: 40%;
+			img {
+				width: 100%;
+			}
+		}
+	}
+}

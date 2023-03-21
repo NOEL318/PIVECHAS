@@ -25,6 +25,9 @@ export const Navbar = () => {
 						<Link to={"/Contacto"}>Contacto</Link>
 					</li>
 					<li>
+						<Link to={"/SignIn"}>Iniciar Sesión</Link>
+					</li>
+					<li>
 						<Link to={"/Carrito"}>
 							<AiOutlineShoppingCart />
 						</Link>

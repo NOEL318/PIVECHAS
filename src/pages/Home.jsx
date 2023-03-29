@@ -11,9 +11,12 @@ import { BiSupport } from "react-icons/bi";
 import { GiWaterDrop } from "react-icons/gi";
 import { FaTemperatureHigh } from "react-icons/fa";
 import { RiPlantLine } from "react-icons/ri";
+import { TopNavbar } from "../components/TopNavbar";
 export const Home = () => {
 	return (
 		<>
+			<TopNavbar />
+
 			<div className="main">
 				<div className="landing-layer">
 					<h1 className="landing-title">PIVECHAS</h1>

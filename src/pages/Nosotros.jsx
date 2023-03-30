@@ -1,13 +1,7 @@
 import "../main.scss";
 import blurup from "../assets/group223.png";
 import blurright from "../assets/group228.png";
-import logo from "../assets/logo.svg";
-import { Link } from "react-router-dom";
-import { AiOutlineShoppingCart } from "react-icons/ai";
-import { MdOutlineDashboard, MdOutlineChatBubbleOutline } from "react-icons/md";
-import { TbGraph } from "react-icons/tb";
-import { RiUser3Line } from "react-icons/ri";
-import { CiLogout } from "react-icons/ci";
+import LeftBar from "../components/LeftBar";
 
 export const Nosotros = () => {
 	return (
@@ -26,59 +20,32 @@ export const Nosotros = () => {
 					/>
 				</div>
 
-				<div className="leftbar">
-					<Link to={"/"} className="index-link">
-						<div className="business-name">
-							<img
-								className="logo"
-								src={logo}
-								alt=""
-							/>
-							<p>PIVECHAS</p>
-						</div>
-					</Link>
-					<ul>
-						<li className="delay-1 active">
-							<Link to={"/Tienda"}>
-								<MdOutlineDashboard className="icon" />
-								Tienda
-							</Link>
-						</li>
-						<li className="delay-2">
-							<Link to={"/Nosotros"}>
-								{" "}
-								<TbGraph className="icon" />
-								Nosotros
-							</Link>
-						</li>
-						<li className="delay-3">
-							<Link to={"/Contacto"}>
-								{" "}
-								<MdOutlineChatBubbleOutline className="icon" />
-								Contacto
-							</Link>
-						</li>
-						<li className="delay-4">
-							<Link to={"/Cuenta"}>
-								{" "}
-								<RiUser3Line className="icon" />
-								Cuenta
-							</Link>
-						</li>
-						<li className="delay-5">
-							<Link to={"/Carrito"}>
-								<AiOutlineShoppingCart className="icon" />
-								Carrito
-							</Link>
-						</li>
-					</ul>
-					<div className="log-out-button">
-						<span className="background-button">
-							<div className="color"></div>
-						</span>
-						<div className="text">
-							<CiLogout className="icon" />
-							Cerrar Sesión
+				<div className="bars">
+					<LeftBar active={"Nosotros"} />
+					<div className="rightbar">
+						<div className="right-container">
+							<div className="nosotros">
+								<div className="background"></div>
+								<div className="info">
+									<h1>PIVECHAS</h1>
+									<br />
+									<br />
+									<h2>Misión</h2>
+									<p>
+										Ofrecer productos florales de alta calidad y un servicio excepcional para crear experiencias memorables para
+										nuestros clientes en sus celebraciones y ocasiones especiales.
+									</p>
+									<br />
+									<br />
+									<br />
+									<h2>Visión</h2>
+									<p>
+										Ser la florería líder en la región, reconocida por la calidad y la belleza de nuestros arreglos florales, la
+										atención personalizada a nuestros clientes y la innovación constante en nuestros productos y servicios,
+										creando un impacto positivo en la comunidad y el medio ambiente.
+									</p>
+								</div>
+							</div>
 						</div>
 					</div>
 				</div>

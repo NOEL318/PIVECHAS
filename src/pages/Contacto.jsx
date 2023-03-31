@@ -32,10 +32,12 @@ export const Contacto = () => {
 									<h1>Contacto</h1>
 									<br />
 									<br />
-									<img
-										src={qr}
-										alt=""
-									/>
+									<div className="qr">
+										<img
+											src={qr}
+											alt=""
+										/>
+									</div>
 									<h2>Escribenos por Whatsapp!</h2>
 								</div>
 							</div>

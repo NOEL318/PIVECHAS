@@ -7,11 +7,13 @@ import { ProductCardSquare } from "../components/Product";
 export const Tienda = () => {
 	const productos = [
 		{
-			id: 1,
+			id: 0,
 			nombre: "Producto 1",
 			colors: ["#ffffff", "#ff0000", "#0000ff"],
-			image_url: "https://upload.wikimedia.org/wikipedia/commons/e/ef/Youtube_logo.png",
+			image_url:
+				"https://static.vecteezy.com/system/resources/previews/014/033/591/original/sunflower-flower-transparent-free-png.png",
 			descripcion: "loremipsum description asahbfahfdgfvv  usdhdsdshhfdsoufdhodsu dsuhfusdhui",
+			rate: 1,
 		},
 		{
 			id: 1,
@@ -19,20 +21,23 @@ export const Tienda = () => {
 			colors: ["#ffffff", "#ff0000", "#0000ff"],
 			image_url: "https://www.pngplay.com/wp-content/uploads/12/Drawings-Of-Roses-Transparent-PNG.png",
 			descripcion: "jjejejejjejej description asahbfahfdgfvv  usdhdsdshhfdsoufdhodsu dsuhfusdhui",
+			rate: 2,
 		},
 		{
-			id: 1,
+			id: 2,
 			nombre: "Producto 3",
 			colors: ["#ffffff", "#ff0000", "#0000ff"],
-			image_url: "https://www.pngplay.com/wp-content/uploads/12/Drawings-Of-Roses-Transparent-PNG.png",
+			image_url: "https://i.pinimg.com/originals/70/fc/b5/70fcb5965f6336e9c2e21e9c9234da5c.png",
 			descripcion: "jjejejejjejej description asahbfahfdgfvv  usdhdsdshhfdsoufdhodsu dsuhfusdhui",
+			rate: 5,
 		},
 		{
-			id: 1,
+			id: 3,
 			nombre: "Producto 4",
 			colors: ["#ffffff", "#ff0000", "#0000ff"],
-			image_url: "https://www.pngplay.com/wp-content/uploads/12/Drawings-Of-Roses-Transparent-PNG.png",
+			image_url: "https://lavacaindependiente.com/wp-content/uploads/2021/01/MINIATURAFlorDeMayo.png",
 			descripcion: "jjejejejjejej description asahbfahfdgfvv  usdhdsdshhfdsoufdhodsu dsuhfusdhui",
+			rate: 3,
 		},
 	];
 
@@ -55,19 +60,17 @@ export const Tienda = () => {
 				<div className="bars">
 					<LeftBar active={"Tienda"} />
 					<div className="rightbar">
-						<div className="right-container">
-							<div className="products">
-								{productos.map((producto) => (
-									<ProductCardSquare
-										key={producto.id}
-										id={producto.id}
-										nombre={producto.nombre}
-										colors={producto.colors}
-										image_url={producto.image_url}
-										descripcion={producto.descripcion}
-									/>
-								))}
-							</div>
+						<div className="products">
+							{productos.map((producto) => (
+								<ProductCardSquare
+									key={producto.id}
+									nombre={producto.nombre}
+									colors={producto.colors}
+									image_url={producto.image_url}
+									descripcion={producto.descripcion}
+									rate={producto.rate}
+								/>
+							))}
 						</div>
 					</div>
 				</div>

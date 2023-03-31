@@ -1,17 +1,35 @@
 import "../main.scss";
-export const ProductCardSquare = ({ nombre, descripcion, colors, image_url, id }) => {
+import Rater from "react-rater";
+export const ProductCardSquare = ({ nombre, descripcion, colors, image_url, rate }) => {
 	return (
 		<>
 			<div className="product-square">
 				<div className="background"></div>
 				<div className="prod-info">
-					<h2>{nombre}</h2>
-					<p>{descripcion}</p>
 					<img
 						src={image_url}
 						alt=""
-						width={200}
+						className="product_image"
 					/>
+					<div className="product-text">
+						<h2>{nombre}</h2>
+						<Rater
+							total={5}
+							rating={rate}
+							interactive={false}
+						/>
+
+						<div className="circles">
+							{colors.map((color) => (
+								<div
+									key={color[1] + color[2] + color[3] + color[4]}
+									className="color-circle"
+									style={{ background: color }}
+								></div>
+							))}
+						</div>
+						{/* <p>{colors}</p> */}
+					</div>
 				</div>
 			</div>
 		</>

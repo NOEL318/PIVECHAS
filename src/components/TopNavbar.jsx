@@ -2,10 +2,25 @@ import { Link } from "react-router-dom";
 import logo from "../assets/logo.svg";
 import { AiOutlineShoppingCart } from "react-icons/ai";
 import { BiMenu } from "react-icons/bi";
-
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { onAuthStateChanged } from "firebase/auth";
+import { auth } from "../firebase";
 export const TopNavbar = () => {
 	const [isOpen, setisOpen] = useState(false);
+	const [user_picture, setuser_picture] = useState();
+	const [username, setusername] = useState();
+	useEffect(() => {
+		onAuthStateChanged(auth, (user) => {
+			if (user) {
+				const uid = user.uid;
+				console.log("asssa", user);
+				setuser_picture(user.photoURL);
+				setusername(user.displayName);
+			} else {
+				console.log("Not users here");
+			}
+		});
+	}, [auth]);
 	return (
 		<>
 			<div className="top-navbar">
@@ -45,6 +60,20 @@ export const TopNavbar = () => {
 									<AiOutlineShoppingCart />
 								</Link>
 							</li>
+							{user_picture && (
+								<li className="delay-6 profilepic">
+									<Link
+										to={"/Cuenta"}
+										className="account"
+									>
+										<img
+											src={user_picture}
+											alt=""
+										/>
+										<p>{username}</p>
+									</Link>
+								</li>
+							)}
 						</ul>
 					</div>
 				</div>

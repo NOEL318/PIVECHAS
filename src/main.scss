@@ -164,6 +164,11 @@ body::-webkit-scrollbar {
 					font-weight: 700;
 					padding: 30px !important;
 				}
+				p {
+					font-size: 30px !important;
+					font-weight: 700;
+					padding: 10px !important;
+				}
 			}
 		}
 	}
@@ -253,6 +258,24 @@ body::-webkit-scrollbar {
 				a {
 					text-decoration: none;
 					color: #ffffff;
+				}
+			}
+			li.profilepic {
+				padding: 6px;
+				.account {
+					display: flex;
+					justify-content: flex-start;
+					align-items: center;
+					flex-direction: row;
+					img {
+						margin-right: 7px;
+						width: 30px;
+						height: 30px;
+					}
+					p {
+						width: 100%;
+						font-size: 20px;
+					}
 				}
 			}
 		}
@@ -545,6 +568,8 @@ body::-webkit-scrollbar {
 					margin: 20px;
 					height: 50px;
 					background: #16161e;
+
+					color: #ffffff;
 					border-radius: 10px;
 					border-style: solid;
 				}
@@ -581,7 +606,6 @@ body::-webkit-scrollbar {
 		}
 		.imagen-formulario {
 			width: 30%;
-
 			font-size: 30px;
 			min-height: 90vh;
 			background-color: transparent;
@@ -599,6 +623,9 @@ body::-webkit-scrollbar {
 }
 
 @media (max-width: 950px) {
+	.imagen-formulario {
+		display: none !important;
+	}
 	// .blur-up img {
 	// 	width: auto !important;
 	// }
@@ -664,7 +691,7 @@ body::-webkit-scrollbar {
 		width: 100% !important;
 		overflow: hidden;
 		margin: 10px !important;
-		
+
 		ul {
 			align-items: center !important;
 
@@ -725,6 +752,7 @@ body::-webkit-scrollbar {
 	.blur-up {
 		img {
 			height: 100%;
+			width: 100%;
 			filter: saturate(2);
 			z-index: 1;
 			top: 0;
@@ -734,9 +762,12 @@ body::-webkit-scrollbar {
 	.blur-right {
 		img {
 			height: 100%;
+			width: 100%;
+
 			filter: saturate(2);
 			z-index: 1;
 			right: 0;
+			bottom: 0;
 			position: absolute;
 		}
 	}

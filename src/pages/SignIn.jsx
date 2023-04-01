@@ -4,9 +4,31 @@ import blurright from "../assets/group228.png";
 import loto from "../assets/loto.webp";
 import { Link } from "react-router-dom";
 import logo from "../assets/logo.svg";
+import { onAuthStateChanged, signInWithEmailAndPassword } from "firebase/auth";
+import { auth } from "../firebase";
+import { useState } from "react";
+import { TopNavbar } from "../components/TopNavbar";
+
 export const SignIn = () => {
+	const [email, setemail] = useState();
+	const [password, setpassword] = useState();
+
+	const Si = async (email, password) => {
+		await signInWithEmailAndPassword(auth, email, password)
+			.then((userCredential) => {
+				// Signed in
+				const user = userCredential.user;
+				// ...
+				console.log(user);
+			})
+			.catch((error) => {
+				const errorCode = error.code;
+				const errorMessage = error.message;
+			});
+	};
 	return (
 		<>
+			<TopNavbar />
 			<div className="auth-container">
 				<div className="blur-up">
 					<img
@@ -38,13 +60,14 @@ export const SignIn = () => {
 						</div>
 						<form
 							className="form"
-							action="POST"
+							onSubmit={(e) => e.preventDefault()}
 						>
 							<label htmlFor="email">Email</label>
 							<input
 								className="text"
 								type="email"
 								id="email"
+								onChange={(e) => setemail(e.target.value)}
 							/>
 							<label htmlFor="password">Contraseña</label>
 
@@ -52,6 +75,7 @@ export const SignIn = () => {
 								className="text"
 								type="password"
 								id="password"
+								onChange={(e) => setpassword(e.target.value)}
 							/>
 							<div className="checkbox-group">
 								<div className="terms">
@@ -75,7 +99,13 @@ export const SignIn = () => {
 									No tienes una cuenta? Crea Una
 								</Link>
 							</div>
-							<button className="button">Iniciar Sesión</button>
+							<button
+								type="button"
+								className="button"
+								onClick={() => Si(email, password)}
+							>
+								Iniciar Sesión
+							</button>
 						</form>
 					</div>
 				</div>

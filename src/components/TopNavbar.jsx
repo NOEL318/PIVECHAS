@@ -12,8 +12,6 @@ export const TopNavbar = () => {
 	useEffect(() => {
 		onAuthStateChanged(auth, (user) => {
 			if (user) {
-				const uid = user.uid;
-				console.log("asssa", user);
 				setuser_picture(user.photoURL);
 				setusername(user.displayName);
 			} else {
@@ -47,8 +45,9 @@ export const TopNavbar = () => {
 								<Link to={"/Nosotros"}>Nosotros</Link>
 							</li>
 							<li className="delay-3">
-								<Link to={"Tienda"}>Tienda</Link>
+								<Link to={"/Tienda"}>Tienda</Link>
 							</li>
+							
 							<li className="delay-4">
 								<Link to={"/Contacto"}>Contacto</Link>
 							</li>
@@ -61,7 +60,7 @@ export const TopNavbar = () => {
 								</Link>
 							</li>
 							{user_picture && (
-								<li className="delay-6 profilepic">
+								<li className="delay-7 profilepic">
 									<Link
 										to={"/Cuenta"}
 										className="account"

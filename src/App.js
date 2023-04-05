@@ -5,8 +5,23 @@ import SignUp from "./pages/SignUp";
 import Nosotros from "./pages/Nosotros";
 import Contacto from "./pages/Contacto";
 import Tienda from "./pages/Tienda";
+import { onAuthStateChanged } from "firebase/auth";
+import { auth } from "./firebase";
+import { useEffect, useState } from "react";
 
 function App() {
+	const [user, setuser] = useState();
+	useEffect(() => {
+		onAuthStateChanged(auth, (usr) => {
+			if (usr) {
+				const uid = usr.uid;
+				setuser(usr);
+				console.log(uid);
+			} else {
+				setuser(null);
+			}
+		});
+	}, [auth]);
 	return (
 		<>
 			<BrowserRouter>
@@ -29,17 +44,17 @@ function App() {
 					<Route
 						index
 						path="/Tienda"
-						element={<Tienda />}
+						element={user ? <Tienda /> : <SignIn />}
 					/>
 					<Route
 						index
 						path="/SignIn"
-						element={<SignIn />}
+						element={user ? <Home /> : <SignIn />}
 					/>
 					<Route
 						index
 						path="/SignUp"
-						element={<SignUp />}
+						element={user ? <Home /> : <SignUp />}
 					/>
 				</Routes>
 			</BrowserRouter>

@@ -6,7 +6,7 @@ import { TbGraph } from "react-icons/tb";
 import { RiUser3Line } from "react-icons/ri";
 import { CiLogout } from "react-icons/ci";
 import { useState } from "react";
-import { BiMenu } from "react-icons/bi";
+import { BiMenu, BiHomeAlt2 } from "react-icons/bi";
 
 export const LeftBar = ({ active }) => {
 	const [isOpen, setisOpen] = useState(false);
@@ -33,6 +33,12 @@ export const LeftBar = ({ active }) => {
 					</button>
 				</div>
 				<ul>
+					<li className={`delay-1`}>
+						<Link to={"/"}>
+							<BiHomeAlt2 className="icon" />
+							Inicio
+						</Link>
+					</li>
 					<li className={`delay-1 ${active == "Tienda" ? "active" : ""}`}>
 						<Link to={"/Tienda"}>
 							<MdOutlineDashboard className="icon" />

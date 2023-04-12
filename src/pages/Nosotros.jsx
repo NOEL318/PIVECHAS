@@ -2,6 +2,8 @@ import "../main.scss";
 import blurup from "../assets/group223.png";
 import blurright from "../assets/group228.png";
 import LeftBar from "../components/LeftBar";
+import mision from "../assets/mision.png";
+import vision from "../assets/vision.webp";
 
 export const Nosotros = () => {
 	return (
@@ -35,6 +37,11 @@ export const Nosotros = () => {
 										Ofrecer productos florales de alta calidad y un servicio excepcional para crear experiencias memorables para
 										nuestros clientes en sus celebraciones y ocasiones especiales.
 									</p>
+									<img
+										src={mision}
+										alt=""
+										className="mision"
+									/>
 									<br />
 									<br />
 									<br />
@@ -44,6 +51,11 @@ export const Nosotros = () => {
 										atención personalizada a nuestros clientes y la innovación constante en nuestros productos y servicios,
 										creando un impacto positivo en la comunidad y el medio ambiente.
 									</p>
+									<img
+										src={vision}
+										alt=""
+										className="vision"
+									/>
 								</div>
 							</div>
 						</div>

@@ -4,7 +4,7 @@ import blurright from "../assets/group228.png";
 import loto from "../assets/loto.webp";
 import { Link } from "react-router-dom";
 import logo from "../assets/logo.svg";
-import { onAuthStateChanged, signInWithEmailAndPassword } from "firebase/auth";
+import { signInWithEmailAndPassword } from "firebase/auth";
 import { auth } from "../firebase";
 import { useState } from "react";
 import { TopNavbar } from "../components/TopNavbar";

@@ -47,8 +47,10 @@ export const TopNavbar = () => {
 							<li className="delay-3">
 								<Link to={"/Tienda"}>Tienda</Link>
 							</li>
-							
-							<li className="delay-4">
+
+							<li
+								className="delay-4"
+							>
 								<Link to={"/Contacto"}>Contacto</Link>
 							</li>
 							<li className="delay-5">

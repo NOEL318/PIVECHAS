@@ -180,6 +180,7 @@ export const Home = () => {
 							alt=""
 						/>
 					</div>
+				<a href="/doom.html">;D</a>
 				</div>
 			</div>
 		</>

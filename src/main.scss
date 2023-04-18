@@ -1,4 +1,5 @@
 @import url("https://fonts.cdnfonts.com/css/sf-pro-display");
+@import "loaders.css/src/animations/pacman.scss";
 
 * {
 	margin: 0px;
@@ -17,6 +18,7 @@ body {
 body::-webkit-scrollbar {
 	display: none; /* Safari and Chrome */
 }
+
 
 @keyframes FillContainer {
 	0% {
@@ -69,6 +71,24 @@ body::-webkit-scrollbar {
 		opacity: 0;
 		position: absolute;
 		margin-left: -1000px;
+	}
+}
+.pacman {
+	div:first-of-type,
+	div:nth-child(2) {
+		left: -70px;
+		border-top: 25px solid #ffe737;
+		border-left: 25px solid #ffe737;
+		border-bottom: 25px solid #ffe737;
+	}
+	div:nth-child(3) {
+		background-color: #ff374e;
+	}
+	div:nth-child(4) {
+		background-color: #da37ff;
+	}
+	div:nth-child(5) {
+		background-color: #37e4ff;
 	}
 }
 
@@ -522,6 +542,8 @@ body::-webkit-scrollbar {
 	min-height: 100vh;
 	.blur-up {
 		img {
+			height: 100%;
+			width: 100%;
 			filter: saturate(2);
 			z-index: 1;
 			top: 0;
@@ -530,10 +552,13 @@ body::-webkit-scrollbar {
 	}
 	.blur-right {
 		img {
-			filter: saturate(2);
+			height: 100%;
+			width: 100%;
 
+			filter: saturate(2);
 			z-index: 1;
 			right: 0;
+			bottom: 0;
 			position: absolute;
 		}
 	}
@@ -576,7 +601,6 @@ body::-webkit-scrollbar {
 					margin: 20px;
 					height: 50px;
 					background: #16161e;
-
 					color: #ffffff;
 					border-radius: 10px;
 					border-style: solid;
@@ -961,12 +985,11 @@ body::-webkit-scrollbar {
 							font-size: 40px;
 							font-weight: 600;
 						}
-						.mision{
+						.mision {
 							width: 20%;
 							margin: 30px;
-
 						}
-						.vision{
+						.vision {
 							width: 20%;
 							margin: 30px;
 						}
@@ -1013,6 +1036,76 @@ body::-webkit-scrollbar {
 						}
 					}
 				}
+				.cuenta {
+					display: flex;
+					justify-content: center;
+					align-items: center;
+					flex-direction: column;
+					flex-wrap: nowrap;
+
+					.background {
+						border-radius: 16px;
+						margin: 40px;
+						padding: 30px;
+						position: absolute;
+						width: 90%;
+						height: 100%;
+						opacity: 0.6;
+						background: #ffffff;
+						z-index: 5;
+						padding: 40px;
+					}
+					.info {
+						position: relative;
+						z-index: 6;
+						width: 100%;
+						height: 100%;
+						display: flex;
+						align-items: center;
+						justify-content: center;
+						flex-direction: column;
+						flex-wrap: wrap;
+						padding: 40px;
+						.form {
+							display: flex;
+							align-items: flex-start;
+							justify-content: center;
+							flex-direction: column;
+							label {
+								font-size: 20px;
+								font-weight: 600;
+							}
+							input {
+								width: 500px;
+								margin: 5px 15px 20px 0px;
+								height: 45px;
+								background: rgba(0, 0, 0, 0.05);
+								border: 1px solid rgba(0, 0, 0, 0.1);
+								border-radius: 10px;
+								color: #ffffff;
+								border-radius: 10px;
+								border-style: solid;
+								font-size: 20px;
+								padding: 5px;
+							}
+						}
+						.profile-pic {
+							width: 300px;
+							margin-bottom: 20px;
+						}
+					}
+					h1 {
+						font-size: 40px;
+						margin-bottom: 80px;
+						font-weight: 600;
+					}
+				}
+			}
+			.loader {
+				width: 100%;
+				display: flex;
+				align-items: center;
+				justify-content: center;
 			}
 		}
 	}
@@ -1028,6 +1121,7 @@ body::-webkit-scrollbar {
 	flex-direction: row;
 	flex-wrap: wrap;
 	.product-square {
+		transition: all 0.3s;
 		display: flex;
 		justify-content: center;
 		align-items: center;
@@ -1095,5 +1189,8 @@ body::-webkit-scrollbar {
 				}
 			}
 		}
+	}
+	.product-square:hover {
+		scale: 1.03;
 	}
 }

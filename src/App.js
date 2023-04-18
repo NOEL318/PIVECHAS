@@ -8,6 +8,7 @@ import Tienda from "./pages/Tienda";
 import { onAuthStateChanged } from "firebase/auth";
 import { auth } from "./firebase";
 import { useEffect, useState } from "react";
+import Cuenta from "./pages/Cuenta";
 
 function App() {
 	const [user, setuser] = useState();
@@ -32,27 +33,26 @@ function App() {
 						element={<Home />}
 					/>
 					<Route
-						index
 						path="/Nosotros"
 						element={<Nosotros />}
 					/>
 					<Route
-						index
 						path="/Contacto"
 						element={<Contacto />}
 					/>
 					<Route
-						index
 						path="/Tienda"
 						element={user ? <Tienda /> : <SignIn />}
 					/>
 					<Route
-						index
+						path="/Cuenta"
+						element={user ? <Cuenta /> : <SignIn />}
+					/>
+					<Route
 						path="/SignIn"
 						element={user ? <Home /> : <SignIn />}
 					/>
 					<Route
-						index
 						path="/SignUp"
 						element={user ? <Home /> : <SignUp />}
 					/>

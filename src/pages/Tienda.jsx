@@ -6,6 +6,8 @@ import { ProductCardSquare } from "../components/Product";
 import { collection, getDocs } from "firebase/firestore";
 import { useEffect, useState } from "react";
 import { db } from "../firebase";
+import Loader from "react-loaders";
+
 export const Tienda = () => {
 	const [productos, setproductos] = useState([]);
 	const getProductsList = async () => {
@@ -19,26 +21,26 @@ export const Tienda = () => {
 		getProductsList();
 	}, []);
 
-	if (productos.length >= 2)
-		return (
-			<>
-				<div className="app-container">
-					<div className="blur-up">
-						<img
-							src={blurup}
-							alt=""
-						/>
-					</div>
-					<div className="blur-right">
-						<img
-							src={blurright}
-							alt=""
-						/>
-					</div>
+	return (
+		<>
+			<div className="app-container">
+				<div className="blur-up">
+					<img
+						src={blurup}
+						alt=""
+					/>
+				</div>
+				<div className="blur-right">
+					<img
+						src={blurright}
+						alt=""
+					/>
+				</div>
 
-					<div className="bars">
-						<LeftBar active={"Tienda"} />
-						<div className="rightbar">
+				<div className="bars">
+					<LeftBar active={"Tienda"} />
+					<div className="rightbar">
+						{productos.length >= 2 ? (
 							<div className="products">
 								{productos.map((producto) => {
 									console.log(producto);
@@ -54,10 +56,15 @@ export const Tienda = () => {
 									);
 								})}
 							</div>
-						</div>
+						) : (
+							<div className="loader">
+								<Loader type="pacman" />
+							</div>
+						)}
 					</div>
 				</div>
-			</>
-		);
+			</div>
+		</>
+	);
 };
 export default Tienda;

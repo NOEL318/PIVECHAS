@@ -5,11 +5,28 @@ import { MdOutlineDashboard, MdOutlineChatBubbleOutline } from "react-icons/md";
 import { TbGraph } from "react-icons/tb";
 import { RiUser3Line } from "react-icons/ri";
 import { CiLogout } from "react-icons/ci";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { BiMenu, BiHomeAlt2 } from "react-icons/bi";
+import { onAuthStateChanged, signOut } from "firebase/auth";
+import { auth } from "../firebase";
 
 export const LeftBar = ({ active }) => {
+	const LogOut = async () => {
+		signOut(auth);
+	};
 	const [isOpen, setisOpen] = useState(false);
+	const [user, setuser] = useState();
+	useEffect(() => {
+		onAuthStateChanged(auth, (usr) => {
+			if (usr) {
+				const uid = usr.uid;
+				setuser(usr);
+				console.log(uid);
+			} else {
+				setuser(null);
+			}
+		});
+	}, [auth]);
 	return (
 		<>
 			<div className={`leftbar ${isOpen}`}>
@@ -77,10 +94,15 @@ export const LeftBar = ({ active }) => {
 					<span className="background-button">
 						<div className="color"></div>
 					</span>
-					<div className="text">
-						<CiLogout className="icon" />
-						Cerrar Sesión
-					</div>
+					{user && (
+						<div
+							className="text"
+							onClick={LogOut}
+						>
+							<CiLogout className="icon" />
+							Cerrar Sesión
+						</div>
+					)}
 				</div>
 			</div>
 		</>

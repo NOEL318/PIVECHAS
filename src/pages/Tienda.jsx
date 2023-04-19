@@ -36,9 +36,9 @@ export const Tienda = () => {
 						alt=""
 					/>
 				</div>
-
 				<div className="bars">
 					<LeftBar active={"Tienda"} />
+					
 					<div className="rightbar">
 						{productos.length >= 2 ? (
 							<div className="products">
@@ -47,6 +47,7 @@ export const Tienda = () => {
 									return (
 										<ProductCardSquare
 											key={producto.id}
+											id={producto.id}
 											nombre={producto.nombre}
 											colors={producto.colors}
 											image_url={producto.image_url}

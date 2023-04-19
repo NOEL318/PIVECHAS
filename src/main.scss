@@ -1,5 +1,6 @@
 @import url("https://fonts.cdnfonts.com/css/sf-pro-display");
-@import "loaders.css/src/animations/pacman.scss";
+
+@import url("loaders.css/src/animations/pacman.scss");
 
 * {
 	margin: 0px;
@@ -18,7 +19,6 @@ body {
 body::-webkit-scrollbar {
 	display: none; /* Safari and Chrome */
 }
-
 
 @keyframes FillContainer {
 	0% {
@@ -973,7 +973,7 @@ body::-webkit-scrollbar {
 					.info {
 						position: relative;
 						z-index: 6;
-						width: 80%;
+						width: 60%;
 						height: 100%;
 						display: flex;
 						align-items: center;
@@ -986,12 +986,12 @@ body::-webkit-scrollbar {
 							font-weight: 600;
 						}
 						.mision {
-							width: 20%;
-							margin: 30px;
+							width: 15%;
+							margin: 20px 30px 0 30px;
 						}
 						.vision {
-							width: 20%;
-							margin: 30px;
+							width: 15%;
+							margin: 20px 30px 0 30px;
 						}
 					}
 				}
@@ -1036,6 +1036,49 @@ body::-webkit-scrollbar {
 						}
 					}
 				}
+
+				.producto {
+					display: flex;
+					justify-content: center;
+					align-items: center;
+					flex-direction: column;
+					flex-wrap: nowrap;
+					.background {
+						border-radius: 16px;
+						margin: 40px;
+						padding: 30px;
+						position: absolute;
+						width: 90%;
+						height: 100%;
+						opacity: 0.6;
+						background: #ffffff;
+						z-index: 5;
+						padding: 40px;
+					}
+					.info {
+						position: relative;
+						z-index: 6;
+						width: 80%;
+						height: 100%;
+						display: flex;
+						align-items: center;
+						justify-content: center;
+						flex-direction: column;
+						flex-wrap: wrap;
+						padding: 40px;
+					}
+					h1 {
+						font-size: 40px;
+						font-weight: 600;
+					}
+					.qr {
+						width: 100%;
+						img {
+							width: 50%;
+						}
+					}
+				}
+
 				.cuenta {
 					display: flex;
 					justify-content: center;
@@ -1192,5 +1235,13 @@ body::-webkit-scrollbar {
 	}
 	.product-square:hover {
 		scale: 1.03;
+	}
+}
+.producto {
+	.image_product {
+		width: 200px;
+	}
+	p {
+		font-size: 20px;
 	}
 }

@@ -48,14 +48,14 @@ export const TopNavbar = () => {
 								<Link to={"/Tienda"}>Tienda</Link>
 							</li>
 
-							<li
-								className="delay-4"
-							>
+							<li className="delay-4">
 								<Link to={"/Contacto"}>Contacto</Link>
 							</li>
-							<li className="delay-5">
-								<Link to={"/SignIn"}>Iniciar Sesión</Link>
-							</li>
+							{!username && (
+								<li className="delay-5">
+									<Link to={"/SignIn"}>Iniciar Sesión</Link>
+								</li>
+							)}
 							<li className="delay-6">
 								<Link to={"/Carrito"}>
 									<AiOutlineShoppingCart />

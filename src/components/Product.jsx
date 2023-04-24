@@ -7,6 +7,8 @@ import { useEffect, useState } from "react";
 import blurup from "../assets/group223.png";
 import blurright from "../assets/group228.png";
 import LeftBar from "./LeftBar";
+import Loader from "react-loaders";
+import { AiOutlineShoppingCart } from "react-icons/ai";
 export const ProductCardSquare = ({ id, nombre, colors, image_url, rate }) => {
 	return (
 		<>
@@ -47,6 +49,8 @@ export const ProductCardSquare = ({ id, nombre, colors, image_url, rate }) => {
 export const ProductPage = () => {
 	const { id } = useParams();
 	const [producto, setproducto] = useState();
+	const [selectedcolor, setselectedcolor] = useState();
+
 	const getData = async () => {
 		const q = query(collection(db, "inventario"), where("id", "==", parseInt(id)));
 		const querySnapshot = await getDocs(q);
@@ -58,61 +62,85 @@ export const ProductPage = () => {
 		getData();
 	}, []);
 
-	if (producto) {
-		return (
-			<>
-				<div className="app-container">
-					<div className="blur-up">
-						<img
-							src={blurup}
-							alt=""
-						/>
-					</div>
-					<div className="blur-right">
-						<img
-							src={blurright}
-							alt=""
-						/>
-					</div>
-					<div className="bars">
-						<LeftBar active={"Tienda"} />
+	return (
+		<>
+			<div className="app-container">
+				<div className="blur-up">
+					<img
+						src={blurup}
+						alt=""
+					/>
+				</div>
+				<div className="blur-right">
+					<img
+						src={blurright}
+						alt=""
+					/>
+				</div>
+				<div className="bars">
+					<LeftBar active={"Tienda"} />
 
-						<div className="rightbar">
-							<div className="right-container">
+					<div className="rightbar">
+						<div className="right-container">
+							{producto ? (
 								<div className="producto">
 									<div className="background"></div>
 									<div className="info">
-										<img
-											src={producto.image_url}
-											className="image_product"
-										/>
-
-										<h1>Nombre: {producto.nombre}</h1>
-										<p>{producto.descripcion}</p>
-										<Rater
-											rating={producto.rate}
-											total={5}
-											interactive={false}
-										/>
-
-										<div className="circles">
-											{producto.colors.map((color) => (
-												<div
-													key={color[1] + color[2] + color[3] + color[4]}
-													className="color-circle"
-													style={{ background: color }}
-												>
-													.
-												</div>
-											))}
+										<div className="image">
+											<img
+												src={producto.image_url}
+												className="image_product"
+											/>
+										</div>
+										<div className="actions">
+											<h1>{producto.nombre}</h1>
+											<br />
+											Colores disponibles:
+											<div className="circles">
+												{producto.colors.map((color) => (
+													<div
+														key={color[1] + color[2] + color[3] + color[4]}
+														className={`color-circle ${selectedcolor == color ? "selected" : ""}`}
+														style={{ background: color }}
+														onClick={() => setselectedcolor(color)}
+													></div>
+												))}
+											</div>
+											<br />
+											Precio
+											<h1>${producto.precio} MXN</h1>
+											<br />
+											<div className="buttons">
+												<button className="button button-wicon">
+													Añadir al Carrito <AiOutlineShoppingCart className="icon" />
+												</button>
+											</div>
 										</div>
 									</div>
+									<div className="description">
+										<div className="rate">
+											<h3>Calificación:</h3>
+											<Rater
+												rating={producto.rate}
+												total={5}
+												interactive={false}
+											/>
+										</div>
+										<h3>
+											Descripción
+										</h3>
+										<p>{producto.descripcion}</p>
+									</div>
 								</div>
-							</div>
+							) : (
+								<div className="loader">
+									<Loader type="pacman" />
+								</div>
+							)}
 						</div>
 					</div>
 				</div>
-			</>
-		);
-	}
+			</div>
+		</>
+	);
 };

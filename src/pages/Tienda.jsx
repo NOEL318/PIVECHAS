@@ -38,12 +38,11 @@ export const Tienda = () => {
 				</div>
 				<div className="bars">
 					<LeftBar active={"Tienda"} />
-					
+
 					<div className="rightbar">
 						{productos.length >= 2 ? (
 							<div className="products">
 								{productos.map((producto) => {
-									console.log(producto);
 									return (
 										<ProductCardSquare
 											key={producto.id}

@@ -51,6 +51,41 @@ export const ProductPage = () => {
 	const [producto, setproducto] = useState();
 	const [selectedcolor, setselectedcolor] = useState();
 
+	const addToCart = async () => {
+		var previousCart = localStorage.getItem("cart");
+		if (previousCart) {
+			var lastcar = JSON.parse(previousCart);
+
+			lastcar.items.filter((element) => {
+				if (element.id == producto.id) {
+					element.quantity = element.quantity + 1;
+					var cart = {
+						items: lastcar.items,
+						item_count: lastcar.item_count + 1,
+						total_price: lastcar.total_price + producto.precio,
+					};
+					localStorage.setItem("cart", JSON.stringify(cart));
+				} else {
+					producto.quantity = 1;
+					var cart = {
+						items: [...lastcar.items, producto],
+						item_count: lastcar.item_count + 1,
+						total_price: lastcar.total_price + producto.precio,
+					};
+					localStorage.setItem("cart", JSON.stringify(cart));
+				}
+			});
+		} else {
+			producto.quantity = 1;
+			var cart = {
+				items: [producto],
+				item_count: +1,
+				total_price: producto.precio,
+			};
+			localStorage.setItem("cart", JSON.stringify(cart));
+		}
+	};
+
 	const getData = async () => {
 		const q = query(collection(db, "inventario"), where("id", "==", parseInt(id)));
 		const querySnapshot = await getDocs(q);
@@ -111,7 +146,10 @@ export const ProductPage = () => {
 											<h1>${producto.precio} MXN</h1>
 											<br />
 											<div className="buttons">
-												<button className="button button-wicon">
+												<button
+													className="button button-wicon"
+													onClick={addToCart}
+												>
 													Añadir al Carrito <AiOutlineShoppingCart className="icon" />
 												</button>
 											</div>
@@ -126,9 +164,7 @@ export const ProductPage = () => {
 												interactive={false}
 											/>
 										</div>
-										<h3>
-											Descripción
-										</h3>
+										<h3>Descripción</h3>
 										<p>{producto.descripcion}</p>
 									</div>
 								</div>
@@ -144,3 +180,4 @@ export const ProductPage = () => {
 		</>
 	);
 };
+

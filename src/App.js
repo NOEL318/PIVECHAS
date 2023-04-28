@@ -10,6 +10,7 @@ import { auth } from "./firebase";
 import { useEffect, useState } from "react";
 import Cuenta from "./pages/Cuenta";
 import { ProductPage } from "./components/Product";
+import { Carrito } from "./pages/Carrito";
 
 function App() {
 	const [user, setuser] = useState();
@@ -52,6 +53,10 @@ function App() {
 					<Route
 						path="/Cuenta"
 						element={user ? <Cuenta /> : <SignIn />}
+					/>
+					<Route
+						path="/Carrito"
+						element={user ? <Carrito /> : <SignIn />}
 					/>
 					<Route
 						path="/SignIn"

@@ -9,6 +9,8 @@ import blurright from "../assets/group228.png";
 import LeftBar from "./LeftBar";
 import Loader from "react-loaders";
 import { AiOutlineShoppingCart } from "react-icons/ai";
+import { toast } from "react-toastify";
+
 export const ProductCardSquare = ({ id, nombre, colors, image_url, rate }) => {
 	return (
 		<>
@@ -50,23 +52,24 @@ export const ProductPage = () => {
 	const { id } = useParams();
 	const [producto, setproducto] = useState();
 	const [selectedcolor, setselectedcolor] = useState();
-
+	const [qty, setqty] = useState(1);
 	const addToCart = async () => {
+		const notify = () => toast("Agregado al Carrito de Compra!", { icon: <AiOutlineShoppingCart /> });
+		notify();
 		var previousCart = localStorage.getItem("cart");
 		if (previousCart) {
 			var lastcar = JSON.parse(previousCart);
-
 			lastcar.items.filter((element) => {
 				if (element.id == producto.id) {
-					element.quantity = element.quantity + 1;
+					element.quantity = element.quantity + qty;
 					var cart = {
 						items: lastcar.items,
-						item_count: lastcar.item_count + 1,
+						item_count: lastcar.item_count,
 						total_price: lastcar.total_price + producto.precio,
 					};
 					localStorage.setItem("cart", JSON.stringify(cart));
 				} else {
-					producto.quantity = 1;
+					producto.quantity = qty;
 					var cart = {
 						items: [...lastcar.items, producto],
 						item_count: lastcar.item_count + 1,
@@ -76,7 +79,7 @@ export const ProductPage = () => {
 				}
 			});
 		} else {
-			producto.quantity = 1;
+			producto.quantity = qty;
 			var cart = {
 				items: [producto],
 				item_count: +1,
@@ -146,6 +149,13 @@ export const ProductPage = () => {
 											<h1>${producto.precio} MXN</h1>
 											<br />
 											<div className="buttons">
+												<input
+													type="number"
+													className="qty"
+													value={qty}
+													min={1}
+													onChange={(e) => setqty(parseInt(e.target.value))}
+												/>
 												<button
 													className="button button-wicon"
 													onClick={addToCart}
@@ -180,4 +190,3 @@ export const ProductPage = () => {
 		</>
 	);
 };
-

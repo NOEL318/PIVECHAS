@@ -11,6 +11,7 @@ import { useEffect, useState } from "react";
 import Cuenta from "./pages/Cuenta";
 import { ProductPage } from "./components/Product";
 import { Carrito } from "./pages/Carrito";
+import { ToastContainer } from "react-toastify";
 
 function App() {
 	const [user, setuser] = useState();
@@ -28,6 +29,8 @@ function App() {
 	return (
 		<>
 			<BrowserRouter>
+				<ToastContainer />
+
 				<Routes>
 					<Route
 						index

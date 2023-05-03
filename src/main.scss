@@ -1093,6 +1093,30 @@ body::-webkit-scrollbar {
 							flex-direction: column;
 							width: 50%;
 							min-width: 300px;
+							.buttons {
+								display: flex;
+								.qty {
+									width: 60px;
+									height: 40px;
+									margin: 10px;
+									background-color: transparent;
+									border: solid 2px #000000;
+									border-radius: 11px;
+									font-size: 30px;
+								}
+								input[type="number"]:hover::-webkit-inner-spin-button,
+								input[type="number"]:focus::-webkit-inner-spin-button {
+									padding: 0 5px 0 5px;
+									margin-right: -2px;
+									height: 40px;
+								}
+								input:focus-visible {
+									outline: none;
+								}
+								.button {
+									margin: 8px;
+								}
+							}
 							h1 {
 								font-size: 40px;
 								font-weight: 600;
@@ -1271,48 +1295,68 @@ body::-webkit-scrollbar {
 								}
 								.img {
 									padding: 0;
-									display: flex;
-									align-items: center;
-									justify-content: center;
+									padding-left: 20px;
+									height: 100%;
 									img {
+										display: flex;
+										align-items: center;
+										justify-content: center;
 										max-width: 60px;
 										max-height: 60px;
 									}
 								}
-								.qty,
+
 								.precio {
 									margin: 20px 5px 20px 5px;
-									width: 90px;
-									text-align: center;
+									width: 140px;
+									text-align: left;
 								}
 								.qty {
+									margin: 20px 5px 20px 5px;
+									width: 90px;
+									text-align: left;
+								}
+								.qty {
+									display: flex;
+									justify-content: center;
+									align-items: center;
+									flex-direction: row;
 									button {
 										width: 30px;
-										height: 30px;
+										height: 35px;
 										font-size: 20px;
 										padding: 0;
 										padding-top: 3px;
 									}
 									input {
-										width: 20px;
-										padding: 0;
-										height: 20px;
+										min-width: 40px;
+										padding-left: 10px;
+										height: 30px;
+										font-size: 25px;
+										margin-right: 10px;
+										border-radius: 6px;
+										background-color: #ffffffc1;
+										border: solid 1px #000000;
 									}
 								}
 								.art {
 									padding: 10px;
-									width: 450px;
+									width: 380px;
 								}
 								.act {
 									padding: 5px;
 									text-align: center;
 									width: 100px;
 									button {
-										width: 50px;
-										height: 50px;
-										font-size: 30px;
+										width: 45px;
+										height: 45px;
+										font-size: 27px;
 										padding: 0;
-										padding-top: 9px;
+										padding-top: 7px;
+										background-color: #ff374e;
+										border-radius: 11px;
+										color: #ffffff;
+										border: none;
 									}
 								}
 							}
@@ -1321,12 +1365,37 @@ body::-webkit-scrollbar {
 					.methods {
 						margin: 10px;
 						width: 25%;
+
 						min-width: 300px;
 						margin-top: 45px;
 						background: #e0e0e09d;
 						backdrop-filter: blur(10px);
 						border-radius: 16px;
 						padding: 30px;
+					}
+					.totals {
+						margin: 10px;
+						width: 25%;
+						min-width: 300px;
+						margin-top: 45px;
+						background: #e0e0e09d;
+						backdrop-filter: blur(10px);
+						border-radius: 16px;
+						padding: 30px;
+						text-align: left;
+						display: flex;
+						flex-direction: column;
+						justify-content: center;
+						align-items: center;
+						.hr {
+							width: 60%;
+							border: solid 1px;
+							border-color: #000000;
+						}
+						.button {
+							margin-top: 50px;
+							width: 100% !important;
+						}
 					}
 
 					h1 {
@@ -1428,4 +1497,7 @@ body::-webkit-scrollbar {
 	.product-square:hover {
 		scale: 1.03;
 	}
+}
+.no-cart {
+	color: #ffffff;
 }

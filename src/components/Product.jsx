@@ -3,13 +3,16 @@ import "../main.scss";
 import Rater from "react-rater";
 import { getDoc, where, query, collection, getDocs } from "firebase/firestore";
 import { db } from "../firebase";
-import { useEffect, useState } from "react";
+import { Fragment, useEffect, useState } from "react";
 import blurup from "../assets/group223.png";
 import blurright from "../assets/group228.png";
 import LeftBar from "./LeftBar";
 import Loader from "react-loaders";
 import { AiOutlineShoppingCart } from "react-icons/ai";
 import { toast } from "react-toastify";
+import { GoVerified } from "react-icons/go";
+
+import { Tooltip } from "react-tooltip";
 
 export const ProductCardSquare = ({ id, nombre, colors, image_url, rate }) => {
 	return (
@@ -31,16 +34,22 @@ export const ProductCardSquare = ({ id, nombre, colors, image_url, rate }) => {
 								interactive={false}
 							/>
 
-							<div className="circles">
-								{colors.map((color) => (
-									<div
-										key={color[1] + color[2] + color[3] + color[4]}
-										className="color-circle"
-										style={{ background: color }}
-									></div>
-								))}
-							</div>
-							{/* <p>{colors}</p> */}
+							{colors && (
+								<div className="circles">
+									{colors.map((color) => (
+										<div
+											key={color[1] + color[2] + color[3] + color[4]}
+											className="color-circle"
+											style={{ background: color }}
+										></div>
+									))}
+								</div>
+							)}
+						</div>
+						<div className="cart-button">
+							<button className="button">
+								<AiOutlineShoppingCart />
+							</button>
 						</div>
 					</div>
 				</div>
@@ -53,6 +62,7 @@ export const ProductPage = () => {
 	const [producto, setproducto] = useState();
 	const [selectedcolor, setselectedcolor] = useState();
 	const [qty, setqty] = useState(1);
+
 	const addToCart = async () => {
 		const notify = () => toast("Agregado al Carrito de Compra!", { icon: <AiOutlineShoppingCart /> });
 		notify();
@@ -132,21 +142,27 @@ export const ProductPage = () => {
 										</div>
 										<div className="actions">
 											<h1>{producto.nombre}</h1>
-											<br />
-											Colores disponibles:
-											<div className="circles">
-												{producto.colors.map((color) => (
-													<div
-														key={color[1] + color[2] + color[3] + color[4]}
-														className={`color-circle ${selectedcolor == color ? "selected" : ""}`}
-														style={{ background: color }}
-														onClick={() => setselectedcolor(color)}
-													></div>
-												))}
-											</div>
+											{producto.colors && (
+												<>
+													<br />
+													Colores disponibles:
+													<div className="circles">
+														{producto.colors.map((color) => (
+															<div
+																key={color[1] + color[2] + color[3] + color[4]}
+																className={`color-circle ${selectedcolor == color ? "selected" : ""}`}
+																style={{ background: color }}
+																onClick={() => setselectedcolor(selectedcolor == color ? "" : color)}
+															></div>
+														))}
+													</div>
+												</>
+											)}
 											<br />
 											Precio
 											<h1>${producto.precio} MXN</h1>
+											<br />
+											<p>En Inventario: {producto.inventario}</p>
 											<br />
 											<div className="buttons">
 												<input
@@ -157,11 +173,27 @@ export const ProductPage = () => {
 													onChange={(e) => setqty(parseInt(e.target.value))}
 												/>
 												<button
-													className="button button-wicon"
+													className={`button button-wicon`}
 													onClick={addToCart}
+													disabled={selectedcolor ? false : producto.colors ? true : false}
 												>
 													Añadir al Carrito <AiOutlineShoppingCart className="icon" />
 												</button>
+												{producto.ramo_element == true && (
+													<>
+														<Tooltip
+															id="my-tooltip"
+															clickable
+														/>
+														<a
+															data-tooltip-id="my-tooltip"
+															data-tooltip-content={`Participa en: 'Arma tu ramo Buchón', clic en el ícono
+																	para mas info.`}
+														>
+															<GoVerified className="verified" />
+														</a>
+													</>
+												)}
 											</div>
 										</div>
 									</div>
@@ -176,6 +208,17 @@ export const ProductPage = () => {
 										</div>
 										<h3>Descripción</h3>
 										<p>{producto.descripcion}</p>
+
+										{producto.ramo == true && (
+											<div className="ramo-description">
+												<h3>Elementos</h3>
+												<ul>
+													{producto.ramo_componentes.map((elemento) => (
+														<li>{elemento}</li>
+													))}
+												</ul>
+											</div>
+										)}
 									</div>
 								</div>
 							) : (

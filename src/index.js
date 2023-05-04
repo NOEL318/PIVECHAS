@@ -5,6 +5,8 @@ import reportWebVitals from "./reportWebVitals";
 import "./main.scss";
 import "react-rater/lib/react-rater.css";
 import "react-toastify/dist/ReactToastify.css";
+import 'react-tooltip/dist/react-tooltip.css'
+
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(<App />);

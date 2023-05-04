@@ -5,10 +5,19 @@ import { BsTrash } from "react-icons/bs";
 import { useEffect, useState } from "react";
 
 export const Carrito = () => {
-	const [mainprice, setmainprice] = useState();
-	const storagecart = localStorage.getItem("cart");
-	const carrito = JSON.parse(storagecart);
+	const [newprice, setnewprice] = useState();
+	const [carrito, setcarrito] = useState();
+	useEffect(() => {
+		const storagecart = localStorage.getItem("cart");
+		const carrit = JSON.parse(storagecart);
+		if (carrit) {
+			setcarrito(carrit);
+			carrit.iva = carrit.total_price * 0.16;
+			carrit.costo_envio = carrit.total_price * 0.05;
 
+			localStorage.setItem("cart", JSON.stringify(carrit));
+		}
+	}, [newprice]);
 	return (
 		<>
 			<div className="app-container">
@@ -39,24 +48,41 @@ export const Carrito = () => {
 										{carrito ? (
 											<table>
 												<thead>
-													<td
-														className="art"
-														colSpan={2}
-													>
-														Artículo
-													</td>
-													<td className="qty">Cantidad</td>
-													<td className="precio">Precio</td>
-													<td className="act">Acciones</td>
+													<tr>
+														<td
+															className="art"
+															colSpan={2}
+														>
+															Artículo
+														</td>
+														<td className="qty">Cantidad</td>
+														<td className="precio">Precio</td>
+														<td className="act">Acciones</td>
+													</tr>
 												</thead>
 												<tbody>
 													{carrito.items.map((item) => {
 														const addToItem = async (newvalue) => {
 															var x = carrito.total_price - item.precio * item.quantity;
 															carrito.items.find((product) => product.id == item.id).quantity = newvalue;
+															setnewprice(carrito.total_price);
+
 															carrito.total_price = x + newvalue * item.precio;
-															setmainprice(carrito.total_price);
 															localStorage.setItem("cart", JSON.stringify(carrito));
+														};
+
+														const deleteItem = async (cantidad, precio) => {
+															var newcartitems = carrito.items.filter((product) => product.id != item.id);
+															console.log(newcartitems, "ssdhabhdba");
+															var pric = cantidad * precio;
+															var newcart = {
+																total_price: carrito.total_price - pric,
+																iva: carrito.iva - pric * 0.16,
+																costo_envio: (carrito.total_price - pric) * 0.05,
+																items: newcartitems,
+															};
+															setcarrito(newcart);
+															localStorage.setItem("cart", JSON.stringify(newcart));
 														};
 														return (
 															<tr key={item.id}>
@@ -79,7 +105,10 @@ export const Carrito = () => {
 																	{item.precio}= ${item.precio * item.quantity}
 																</td>
 																<td className="act">
-																	<button>
+																	<button
+																		type="button"
+																		onClick={() => deleteItem(item.quantity, item.precio)}
+																	>
 																		<BsTrash />
 																	</button>
 																</td>
@@ -107,16 +136,16 @@ export const Carrito = () => {
 											+
 											<br />
 											<h3>Costo de envío:</h3>
-											<p>$ {(carrito.total_price * 0.05).toFixed(2)}</p>
+											<p>$ {(carrito.costo_envio * 0.05).toFixed(2)}</p>
 											<br />
 											+
 											<br />
 											<h3>I.V.A:</h3>
-											<p>$ {(carrito.total_price * 0.16).toFixed(2)}</p>
+											<p>$ {(carrito.iva * 0.16).toFixed(2)}</p>
 											<br />
 											<hr className="hr" />
 											<h3>Total a pagar: $ {(carrito.total_price * 1.16 + carrito.total_price * 0.05).toFixed(2)}</h3>
-											<button className="button">Finalizar Pedido</button>
+											{carrito.total_price <= 0 && <button className="button">Finalizar Pedido</button>}
 										</div>
 									)}
 								</div>

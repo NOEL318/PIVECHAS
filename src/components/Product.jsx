@@ -14,7 +14,7 @@ import { GoVerified } from "react-icons/go";
 
 import { Tooltip } from "react-tooltip";
 
-export const ProductCardSquare = ({ id, nombre, colors, image_url, rate }) => {
+export const ProductCardSquare = ({ id, nombre, colors, image_url, rate, precio }) => {
 	return (
 		<>
 			<Link to={`product-page/${id}`}>
@@ -45,11 +45,8 @@ export const ProductCardSquare = ({ id, nombre, colors, image_url, rate }) => {
 									))}
 								</div>
 							)}
-						</div>
-						<div className="cart-button">
-							<button className="button">
-								<AiOutlineShoppingCart />
-							</button>
+							<br />
+							<h2>$ {precio}mxn</h2>
 						</div>
 					</div>
 				</div>
@@ -69,27 +66,45 @@ export const ProductPage = () => {
 		var previousCart = localStorage.getItem("cart");
 		if (previousCart) {
 			var lastcar = JSON.parse(previousCart);
-			lastcar.items.filter((element) => {
-				if (element.id == producto.id) {
-					element.quantity = element.quantity + qty;
-					var cart = {
-						items: lastcar.items,
-						item_count: lastcar.item_count,
-						total_price: lastcar.total_price + producto.precio,
-					};
-					localStorage.setItem("cart", JSON.stringify(cart));
-				} else {
-					producto.quantity = qty;
-					var cart = {
-						items: [...lastcar.items, producto],
-						item_count: lastcar.item_count + 1,
-						total_price: lastcar.total_price + producto.precio,
-					};
-					localStorage.setItem("cart", JSON.stringify(cart));
-				}
-			});
+			var items = lastcar.items;
+			if (items.length >= 1) {
+				lastcar.items.filter((element) => {
+					if (element.id == producto.id) {
+						element.quantity = element.quantity + qty;
+						element.color = selectedcolor;
+						var cart = {
+							items: lastcar.items,
+							item_count: lastcar.item_count,
+							total_price: lastcar.total_price + producto.precio,
+						};
+						localStorage.setItem("cart", JSON.stringify(cart));
+					} else {
+						producto.quantity = qty;
+						producto.color = selectedcolor;
+						var cart = {
+							items: [...lastcar.items, producto],
+							item_count: lastcar.item_count + 1,
+							total_price: lastcar.total_price + producto.precio,
+						};
+						localStorage.setItem("cart", JSON.stringify(cart));
+					}
+				});
+			} else {
+				localStorage.removeItem("cart");
+				producto.quantity = qty;
+				producto.color = selectedcolor;
+
+				var cart = {
+					items: [producto],
+					item_count: +1,
+					total_price: producto.precio,
+				};
+				localStorage.setItem("cart", JSON.stringify(cart));
+			}
 		} else {
 			producto.quantity = qty;
+			producto.color = selectedcolor;
+
 			var cart = {
 				items: [producto],
 				item_count: +1,

@@ -21,7 +21,6 @@ export const LeftBar = ({ active }) => {
 			if (usr) {
 				const uid = usr.uid;
 				setuser(usr);
-				console.log(uid);
 			} else {
 				setuser(null);
 			}

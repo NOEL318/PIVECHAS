@@ -120,7 +120,7 @@ body::-webkit-scrollbar {
 	}
 }
 .main {
-	background-image: url("./assets/1.avif");
+	background-image: url("./assets/blueplants.jpg");
 	background-size: cover;
 	background-attachment: fixed;
 	display: flex;
@@ -356,7 +356,7 @@ body::-webkit-scrollbar {
 	border: 0.2rem solid #fff;
 	border-radius: 2rem;
 	padding: 0.4em;
-	box-shadow: 0 0 0.2rem #fff, 0 0 0.2rem #fff, 0 0 2rem #bf13fe, 0 0 0.8rem #e625ff, 0 0 2.8rem #fb00ff, inset 0 0 1.3rem #aa00ff;
+	box-shadow: 0 0 0.2rem #fff, 0 0 0.2rem #fff, 0 0 2rem #139cfe, 0 0 0.8rem #2c25ff, 0 0 2.8rem #4800ff, inset 0 0 1.3rem #2600ff;
 	.landing-title {
 		font-size: 100px;
 		margin: 20px;
@@ -796,6 +796,7 @@ body::-webkit-scrollbar {
 	display: flex;
 	flex-direction: row;
 	flex-wrap: wrap;
+
 	background-color: #2d3949;
 	min-height: 100vh;
 	height: 100%;
@@ -1068,9 +1069,7 @@ body::-webkit-scrollbar {
 						width: 300px;
 						transition: all 0.3s;
 					}
-					.image_product:hover {
-						scale: 1.5;
-					}
+
 					.background {
 						border-radius: 16px;
 						margin: 40px;
@@ -1315,11 +1314,19 @@ body::-webkit-scrollbar {
 								backdrop-filter: blur(10px);
 								border-radius: 16px;
 								font-size: 17px;
-								tr,
+								tr.normal,
 								thead {
 									padding: 15px;
 									width: 100%;
 									border-bottom: #000000 1px solid;
+								}
+								tr.ramo {
+									padding: 15px;
+									width: 100%;
+									border-bottom: #000000 1px solid;
+									td {
+										padding-left: 10px;
+									}
 								}
 								td {
 									border: none;
@@ -1394,6 +1401,11 @@ body::-webkit-scrollbar {
 										cursor: pointer;
 									}
 								}
+								.circle {
+									width: 40px;
+									height: 40px;
+									border-radius: 100%;
+								}
 							}
 						}
 					}
@@ -1407,6 +1419,20 @@ body::-webkit-scrollbar {
 						backdrop-filter: blur(10px);
 						border-radius: 16px;
 						padding: 30px;
+						text-align: left;
+
+						.method {
+							border-radius: 11px;
+							max-width: 55px;
+							max-height: 50px;
+						}
+						.method-wr {
+							max-width: 55px;
+							max-height: 50px;
+						}
+						.text {
+							padding-left: 10px;
+						}
 					}
 					.totals {
 						margin: 10px;
@@ -1492,12 +1518,18 @@ body::-webkit-scrollbar {
 			align-items: center;
 			flex-direction: column;
 			padding: 10px;
-
+			a {
+				width: 100%;
+			}
+			button:hover {
+				cursor: pointer;
+			}
 			.product_image {
 				max-height: 180px;
 				max-width: 180px;
 			}
 			.product-text {
+				text-decoration: none;
 				padding: 10px;
 				.react-rater {
 					width: 100%;
@@ -1542,6 +1574,13 @@ body::-webkit-scrollbar {
 					width: 100%;
 				}
 			}
+		}
+	}
+	.product-square.active {
+		background-color: #00ff37;
+		border-radius: 11px;
+		.prod-info {
+			opacity: 0.5;
 		}
 	}
 	.product-square:hover {

@@ -33,7 +33,7 @@ export const Home = () => {
 						<BsFillBoxSeamFill className="icon" />
 						<div className="text">
 							<h3>Envío Gratis</h3>
-							<p className="description">No cobramos envío</p>
+							<p className="description">No cobramos envío a algunas zonas</p>
 						</div>
 					</div>
 					<div className="mini-card">

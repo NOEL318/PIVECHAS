@@ -12,6 +12,7 @@ import Cuenta from "./pages/Cuenta";
 import { ProductPage } from "./components/Product";
 import { Carrito } from "./pages/Carrito";
 import { ToastContainer } from "react-toastify";
+import ArmaTuRamo from "./pages/ArmaTuRamo";
 
 function App() {
 	const [user, setuser] = useState();
@@ -20,7 +21,6 @@ function App() {
 			if (usr) {
 				const uid = usr.uid;
 				setuser(usr);
-				console.log(uid);
 			} else {
 				setuser(null);
 			}
@@ -48,6 +48,10 @@ function App() {
 					<Route
 						path="/Tienda"
 						element={user ? <Tienda /> : <SignIn />}
+					/>
+					<Route
+						path="/Tienda/ArmaTuRamoBuchon"
+						element={user ? <ArmaTuRamo /> : <SignIn />}
 					/>
 					<Route
 						path="/Tienda/product-page/:id"

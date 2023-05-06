@@ -7,7 +7,8 @@ import { collection, getDocs } from "firebase/firestore";
 import { useEffect, useState } from "react";
 import { db } from "../firebase";
 import Loader from "react-loaders";
-
+import { AiOutlinePlus } from "react-icons/ai";
+import { Link } from "react-router-dom";
 export const Tienda = () => {
 	const [productos, setproductos] = useState([]);
 	const getProductsList = async () => {
@@ -42,6 +43,30 @@ export const Tienda = () => {
 					<div className="rightbar">
 						{productos.length >= 2 ? (
 							<div className="products">
+								<div className="product-square">
+									<div className="background"></div>
+									<div className="prod-info">
+										<br />
+										<br />
+										<img
+											src={"https://i.pinimg.com/736x/ec/6e/17/ec6e173dd9a9d7867104851c5f0a0661.jpg"}
+											alt=""
+											className="product_image"
+										/>
+										<div className="product-text">
+											<h2>{"Arma Tu Ramo Buchón"}</h2>
+										</div>
+										<br />
+										<Link to={"/Tienda/ArmaTuRamoBuchon"}>
+											<div className="cart-button">
+												<button className="button button-wicon">
+													<AiOutlinePlus className="icon" />
+												</button>
+											</div>
+										</Link>
+									</div>
+								</div>
+
 								{productos.map((producto) => {
 									return (
 										<ProductCardSquare
@@ -52,6 +77,7 @@ export const Tienda = () => {
 											image_url={producto.image_url}
 											descripcion={producto.descripcion}
 											rate={producto.rate}
+											precio={producto.precio}
 										/>
 									);
 								})}

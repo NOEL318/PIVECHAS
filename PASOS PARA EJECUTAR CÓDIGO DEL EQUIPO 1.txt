@@ -1,0 +1,34 @@
+PASOS PARA EJECUTAR CÓDIGO DEL EQUIPO 1(PIVECHAS)
+
+SE REQUIERE TENER INSTALADO:
+
+Visual Studio C++ build tools(Se descargan desde el gestor de extensiones de Visual Studio 2019 o mayor) Descarga Visual Studio desde: https://visualstudio.microsoft.com/es/vs/
+NodeJS(En su versión estable 18.16.0 LTS o menor hasta 16.5.0)-- La descarga desde: https://nodejs.org/en
+
+Espacio en Disco Requerido: 4.5Gb mínimo
+!!Importante NOTA sobre NODEJS:
+Durante la instalación No de clic sobre el seleccionable que dice 'Instalar herramientas adicionales' y que diga algo sobre Chocolatey ya que es una herramienta muy poderosa pero inestable en windows y si se instala podría perder su Sistema Operativo.
+
+Phyton 3--(Es necesario que al finalizar la instalación en la última ventana de clic sobre donde dice: "agregar al PATH") lo descarga desde: https://www.python.org/downloads/
+Una terminal cmd NO PowerShell,
+
+NOTA:
+Estas instrucciones están escritas para el Sistema Operativo Windows, si necesita ejecutarlo en algún otro avísenos para darle las instrucciones ya sea Linux o Mac.
+
+Paso 1 : abrir en la terminal la carpeta del proyecto
+Paso 2: teclear: "npm i" y esperar la barra de progreso a que finalice la descarga de las librerías son aprox(1.4gb de librerías)(Cualquier error en la compilación no es nuestro puede que haya fallado algún elemento de los requeridos, si llega a tener algún error preguntenos para asistirle)
+Paso 3: Una vez finalizada la instalación de las librerías puede teclear en la terminal: "npm start" al dar enter compilará y abrirá su navegador en unos segundos en el localhost en el puerto 3000 eso si este está disponible si no elegirá otro al azar(el cual no conocemos por que es al azar)
+
+Nota: Nuestro proyecto no utiliza Bases de Datos de tipo relacional como lo es MariaDB, nosotros utilizamos Firebase como base de datos y cloud para almacenar nuestras imágenes, además utilizamos Github para almacenar nuestro código y cada que realizamos un cambio se sube automáticamente a un servidor llamado Vercel, el cuál es un Paas(Platform as a Service) y se puede visualizar en un dominio que puede consultar: https://pivechas.vercel.app
+
+Para ingresar a la tienda necesita crearse una cuenta con su correo y contraseña, nuestro servicio de inicio de sesión es parte de una librería de autenticación segura que tiene Google con Firebase por lo que no vemos datos sensibles de los usuarios y es muy segura en cuanto a datos privados de cada usuario.
+
+Por el momento la sección de "Arma tu ramo buchón" está funcionando a un 40% ya que no hemos concluido esa sección y es de las últimas que faltan además de finalizar compra
+
+El carrito de compras usted puede cerrar su sesión y su pestaña y no se va a borrar(a menos que esté en una pestaña de invitado o de incógnito o que borre los datos del navegador)
+
+Nuestra página está programada en JSX (Java cript Extended) que es un "Lenguaje" por así llamarlo, en realidad es un Framework de front-end que creó facebook para poder llevar a cabo solo una codificación de su app a distintos entornos y sistemas operativos, es una de las tecnologías que usan actualmente Facebook, WhatsApp, Twitter, Mercado Libre, NASA, SpaceX, Walmart, Netflix, Uber y Yahoo entre otra infinidad de empresas.
+Utilizamos este framework ya que utiliza componentes reactivos y nos permite hacer el proyecto mas limpio, optimizado y amigable, tanto en código como con el usuario, de hecho si observa bien nuestra aplicación web Solo recarga 1 VEZ entonces está así de optimizada, en cuestión pesa aproximadamente 5mb, nuestras imagenes están con URL ya que las guardamos en nuestra nube entonces si se eliminan de internet, en nuestro sitio se seguirán viendo, y esto no afecta al rendimiento ya que las imágenes estan comprimidas desde el servidor por lo que con la conexión mas lenta pueden llegar rápidamente al usuario.
+
+Cualquier duda del funcionamiento de cualquier archivo del proyecto nos puede preguntar y le podemos responder sin problema cualquier línea de código o archivo, o librería o cualquier cosa.
+:)

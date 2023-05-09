@@ -1,3 +1,10 @@
+/**
+ * Esta es una función de React que configura el enrutamiento para una aplicación web y maneja la
+ * autenticación del usuario usando Firebase.
+ * @returns Se devuelve el componente `App`, que contiene la lógica de enrutamiento para las diferentes
+ * páginas de la aplicación.
+ */
+
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { Home } from "./pages/Home";
 import SignIn from "./pages/SignIn";

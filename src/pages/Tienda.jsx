@@ -1,3 +1,11 @@
+/* Este es un componente de React llamado `Tienda` que muestra una lista de productos obtenidos de una
+base de datos de Firebase. Importa varias dependencias, como hojas de estilo, componentes y
+funciones de Firebase. Utiliza los ganchos `useState` y `useEffect` para administrar el estado y
+obtener datos respectivamente. También utiliza la representación condicional para mostrar un
+cargador mientras se obtienen los datos y la lista de productos real una vez que los datos están
+disponibles. La lista de productos se muestra utilizando el componente `ProductCardSquare`.
+Finalmente, exporta el componente `Tienda` como exportación por defecto. */
+
 import "../main.scss";
 import blurup from "../assets/group223.png";
 import blurright from "../assets/group228.png";

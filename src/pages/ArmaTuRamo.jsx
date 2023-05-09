@@ -1,3 +1,13 @@
+/* Este es un componente de React llamado `ArmaTuRamo` que muestra una lista de productos de una base
+de datos de Firestore y permite al usuario seleccionar varios productos para crear un ramo
+personalizado. Importa varias dependencias y componentes, incluidos `LeftBar`, `Evaluador` y
+`Loader`. También utiliza los ganchos `useState` y `useEffect` para administrar el estado y obtener
+datos de la base de datos. El componente representa un contenedor con un fondo borroso, una barra
+lateral izquierda y un contenedor derecho con una lista de productos. Cada producto se muestra como
+un cuadrado con una imagen, nombre, calificación, opciones de color y precio. Cuando se hace clic en
+un producto, se agrega a una lista de artículos seleccionados, que se muestra con un estilo
+diferente. Si no hay productos para mostrar, se muestra una rueda giratoria de carga. */
+
 import LeftBar from "../components/LeftBar";
 import "../main.scss";
 import blurup from "../assets/group223.png";

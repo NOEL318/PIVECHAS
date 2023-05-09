@@ -1,3 +1,8 @@
+/* Este es un componente de React llamado "Nosotros" que renderiza una sección de un sitio web sobre la
+empresa "PIVECHAS". Importa varios archivos de imagen y un componente LeftBar, y los utiliza para
+mostrar información sobre la misión y visión de la empresa. El componente también usa clases CSS
+para diseñar el diseño y la apariencia del contenido. */
+
 import "../main.scss";
 import blurup from "../assets/group223.png";
 import blurright from "../assets/group228.png";

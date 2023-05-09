@@ -1,3 +1,11 @@
+/* El código anterior es un componente JavaScript React que muestra una tarjeta de producto y una
+página de producto. El componente `ProductCardSquare` muestra una tarjeta cuadrada con información
+del producto, como nombre, imagen, calificación, colores y precio. El componente `ProductPage`
+muestra información detallada sobre un producto específico, incluido su nombre, imagen,
+calificación, colores, precio, descripción e inventario. También permite al usuario agregar el
+producto a su carrito y muestra un cargador mientras se obtienen los datos de la base de datos. El
+código utiliza varias bibliotecas React como `react-router-dom`, `react-rater`, */
+
 import { Link, useParams } from "react-router-dom";
 import "../main.scss";
 import Rater from "react-rater";

@@ -1,3 +1,11 @@
+/* Este es un componente de React llamado `Cuenta` que muestra la información de la cuenta del usuario.
+Importa varias dependencias como `onAuthStateChanged` de Firebase, imágenes y otros componentes.
+Utiliza los ganchos `useState` y `useEffect` para administrar el estado y realizar efectos
+secundarios respectivamente. La función `onAuthStateChanged` se utiliza para detectar cambios en el
+estado de autenticación del usuario y actualizar el estado del `usuario` en consecuencia. Si hay un
+usuario, muestra su foto de perfil, correo electrónico y nombre en los campos de entrada. Si no hay
+ningún usuario, no muestra nada. */
+
 import { onAuthStateChanged } from "firebase/auth";
 import blurup from "../assets/group223.png";
 import blurright from "../assets/group228.png";

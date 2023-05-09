@@ -1,3 +1,10 @@
+/**
+ * La función Inicio devuelve un elemento JSX que representa el contenido principal de la página de
+ * inicio de un sitio web, incluida una barra de navegación superior, tarjetas de productos, una
+ * cuadrícula de imágenes y una sección sobre el cuidado de las plantas.
+ * @returns Se devuelve el componente Inicio, que contiene elementos y componentes JSX.
+ */
+
 import logo from "../assets/logo.svg";
 import loto from "../assets/loto.webp";
 import girasol from "../assets/girasol.png";

@@ -1,3 +1,11 @@
+/* Este es un componente de React para una página de inicio de sesión. Importa varios activos, como
+imágenes y hojas de estilo, así como las dependencias necesarias, como `useState` de React y
+`signInWithEmailAndPassword` de la autenticación de Firebase. El componente presenta un formulario
+para que los usuarios ingresen su correo electrónico y contraseña para iniciar sesión, con una
+casilla de verificación para aceptar los términos y condiciones y un enlace a la página de registro.
+Cuando el usuario hace clic en el botón "Iniciar sesión", se llama a la función `Si` para iniciar
+sesión con el usuario utilizando la autenticación de Firebase. */
+
 import "../main.scss";
 import blurup from "../assets/group223.png";
 import blurright from "../assets/group228.png";

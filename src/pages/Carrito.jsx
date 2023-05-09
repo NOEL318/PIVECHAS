@@ -1,3 +1,10 @@
+/* El código anterior es un componente de React que muestra una página de carrito de compras. Recupera
+los datos del carrito del almacenamiento local y muestra los artículos en una tabla. El usuario
+puede actualizar la cantidad de artículos o eliminarlos del carrito. El componente también calcula
+el subtotal, el costo de envío y los impuestos, y muestra el monto total a pagar. El usuario puede
+elegir entre varios métodos de pago y finalizar el pedido. El componente utiliza varios iconos e
+imágenes para mejorar la interfaz de usuario. */
+
 import LeftBar from "../components/LeftBar";
 import blurup from "../assets/group223.png";
 import blurright from "../assets/group228.png";

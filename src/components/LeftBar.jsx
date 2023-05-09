@@ -1,3 +1,8 @@
+/* Este es un componente de React llamado `LeftBar` que muestra un menú de navegación en la barra
+lateral izquierda con varios enlaces e íconos. También incluye funcionalidad para un menú
+desplegable, autenticación de usuario y un botón de cierre de sesión. El componente importa varios
+íconos y módulos de bibliotecas externas como `react-icons` y `react-router-dom`. */
+
 import logo from "../assets/logo.svg";
 import { Link } from "react-router-dom";
 import { AiOutlineShoppingCart } from "react-icons/ai";

@@ -1,3 +1,9 @@
+/* Este es un componente JavaScript React que representa una página de contacto. Importa varios
+archivos de imagen y un componente LeftBar de otros archivos. El componente devuelve un código JSX
+que incluye un contenedor con dos imágenes borrosas, un componente LeftBar y una sección con
+información de contacto y un código QR. El componente se exporta como una exportación
+predeterminada. */
+
 import "../main.scss";
 import blurup from "../assets/group223.png";
 import blurright from "../assets/group228.png";

@@ -1,3 +1,12 @@
+/* Este es un componente de React llamado `SignUp` que muestra un formulario para que los usuarios
+creen una nueva cuenta. Importa varios activos, como imágenes y hojas de estilo, así como las
+funciones necesarias de Firebase para la autenticación de usuarios. El componente utiliza ganchos de
+estado para administrar la entrada del usuario para correo electrónico, contraseña y nombre. Cuando
+el usuario hace clic en el botón "Crear Cuenta", se llama a la función `Su` para crear una nueva
+cuenta de usuario con Firebase y actualizar el perfil del usuario con su nombre y una imagen de
+avatar generada. El componente también incluye un enlace a la página de inicio de sesión y un
+componente de barra de navegación. */
+
 import "../main.scss";
 import blurup from "../assets/group223.png";
 import blurright from "../assets/group228.png";

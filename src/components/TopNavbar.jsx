@@ -1,3 +1,11 @@
+/* Este es un componente de React llamado `TopNavbar` que representa una barra de navegación con
+enlaces a diferentes páginas de un sitio web. También incluye íconos para un carrito de compras y un
+menú, y muestra la imagen de perfil y el nombre del usuario si está conectado. El componente usa
+ganchos de React como `useState` y `useEffect` para administrar el estado y realizar efectos
+secundarios e importaciones. varios módulos como `Link` de `react-router-dom` e iconos de
+`react-icons`. También importa `auth` y `onAuthStateChanged` desde un módulo de Firebase para
+manejar la autenticación de usuarios. */
+
 import { Link } from "react-router-dom";
 import logo from "../assets/logo.svg";
 import { AiOutlineShoppingCart } from "react-icons/ai";

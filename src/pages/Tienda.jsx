@@ -48,7 +48,8 @@ export const Tienda = () => {
 				<div className="bars">
 					<LeftBar active={"Tienda"} />
 
-					<div className="rightbar">
+					<div className="rightbar column">
+						<h1>Nuestros productos</h1>
 						{productos.length >= 2 ? (
 							<div className="products">
 								<div className="product-square">

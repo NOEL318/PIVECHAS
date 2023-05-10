@@ -22,7 +22,7 @@ export const SignUp = () => {
 	const [email, setemail] = useState();
 	const [password, setpassword] = useState();
 	const [nombre, setnombre] = useState();
-
+	const [terms, setterms] = useState(true);
 	const Su = async (nombre, email, password) => {
 		const Load = await createUserWithEmailAndPassword(auth, email, password)
 			.then(async (userCredential) => {
@@ -98,6 +98,20 @@ export const SignUp = () => {
 								id="password"
 							/>
 							<div className="checkbox-group">
+								<div className="terms">
+									<input
+										type="checkbox"
+										name="termsyconditions"
+										id="termsyconditions"
+										onChange={() => setterms(terms ? false : true)}
+									/>
+									<label
+										htmlFor="termsyconditions"
+										className="terms"
+									>
+										Acepto los Términos y Condiciones
+									</label>
+								</div>
 								<Link
 									className="label"
 									to={"/SignIn"}
@@ -108,6 +122,7 @@ export const SignUp = () => {
 							<button
 								className="button"
 								type="button"
+								disabled={terms}
 								onClick={() => Su(nombre, email, password)}
 							>
 								Crear Cuenta

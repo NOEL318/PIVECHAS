@@ -86,20 +86,7 @@ export const SignIn = () => {
 								onChange={(e) => setpassword(e.target.value)}
 							/>
 							<div className="checkbox-group">
-								<div className="terms">
-									<input
-										type="checkbox"
-										name="termsyconditions"
-										id="termsyconditions"
-									/>
-									<label
-										htmlFor="termsyconditions"
-										className="terms"
-									>
-										Acepto los Términos y Condiciones
-									</label>
-								</div>
-
+							
 								<Link
 									className="label"
 									to={"/SignUp"}

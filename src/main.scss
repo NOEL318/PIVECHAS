@@ -101,9 +101,10 @@ body::-webkit-scrollbar {
 	border-radius: 16px;
 	border: 1px solid #000000;
 	background: linear-gradient(99.08deg, #1fbe42 -2.87%, #ff00c7 114.28%);
+	transition: all 0.3s;
 }
 .button:enabled:hover {
-	scale: 1.02;
+	scale: 1.05;
 }
 .button:disabled {
 	opacity: 0.6;
@@ -954,6 +955,9 @@ body::-webkit-scrollbar {
 				}
 			}
 		}
+		.column {
+			flex-direction: column;
+		}
 		.rightbar {
 			position: relative;
 			z-index: 4;
@@ -964,6 +968,23 @@ body::-webkit-scrollbar {
 			padding-top: 50px;
 			padding-bottom: 20px;
 			margin: 20px;
+
+			.react-rater {
+				width: 100%;
+				display: flex;
+				align-items: center;
+				justify-content: center;
+				height: 30px;
+				margin: 10px 0 10px 0;
+				.react-rater-star.is-active.is-disabled {
+					color: #ffe600;
+					font-size: 20px;
+				}
+				.react-rater-star.is-disabled {
+					color: #515151;
+					font-size: 20px;
+				}
+			}
 			.right-container {
 				text-align: center;
 				width: 100%;

@@ -21,6 +21,8 @@ import Loader from "react-loaders";
 export const ArmaTuRamo = () => {
 	const [productos, setproductos] = useState([]);
 	const [selectedarticles, setselectedarticles] = useState([]);
+	const [mainrate, setmainrate] = useState(0);
+	const [carrito, setcarrito] = useState();
 	const getProductsList = async () => {
 		const querySnapshot = await getDocs(query(collection(db, "inventario"), where("ramo_element", "==", true)));
 		setproductos([]);
@@ -48,7 +50,14 @@ export const ArmaTuRamo = () => {
 				</div>
 				<div className="bars">
 					<LeftBar active={"Tienda"} />
-					<div className="rightbar">
+					<div className="rightbar column">
+						<h1>Selecciona las flores para tu ramo</h1>
+						<Rater
+							total={5}
+							rating={mainrate}
+							interactive={false}
+						/>
+						<br />
 						<div className="right-container">
 							<div className="products">
 								<div className="background"></div>
@@ -81,7 +90,7 @@ export const ArmaTuRamo = () => {
 														<h2>{producto.nombre}</h2>
 														<Rater
 															total={5}
-															rating={4}
+															rating={producto.rate}
 															interactive={false}
 														/>
 														{producto.colors && (
@@ -109,6 +118,39 @@ export const ArmaTuRamo = () => {
 								)}
 							</div>
 						</div>
+						<button
+							className="button"
+							onClick={() => {
+								var x = 0,
+									rate = 0;
+								for (let i = 0; i < selectedarticles.length; i++) {
+									var element = selectedarticles[i];
+									x += element.precio;
+								}
+
+								for (let i = 0; i < selectedarticles.length; i++) {
+									var element = selectedarticles[i];
+									rate += element.rate;
+									setmainrate(rate / selectedarticles.length);
+								}
+								var newramo = {
+									nombre: "Ramo",
+									rate: mainrate,
+									id: parseInt((Math.random() * (1000 - 50) + 50).toFixed(0)),
+									descripcion: "",
+									precio: parseFloat((x * 0.8).toFixed(2)),
+									quantity: 1,
+									ramo: true,
+									ramo_element: false,
+									ramo_componentes: selectedarticles.map((element) => element.nombre),
+									image_url:
+										"https://firebasestorage.googleapis.com/v0/b/pivechas.appspot.com/o/silueta.png?alt=media&token=d4bd467a-c227-49c9-a120-3c4a119d258a",
+								};
+								console.log(newramo);
+							}}
+						>
+							Finalizar Creación de Ramo
+						</button>
 					</div>
 				</div>
 			</div>

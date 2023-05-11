@@ -17,12 +17,14 @@ import { useEffect, useState } from "react";
 import { collection, getDocs, where, query } from "firebase/firestore";
 import { db } from "../firebase";
 import Loader from "react-loaders";
+import { toast } from "react-toastify";
+import { AiOutlineShoppingCart } from "react-icons/ai";
 
 export const ArmaTuRamo = () => {
 	const [productos, setproductos] = useState([]);
 	const [selectedarticles, setselectedarticles] = useState([]);
 	const [mainrate, setmainrate] = useState(0);
-	const [carrito, setcarrito] = useState();
+	var rate = 0;
 	const getProductsList = async () => {
 		const querySnapshot = await getDocs(query(collection(db, "inventario"), where("ramo_element", "==", true)));
 		setproductos([]);
@@ -31,8 +33,20 @@ export const ArmaTuRamo = () => {
 		});
 	};
 	useEffect(() => {
-		getProductsList();
-	}, []);
+		if (productos.length <= 0) {
+			getProductsList();
+		}
+		if (selectedarticles.length >= 1) {
+			for (let i = 0; i < selectedarticles.length; i++) {
+				var element = selectedarticles[i];
+				rate += element.rate;
+
+				setmainrate(rate / selectedarticles.length);
+			}
+		} else {
+			setmainrate(0);
+		}
+	}, [selectedarticles]);
 	return (
 		<>
 			<div className="app-container">
@@ -121,20 +135,18 @@ export const ArmaTuRamo = () => {
 						<button
 							className="button"
 							onClick={() => {
-								var x = 0,
-									rate = 0;
+								var previousCart = localStorage.getItem("cart");
+								var lastcar = JSON.parse(previousCart);
+
+								var x = 0;
+
 								for (let i = 0; i < selectedarticles.length; i++) {
 									var element = selectedarticles[i];
 									x += element.precio;
 								}
 
-								for (let i = 0; i < selectedarticles.length; i++) {
-									var element = selectedarticles[i];
-									rate += element.rate;
-									setmainrate(rate / selectedarticles.length);
-								}
 								var newramo = {
-									nombre: "Ramo",
+									nombre: "Ramo Personalizado",
 									rate: mainrate,
 									id: parseInt((Math.random() * (1000 - 50) + 50).toFixed(0)),
 									descripcion: "",
@@ -146,7 +158,15 @@ export const ArmaTuRamo = () => {
 									image_url:
 										"https://firebasestorage.googleapis.com/v0/b/pivechas.appspot.com/o/silueta.png?alt=media&token=d4bd467a-c227-49c9-a120-3c4a119d258a",
 								};
-								console.log(newramo);
+
+								var cart = {
+									items: [...lastcar.items, newramo],
+									item_count: lastcar.item_count + 1,
+									total_price: lastcar.total_price + newramo.precio,
+								};
+								localStorage.setItem("cart", JSON.stringify(cart));
+
+								toast.success("Se agregó tu Ramo al Carrito", { icon: <AiOutlineShoppingCart /> });
 							}}
 						>
 							Finalizar Creación de Ramo

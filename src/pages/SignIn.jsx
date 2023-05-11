@@ -16,6 +16,7 @@ import { signInWithEmailAndPassword } from "firebase/auth";
 import { auth } from "../firebase";
 import { useState } from "react";
 import { TopNavbar } from "../components/TopNavbar";
+import { toast } from "react-toastify";
 
 export const SignIn = () => {
 	const [email, setemail] = useState();
@@ -30,8 +31,8 @@ export const SignIn = () => {
 				console.log(user);
 			})
 			.catch((error) => {
-				const errorCode = error.code;
 				const errorMessage = error.message;
+				toast(error.message, { position: "bottom-center", type: "error" })
 			});
 	};
 	return (

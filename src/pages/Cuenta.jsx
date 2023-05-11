@@ -12,6 +12,7 @@ import blurright from "../assets/group228.png";
 import LeftBar from "../components/LeftBar";
 import { auth } from "../firebase";
 import { useEffect, useState } from "react";
+import { GoVerified } from "react-icons/go";
 
 export const Cuenta = () => {
 	const [user, setuser] = useState();
@@ -20,7 +21,7 @@ export const Cuenta = () => {
 			if (usr) {
 				const uid = usr.uid;
 				setuser(usr);
-				console.log(uid);
+				console.log(usr);
 			} else {
 				setuser(null);
 			}
@@ -55,6 +56,8 @@ export const Cuenta = () => {
 											alt=""
 										/>
 										<div className="form">
+											<h1>{user.displayName} {user.emailVerified ? <GoVerified size={25} /> : ""}</h1>
+											
 											<label htmlFor="name">Email</label>
 											<input
 												type="text"
@@ -63,13 +66,7 @@ export const Cuenta = () => {
 												placeholder={user.email}
 												disabled
 											/>
-											<label htmlFor="name">Nombre</label>
-											<input
-												type="text"
-												id="name"
-												placeholder={user.displayName}
-												disabled
-											/>
+							
 										</div>
 									</div>
 								</div>

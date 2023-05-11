@@ -69,7 +69,7 @@ export const ProductPage = () => {
 	const [qty, setqty] = useState(1);
 
 	const addToCart = async () => {
-		const notify = () => toast("Agregado al Carrito de Compra!", { icon: <AiOutlineShoppingCart /> });
+		const notify = () => toast.success("Agregado al Carrito de Compra!", { icon: <AiOutlineShoppingCart /> });
 		notify();
 		var previousCart = localStorage.getItem("cart");
 		if (previousCart) {
@@ -195,13 +195,25 @@ export const ProductPage = () => {
 													min={1}
 													onChange={(e) => setqty(parseInt(e.target.value))}
 												/>
-												<button
-													className={`button button-wicon`}
-													onClick={addToCart}
-													disabled={selectedcolor ? false : producto.colors ? true : false}
+
+												{!selectedcolor && (
+													<Tooltip
+														id="my-2tooltip"
+														clickable
+													/>
+												)}
+												<a
+													data-tooltip-id="my-2tooltip"
+													data-tooltip-content={`Antes de agregar al carrito debes seleccionar una variante de color`}
 												>
-													Añadir al Carrito <AiOutlineShoppingCart className="icon" />
-												</button>
+													<button
+														className={`button button-wicon`}
+														onClick={addToCart}
+														disabled={selectedcolor ? false : producto.colors ? true : false}
+													>
+														Añadir al Carrito <AiOutlineShoppingCart className="icon" />
+													</button>
+												</a>
 												{producto.ramo_element == true && (
 													<>
 														<Tooltip

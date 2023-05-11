@@ -13,10 +13,11 @@ import blurright from "../assets/group228.png";
 import rosa from "../assets/rosa.png";
 import { Link } from "react-router-dom";
 import logo from "../assets/logo.svg";
-import { createUserWithEmailAndPassword, updateProfile } from "firebase/auth";
+import { createUserWithEmailAndPassword, updateProfile, sendEmailVerification } from "firebase/auth";
 import { useEffect, useState } from "react";
 import { auth } from "../firebase";
 import { TopNavbar } from "../components/TopNavbar";
+import { toast } from "react-toastify";
 
 export const SignUp = () => {
 	const [email, setemail] = useState();
@@ -24,18 +25,18 @@ export const SignUp = () => {
 	const [nombre, setnombre] = useState();
 	const [terms, setterms] = useState(true);
 	const Su = async (nombre, email, password) => {
-		const Load = await createUserWithEmailAndPassword(auth, email, password)
+		await createUserWithEmailAndPassword(auth, email, password)
 			.then(async (userCredential) => {
 				const user = userCredential.user;
 				updateProfile(auth.currentUser, {
 					displayName: nombre,
 					photoURL: `https://api.multiavatar.com/${nombre}.svg`,
 				});
+				sendEmailVerification(auth.currentUser).then(() => {});
 			})
 			.catch((error) => {
-				const errorCode = error.code;
 				const errorMessage = error.message;
-				console.log(errorCode, errorMessage);
+				toast(errorMessage, { position: "bottom-center", type: "error" });
 			});
 	};
 	return (

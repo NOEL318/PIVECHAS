@@ -25,6 +25,7 @@ export const Tienda = () => {
 		querySnapshot.forEach((doc) => {
 			setproductos((productos) => [...productos, doc.data()]);
 		});
+		console.log(productos) 
 	};
 	useEffect(() => {
 		getProductsList();

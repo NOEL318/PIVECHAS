@@ -118,8 +118,15 @@ export const ArmaTuRamo = () => {
 																))}
 															</div>
 														)}
-														<br />
+
 														<h2>$ {producto.precio}mxn</h2>
+													</div>
+													<div className="buttons">
+														<input
+															type="number"
+															className="qty"
+														/>
+														<button className="button">Agregar a Ramo</button>
 													</div>
 												</div>
 											</div>
@@ -139,12 +146,10 @@ export const ArmaTuRamo = () => {
 								var lastcar = JSON.parse(previousCart);
 
 								var x = 0;
-
 								for (let i = 0; i < selectedarticles.length; i++) {
 									var element = selectedarticles[i];
 									x += element.precio;
 								}
-
 								var newramo = {
 									nombre: "Ramo Personalizado",
 									rate: mainrate,
@@ -158,15 +163,23 @@ export const ArmaTuRamo = () => {
 									image_url:
 										"https://firebasestorage.googleapis.com/v0/b/pivechas.appspot.com/o/silueta.png?alt=media&token=d4bd467a-c227-49c9-a120-3c4a119d258a",
 								};
-
-								var cart = {
-									items: [...lastcar.items, newramo],
-									item_count: lastcar.item_count + 1,
-									total_price: lastcar.total_price + newramo.precio,
-								};
-								localStorage.setItem("cart", JSON.stringify(cart));
-
-								toast.success("Se agregó tu Ramo al Carrito", { icon: <AiOutlineShoppingCart /> });
+								if (previousCart) {
+									var cart = {
+										items: [...lastcar.items, newramo],
+										item_count: lastcar.item_count + 1,
+										total_price: lastcar.total_price + newramo.precio,
+									};
+									localStorage.setItem("cart", JSON.stringify(cart));
+									toast.success("Se agregó tu Ramo al Carrito", { icon: <AiOutlineShoppingCart /> });
+								} else {
+									var cart = {
+										items: [newramo],
+										item_count: 1,
+										total_price: newramo.precio,
+									};
+									localStorage.setItem("cart", JSON.stringify(cart));
+									toast.success("Se agregó tu Ramo al Carrito", { icon: <AiOutlineShoppingCart /> });
+								}
 							}}
 						>
 							Finalizar Creación de Ramo

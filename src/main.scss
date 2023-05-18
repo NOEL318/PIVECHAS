@@ -1227,6 +1227,14 @@ body::-webkit-scrollbar {
 							}
 						}
 					}
+					.inventario-tabla,
+					td {
+						border-collapse: collapse;
+						border: #000000 1px solid;
+						td {
+							padding: 5px;
+						}
+					}
 				}
 
 				.cuenta {
@@ -1513,13 +1521,13 @@ body::-webkit-scrollbar {
 		align-items: center;
 		color: #000000;
 		width: 300px;
-		height: 330px;
+		height: 380px;
 		position: relative;
 		margin: 20px;
 		.background {
 			width: 300px;
 			border-radius: 16px;
-			height: 330px;
+			height: 380px;
 			margin: 20px;
 			position: absolute;
 			z-index: 5;
@@ -1532,7 +1540,7 @@ body::-webkit-scrollbar {
 			z-index: 6;
 			position: absolute;
 			width: 300px;
-			height: 330px;
+			height: 380px;
 			margin: 20px;
 			display: flex;
 			justify-content: center;
@@ -1595,11 +1603,34 @@ body::-webkit-scrollbar {
 					width: 100%;
 				}
 			}
+			.buttons {
+				display: flex;
+				justify-content: center;
+				align-items: center;
+				.qty {
+					width: 60px;
+					height: 40px;
+					margin: 10px;
+					background-color: transparent;
+					border: solid 2px #000000;
+					border-radius: 11px;
+					font-size: 30px;
+				}
+				input[type="number"]:hover::-webkit-inner-spin-button,
+				input[type="number"]:focus::-webkit-inner-spin-button {
+					padding: 0 5px 0 5px;
+					margin-right: -2px;
+					height: 40px;
+				}
+				input:focus-visible {
+					outline: none;
+				}
+			}
 		}
 	}
-	.product-square.active {
+	.product-square.active .background {
 		background-color: #00ff37;
-		border-radius: 11px;
+
 		.prod-info {
 			opacity: 0.5;
 		}

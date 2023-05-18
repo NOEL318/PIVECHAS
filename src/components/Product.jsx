@@ -185,7 +185,34 @@ export const ProductPage = () => {
 											Precio
 											<h1>${producto.precio} MXN</h1>
 											<br />
-											<p>En Inventario: {producto.inventario}</p>
+											<p>En Inventario:</p>
+											<br />
+											<table className="inventario-tabla">
+												<thead>
+													<tr>
+														<td>Sucursal</td>
+														<td>Cantidad</td>
+													</tr>
+												</thead>
+												<tbody>
+													<tr>
+														<td>1</td>
+														<td>{producto.inventario.sucursal1}</td>
+													</tr>
+													<tr>
+														<td>2</td>
+														<td>{producto.inventario.sucursal2}</td>
+													</tr>
+													<tr>
+														<td>3</td>
+														<td>{producto.inventario.sucursal3}</td>
+													</tr>
+													<tr>
+														<td>4</td>
+														<td>{producto.inventario.sucursal4}</td>
+													</tr>
+												</tbody>
+											</table>
 											<br />
 											<div className="buttons">
 												<input
@@ -193,7 +220,18 @@ export const ProductPage = () => {
 													className="qty"
 													value={qty}
 													min={1}
-													onChange={(e) => setqty(parseInt(e.target.value))}
+													onChange={(e) => {
+														if (
+															parseInt(e.target.value) > producto.inventario.sucursal1 &&
+															parseInt(e.target.value) > producto.inventario.sucursal2 &&
+															parseInt(e.target.value) > producto.inventario.sucursal3 &&
+															parseInt(e.target.value) > producto.inventario.sucursal4
+														) {
+															toast("No tenemos tanto inventario de este producto", { type: "warning" });
+														} else {
+															setqty(parseInt(e.target.value));
+														}
+													}}
 												/>
 
 												{!selectedcolor && (

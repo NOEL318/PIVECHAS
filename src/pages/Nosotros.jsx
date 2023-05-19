@@ -14,19 +14,7 @@ export const Nosotros = () => {
 	return (
 		<>
 			<div className="app-container">
-				<div className="blur-up">
-					<img
-						src={blurup}
-						alt=""
-					/>
-				</div>
-				<div className="blur-right">
-					<img
-						src={blurright}
-						alt=""
-					/>
-				</div>
-
+		
 				<div className="bars">
 					<LeftBar active={"Nosotros"} />
 					<div className="rightbar">

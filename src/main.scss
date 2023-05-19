@@ -121,7 +121,7 @@ body::-webkit-scrollbar {
 	}
 }
 .main {
-	background-image: url("./assets/blueplants.jpg");
+	background-image: url("https://firebasestorage.googleapis.com/v0/b/pivechas.appspot.com/o/liquid-gradients-shapes-vector-background_liquid-gradients-shapes-vector-background.jpg?alt=media&token=82386757-18b8-480e-975f-469501925b6e");
 	background-size: cover;
 	background-attachment: fixed;
 	display: flex;
@@ -348,7 +348,7 @@ body::-webkit-scrollbar {
 	height: 80vh;
 	width: 80vw;
 	padding: 50px;
-	background: rgba(255, 255, 255, 0.3);
+	background: rgba(48, 48, 48, 0.3);
 	flex-wrap: wrap;
 	backdrop-filter: blur(17.5px);
 	box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.18);
@@ -797,8 +797,8 @@ body::-webkit-scrollbar {
 	display: flex;
 	flex-direction: row;
 	flex-wrap: wrap;
-
-	background-color: #2d3949;
+	// background-color: #2d3949;
+	background-color: #16161e;
 	min-height: 100vh;
 	height: 100%;
 	.blur-up {
@@ -833,6 +833,10 @@ body::-webkit-scrollbar {
 		flex-wrap: nowrap;
 		width: 100%;
 		.leftbar {
+			box-shadow: 0 0 0.2rem #fff, 0 0 0.2rem #fff, 0 0 2rem #139cfe, 0 0 0.8rem #2c25ff, 0 0 2.8rem #4800ff,
+				inset 0 0 1.3rem #2600ff;
+			border-radius: 30px;
+			padding: 30px;
 			position: relative;
 			transition: all 0.7s;
 			width: 250px;
@@ -1001,6 +1005,8 @@ body::-webkit-scrollbar {
 					align-items: center;
 					width: auto;
 					.background {
+						box-shadow: 0 0 0.2rem #fff, 0 0 0.2rem #fff, 0 0 2rem #139cfe, 0 0 0.8rem #2c25ff, 0 0 2.8rem #4800ff,
+							inset 0 0 1.3rem #2600ff;
 						border-radius: 16px;
 						margin: 40px;
 						padding: 30px;
@@ -1013,6 +1019,7 @@ body::-webkit-scrollbar {
 						padding: 40px;
 					}
 					.info {
+						min-height: 70vh;
 						position: relative;
 						z-index: 6;
 						width: 60%;
@@ -1049,17 +1056,20 @@ body::-webkit-scrollbar {
 						padding: 30px;
 						position: absolute;
 						width: 90%;
-						height: 100%;
+						height: 90%;
 						opacity: 0.6;
 						background: #ffffff;
 						z-index: 5;
 						padding: 40px;
+						box-shadow: 0 0 0.2rem #fff, 0 0 0.2rem #fff, 0 0 2rem #139cfe, 0 0 0.8rem #2c25ff, 0 0 2.8rem #4800ff,
+							inset 0 0 1.3rem #2600ff;
 					}
 					.info {
 						position: relative;
 						z-index: 6;
-						width: 80%;
+						width: 100%;
 						height: 100%;
+						min-height: 70vh;
 						display: flex;
 						align-items: center;
 						justify-content: center;
@@ -1086,12 +1096,15 @@ body::-webkit-scrollbar {
 					flex-direction: column;
 					flex-wrap: nowrap;
 					height: 100%;
+
 					.image_product {
 						width: 300px;
 						transition: all 0.3s;
 					}
 
 					.background {
+						box-shadow: 0 0 0.2rem #fff, 0 0 0.2rem #fff, 0 0 2rem #139cfe, 0 0 0.8rem #2c25ff, 0 0 2.8rem #4800ff,
+							inset 0 0 1.3rem #2600ff;
 						border-radius: 16px;
 						margin: 40px;
 						padding: 0px;
@@ -1245,6 +1258,8 @@ body::-webkit-scrollbar {
 					flex-wrap: nowrap;
 
 					.background {
+						box-shadow: 0 0 0.2rem #fff, 0 0 0.2rem #fff, 0 0 2rem #139cfe, 0 0 0.8rem #2c25ff, 0 0 2.8rem #4800ff,
+							inset 0 0 1.3rem #2600ff;
 						border-radius: 16px;
 						margin: 40px;
 						padding: 30px;
@@ -1262,6 +1277,7 @@ body::-webkit-scrollbar {
 						width: 100%;
 						height: 100%;
 						display: flex;
+						min-height: 70vh;
 						align-items: center;
 						justify-content: center;
 						flex-direction: column;
@@ -1321,6 +1337,8 @@ body::-webkit-scrollbar {
 							color: #ffffff;
 						}
 						.background {
+							box-shadow: 0 0 0.2rem #fff, 0 0 0.2rem #fff, 0 0 2rem #139cfe, 0 0 0.8rem #2c25ff, 0 0 2.8rem #4800ff,
+								inset 0 0 1.3rem #2600ff;
 							background: #ffffff;
 							opacity: 0.6;
 							backdrop-filter: blur(10px);
@@ -1335,6 +1353,8 @@ body::-webkit-scrollbar {
 							z-index: 6;
 							padding: 10px;
 							table {
+								box-shadow: 0 0 0.2rem #fff, 0 0 0.2rem #fff, 0 0 2rem #139cfe, 0 0 0.8rem #2c25ff, 0 0 2.8rem #4800ff,
+									inset 0 0 1.3rem #2600ff;
 								min-width: 500px;
 								border-collapse: collapse;
 								width: 100%;
@@ -1439,6 +1459,8 @@ body::-webkit-scrollbar {
 						}
 					}
 					.methods {
+						box-shadow: 0 0 0.2rem #fff, 0 0 0.2rem #fff, 0 0 2rem #139cfe, 0 0 0.8rem #2c25ff, 0 0 2.8rem #4800ff,
+							inset 0 0 1.3rem #2600ff;
 						margin: 10px;
 						width: 25%;
 
@@ -1464,6 +1486,8 @@ body::-webkit-scrollbar {
 						}
 					}
 					.totals {
+						box-shadow: 0 0 0.2rem #fff, 0 0 0.2rem #fff, 0 0 2rem #139cfe, 0 0 0.8rem #2c25ff, 0 0 2.8rem #4800ff,
+							inset 0 0 1.3rem #2600ff;
 						margin: 10px;
 						width: 25%;
 						min-width: 300px;
@@ -1523,12 +1547,12 @@ body::-webkit-scrollbar {
 		width: 300px;
 		height: 380px;
 		position: relative;
-		margin: 20px;
+		margin: 40px;
 		.background {
 			width: 300px;
 			border-radius: 16px;
 			height: 380px;
-			margin: 20px;
+			margin: 40px;
 			position: absolute;
 			z-index: 5;
 			opacity: 0.6;
@@ -1537,6 +1561,9 @@ body::-webkit-scrollbar {
 			padding: 10px;
 		}
 		.prod-info {
+			box-shadow: 0 0 0.2rem #fff, 0 0 0.2rem #fff, 0 0 2rem #139cfe, 0 0 0.8rem #2c25ff, 0 0 2.8rem #4800ff,
+				inset 0 0 1.3rem #2600ff;
+			border-radius: 16px;
 			z-index: 6;
 			position: absolute;
 			width: 300px;
@@ -1641,4 +1668,92 @@ body::-webkit-scrollbar {
 }
 .no-cart {
 	color: #ffffff;
+}
+
+.sucursales {
+	height: 100%;
+	width: auto;
+	position: relative;
+	display: flex;
+	justify-content: center;
+	align-items: flex-start;
+	flex-direction: row;
+	flex-wrap: wrap;
+	.sucursal-square {
+		transition: all 0.3s;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		color: #000000;
+		width: 300px;
+		height: 380px;
+		position: relative;
+		margin: 40px;
+		.background {
+			width: 300px;
+			border-radius: 16px;
+			height: 380px;
+			margin: 40px;
+			position: absolute;
+			z-index: 5;
+			opacity: 0.6;
+			background: #ffffff;
+			backdrop-filter: blur(10px);
+			padding: 10px;
+		}
+		.sucursal-info {
+			border-radius: 16px;
+			box-shadow: 0 0 0.2rem #fff, 0 0 0.2rem #fff, 0 0 2rem #139cfe, 0 0 0.8rem #2c25ff, 0 0 2.8rem #4800ff,
+				inset 0 0 1.3rem #2600ff;
+			z-index: 6;
+			position: absolute;
+			width: 300px;
+			height: 380px;
+			margin: 20px;
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			flex-direction: column;
+			padding: 10px;
+			a {
+				width: 100%;
+			}
+			button:hover {
+				cursor: pointer;
+			}
+			.sucursal_image {
+				max-height: 180px;
+				max-width: 180px;
+			}
+			.sucursal-text {
+				text-decoration: none;
+				padding: 10px;
+			}
+			.cart-button {
+				width: 100%;
+				display: flex;
+				justify-content: center;
+				align-items: center;
+				button {
+					border-radius: 11px;
+					height: 40px;
+					padding-top: 4px !important;
+					background-color: #17c83d;
+					padding: 0;
+					font-size: 25px;
+					width: 100%;
+				}
+			}
+		}
+	}
+	.product-square.active .background {
+		background-color: #00ff37;
+
+		.prod-info {
+			opacity: 0.5;
+		}
+	}
+	.product-square:hover {
+		scale: 1.03;
+	}
 }

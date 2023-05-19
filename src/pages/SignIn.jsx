@@ -39,18 +39,7 @@ export const SignIn = () => {
 		<>
 			<TopNavbar />
 			<div className="auth-container">
-				<div className="blur-up">
-					<img
-						src={blurup}
-						alt=""
-					/>
-				</div>
-				<div className="blur-right">
-					<img
-						src={blurright}
-						alt=""
-					/>
-				</div>
+				
 				<h1 className="page-title over">Iniciar Sesión</h1>
 				<div className="form-container">
 					<div className="imagen-formulario">

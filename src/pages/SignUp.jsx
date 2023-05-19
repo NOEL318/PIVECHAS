@@ -43,7 +43,7 @@ export const SignUp = () => {
 		<>
 			<TopNavbar />
 			<div className="auth-container">
-				<div className="blur-up">
+				{/* <div className="blur-up">
 					<img
 						src={blurup}
 						alt=""
@@ -54,7 +54,7 @@ export const SignUp = () => {
 						src={blurright}
 						alt=""
 					/>
-				</div>
+				</div> */}
 				<h1 className="page-title over">Crear Cuenta </h1>
 				<div className="form-container">
 					<div className="imagen-formulario">

@@ -5,7 +5,7 @@ desplegable, autenticación de usuario y un botón de cierre de sesión. El comp
 
 import logo from "../assets/logo.svg";
 import { Link } from "react-router-dom";
-import { AiOutlineShoppingCart } from "react-icons/ai";
+import { AiOutlineShoppingCart, AiFillShop } from "react-icons/ai";
 import { MdOutlineDashboard, MdOutlineChatBubbleOutline } from "react-icons/md";
 import { TbGraph } from "react-icons/tb";
 import { RiUser3Line } from "react-icons/ri";
@@ -63,7 +63,13 @@ export const LeftBar = ({ active }) => {
 					<li className={`delay-1 ${active == "Tienda" ? "active" : ""}`}>
 						<Link to={"/Tienda"}>
 							<MdOutlineDashboard className="icon" />
-							Tienda
+							Tienda Online
+						</Link>
+					</li>
+					<li className={`delay-1 ${active == "Sucursales" ? "active" : ""}`}>
+						<Link to={"/Sucursales"}>
+							<AiFillShop className="icon" />
+							Sucursales
 						</Link>
 					</li>
 					<li className={`delay-2 ${active == "Nosotros" ? "active" : ""}`}>

@@ -11,21 +11,29 @@ import blurup from "../assets/group223.png";
 import blurright from "../assets/group228.png";
 import LeftBar from "../components/LeftBar";
 import { ProductCardSquare } from "../components/Product";
-import { collection, getDocs } from "firebase/firestore";
+import { collection, getDocs, where, query } from "firebase/firestore";
 import { useEffect, useState } from "react";
 import { db } from "../firebase";
 import Loader from "react-loaders";
 import { AiOutlinePlus } from "react-icons/ai";
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 export const Tienda = () => {
+	const { sucursal } = useParams();
 	const [productos, setproductos] = useState([]);
 	const getProductsList = async () => {
-		const querySnapshot = await getDocs(collection(db, "inventario"));
 		setproductos([]);
-		querySnapshot.forEach((doc) => {
-			setproductos((productos) => [...productos, doc.data()]);
-		});
-		console.log(productos) 
+		if (!sucursal) {
+			const querySnapshot = await getDocs(collection(db, "inventario"));
+			setproductos([]);
+			querySnapshot.forEach((doc) => {
+				setproductos((productos) => [...productos, doc.data()]);
+			});
+		} else {
+			const querySnapshot = await getDocs(query(collection(db, "inventario"), where(`inventario.sucursal${sucursal}`, ">", 0)));
+			querySnapshot.forEach((doc) => {
+				setproductos((productos) => [...productos, doc.data()]);
+			});
+		}
 	};
 	useEffect(() => {
 		getProductsList();
@@ -34,24 +42,12 @@ export const Tienda = () => {
 	return (
 		<>
 			<div className="app-container">
-				<div className="blur-up">
-					<img
-						src={blurup}
-						alt=""
-					/>
-				</div>
-				<div className="blur-right">
-					<img
-						src={blurright}
-						alt=""
-					/>
-				</div>
 				<div className="bars">
 					<LeftBar active={"Tienda"} />
 
 					<div className="rightbar column">
 						<h1>Nuestros productos</h1>
-						{productos.length >= 2 ? (
+						{productos.length >= 1 ? (
 							<div className="products">
 								<div className="product-square">
 									<div className="background"></div>

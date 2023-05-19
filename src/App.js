@@ -20,6 +20,7 @@ import { ProductPage } from "./components/Product";
 import { Carrito } from "./pages/Carrito";
 import { ToastContainer } from "react-toastify";
 import ArmaTuRamo from "./pages/ArmaTuRamo";
+import Sucursales from "./pages/Sucursales";
 
 function App() {
 	const [user, setuser] = useState();
@@ -53,6 +54,14 @@ function App() {
 						element={<Contacto />}
 					/>
 					<Route
+						path="/Sucursales"
+						element={<Sucursales />}
+					/>
+					<Route
+						path="/Tienda/:sucursal"
+						element={user ? <Tienda /> : <SignIn />}
+					/>
+					<Route
 						path="/Tienda"
 						element={user ? <Tienda /> : <SignIn />}
 					/>
@@ -62,6 +71,10 @@ function App() {
 					/>
 					<Route
 						path="/Tienda/product-page/:id"
+						element={user ? <ProductPage /> : <SignUp />}
+					/>
+					<Route
+						path="/Tienda/:sucursal/product-page/:id"
 						element={user ? <ProductPage /> : <SignUp />}
 					/>
 					<Route

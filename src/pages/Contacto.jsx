@@ -20,7 +20,6 @@ export const Contacto = () => {
 					<div className="rightbar">
 						<div className="right-container">
 							<div className="contactanos">
-								<div className="background"></div>
 								<div className="info">
 									<h1>Contacto</h1>
 									<br />

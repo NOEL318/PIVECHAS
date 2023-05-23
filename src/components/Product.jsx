@@ -136,7 +136,6 @@ export const ProductPage = () => {
 	return (
 		<>
 			<div className="app-container">
-				
 				<div className="bars">
 					<LeftBar active={"Tienda"} />
 
@@ -144,7 +143,6 @@ export const ProductPage = () => {
 						<div className="right-container">
 							{producto ? (
 								<div className="producto">
-									<div className="background"></div>
 									<div className="info">
 										<div className="image">
 											<img

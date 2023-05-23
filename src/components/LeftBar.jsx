@@ -9,7 +9,7 @@ import { AiOutlineShoppingCart, AiFillShop } from "react-icons/ai";
 import { MdOutlineDashboard, MdOutlineChatBubbleOutline } from "react-icons/md";
 import { TbGraph } from "react-icons/tb";
 import { RiUser3Line } from "react-icons/ri";
-import { CiLogout } from "react-icons/ci";
+import { CiLogout, CiLogin } from "react-icons/ci";
 import { useEffect, useState } from "react";
 import { BiMenu, BiHomeAlt2 } from "react-icons/bi";
 import { onAuthStateChanged, signOut } from "firebase/auth";
@@ -104,7 +104,7 @@ export const LeftBar = ({ active }) => {
 					<span className="background-button">
 						<div className="color"></div>
 					</span>
-					{user && (
+					{user ? (
 						<div
 							className="text"
 							onClick={LogOut}
@@ -112,6 +112,13 @@ export const LeftBar = ({ active }) => {
 							<CiLogout className="icon" />
 							Cerrar Sesión
 						</div>
+					) : (
+						<Link to={"/SignIn"}>
+							<div className="text">
+								<CiLogin className="icon" />
+								Iniciar Sesión
+							</div>
+						</Link>
 					)}
 				</div>
 			</div>

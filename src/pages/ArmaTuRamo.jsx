@@ -10,8 +10,7 @@ diferente. Si no hay productos para mostrar, se muestra una rueda giratoria de c
 
 import LeftBar from "../components/LeftBar";
 import "../main.scss";
-import blurup from "../assets/group223.png";
-import blurright from "../assets/group228.png";
+
 import Rater from "react-rater";
 import { useEffect, useState } from "react";
 import { collection, getDocs, where, query } from "firebase/firestore";
@@ -19,11 +18,12 @@ import { db } from "../firebase";
 import Loader from "react-loaders";
 import { toast } from "react-toastify";
 import { AiOutlineShoppingCart } from "react-icons/ai";
-
+import { IoCloseOutline } from "react-icons/io5";
 export const ArmaTuRamo = () => {
 	const [productos, setproductos] = useState([]);
 	const [selectedarticles, setselectedarticles] = useState([]);
 	const [mainrate, setmainrate] = useState(0);
+	const [modal, setmodal] = useState(false);
 	var rate = 0;
 	const getProductsList = async () => {
 		const querySnapshot = await getDocs(query(collection(db, "inventario"), where("ramo_element", "==", true)));
@@ -61,63 +61,113 @@ export const ArmaTuRamo = () => {
 						/>
 						<br />
 						<div className="right-container">
-							<div className="products">
-								<div className="background"></div>
-								{productos.length >= 1 ? (
-									productos.map((producto) => {
-										return (
-											<div
-												className={`product-square ${
-													selectedarticles.find((element) => element.id == producto.id) ? "active" : ""
-												}`}
-												key={producto.id}
+							{modal && (
+								<div className="modal">
+									<div className="modal-header">
+										<div className="modal-close">
+											<button
+												className="close-icon-button"
 												onClick={() => {
-													var article = selectedarticles.find((element) => element.id == producto.id);
-													if (article) {
-														var newselected = selectedarticles.filter((product) => product.id != producto.id);
+													setmodal();
+												}}
+											>
+												<IoCloseOutline />
+											</button>
+										</div>
+										<div className="modal-icon-container">
+											<img
+												src={modal.image_url}
+												alt=""
+												className="modal-icon"
+											/>
+										</div>
+										<div className="modal-title">{modal.nombre}</div>
+										<div className="modal-subtitle">Seleccione la cantidad a agregar:</div>
+									</div>
+
+									<div className="modal-content">
+										<div className="modal-body">
+											<div className="buttons">
+												<input
+													type="number"
+													className="qty"
+													min={1}
+													defaultValue={1}
+												/>
+											</div>
+										</div>
+										<div className="modal-footer">
+											<button
+												className="button delete"
+												onClick={() => {
+													var newselected = selectedarticles.filter((product) => product.id != modal.id);
+													if (newselected) {
 														setselectedarticles(newselected);
-													} else {
-														setselectedarticles([...selectedarticles, producto]);
+														console.log("bbb");
 													}
 												}}
 											>
-												<div className="background"></div>
-												<div className="prod-info">
-													<img
-														src={producto.image_url}
-														alt=""
-														className="product_image"
-													/>
-													<div className="product-text">
-														<h2>{producto.nombre}</h2>
-														<Rater
-															total={5}
-															rating={producto.rate}
-															interactive={false}
+												Eliminar de Ramo Buchón
+											</button>
+											<button
+												className="button"
+												onClick={() => {
+													var article = selectedarticles.find((element) => element.id == modal.id);
+													setmodal();
+													setselectedarticles([...selectedarticles, modal]);
+												}}
+											>
+												Agregar a Ramo
+											</button>
+										</div>
+									</div>
+								</div>
+							)}
+							<div className="products">
+								{productos.length >= 1 ? (
+									productos.map((producto) => {
+										return (
+											<>
+												<div
+													className={`product-square ${
+														selectedarticles.find((element) => element.id == producto.id) ? "active" : ""
+													}`}
+													key={producto.id}
+													onClick={() => {
+														setmodal(producto);
+													}}
+												>
+													<div className="background"></div>
+													<div className="prod-info">
+														<img
+															src={producto.image_url}
+															alt=""
+															className="product_image"
 														/>
-														{producto.colors && (
-															<div className="circles">
-																{producto.colors.map((color) => (
-																	<div
-																		key={color[1] + color[2] + color[3] + color[4]}
-																		className="color-circle"
-																		style={{ background: color }}
-																	></div>
-																))}
-															</div>
-														)}
+														<div className="product-text">
+															<h2>{producto.nombre}</h2>
+															<Rater
+																total={5}
+																rating={producto.rate}
+																interactive={false}
+															/>
+															{producto.colors && (
+																<div className="circles">
+																	{producto.colors.map((color) => (
+																		<div
+																			key={color[1] + color[2] + color[3] + color[4]}
+																			className="color-circle"
+																			style={{ background: color }}
+																		></div>
+																	))}
+																</div>
+															)}
 
-														<h2>$ {producto.precio}mxn</h2>
-													</div>
-													<div className="buttons">
-														<input
-															type="number"
-															className="qty"
-														/>
-														<button className="button">Agregar a Ramo</button>
+															<h2>$ {producto.precio}mxn</h2>
+														</div>
 													</div>
 												</div>
-											</div>
+											</>
 										);
 									})
 								) : (
@@ -127,6 +177,11 @@ export const ArmaTuRamo = () => {
 								)}
 							</div>
 						</div>
+						<ol>
+							{selectedarticles.map((elemento) => {
+								return <li>{elemento.nombre}</li>;
+							})}
+						</ol>
 						<button
 							className="button"
 							onClick={() => {

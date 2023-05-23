@@ -29,6 +29,7 @@ export const Tienda = () => {
 				setproductos((productos) => [...productos, doc.data()]);
 			});
 		} else {
+			setproductos([]);
 			const querySnapshot = await getDocs(query(collection(db, "inventario"), where(`inventario.sucursal${sucursal}`, ">", 0)));
 			querySnapshot.forEach((doc) => {
 				setproductos((productos) => [...productos, doc.data()]);
@@ -37,7 +38,7 @@ export const Tienda = () => {
 	};
 	useEffect(() => {
 		getProductsList();
-	}, []);
+	}, [sucursal]);
 
 	return (
 		<>

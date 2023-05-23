@@ -20,7 +20,7 @@ export const Nosotros = () => {
 					<div className="rightbar">
 						<div className="right-container">
 							<div className="nosotros">
-								<div className="background"></div>
+
 								<div className="info">
 									<h1>PIVECHAS</h1>
 									<br />

@@ -43,27 +43,9 @@ export const SignUp = () => {
 		<>
 			<TopNavbar />
 			<div className="auth-container">
-				{/* <div className="blur-up">
-					<img
-						src={blurup}
-						alt=""
-					/>
-				</div>
-				<div className="blur-right">
-					<img
-						src={blurright}
-						alt=""
-					/>
-				</div> */}
-				<h1 className="page-title over">Crear Cuenta </h1>
+			
 				<div className="form-container">
-					<div className="imagen-formulario">
-						<img
-							src={rosa}
-							className="rosa"
-							alt=""
-						/>
-					</div>
+				
 					<div className="formulario">
 						<div className="form-title">
 							<h1>Pivechas</h1>
@@ -72,6 +54,7 @@ export const SignUp = () => {
 								alt=""
 							/>
 						</div>
+				<h1 className="form-title">Crear Cuenta </h1>
 						<form
 							className="form"
 							onSubmit={(e) => e.preventDefault()}

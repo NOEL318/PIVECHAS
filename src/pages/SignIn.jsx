@@ -32,22 +32,14 @@ export const SignIn = () => {
 			})
 			.catch((error) => {
 				const errorMessage = error.message;
-				toast(error.message, { position: "bottom-center", type: "error" })
+				toast(error.message, { position: "bottom-center", type: "error" });
 			});
 	};
 	return (
 		<>
 			<TopNavbar />
 			<div className="auth-container">
-				
-				<h1 className="page-title over">Iniciar Sesión</h1>
 				<div className="form-container">
-					<div className="imagen-formulario">
-						<img
-							src={loto}
-							alt=""
-						/>
-					</div>
 					<div className="formulario">
 						<div className="form-title">
 							<h1>Pivechas</h1>
@@ -56,6 +48,7 @@ export const SignIn = () => {
 								alt=""
 							/>
 						</div>
+					<h1 className="form-title">Iniciar Sesión</h1>
 						<form
 							className="form"
 							onSubmit={(e) => e.preventDefault()}
@@ -76,7 +69,6 @@ export const SignIn = () => {
 								onChange={(e) => setpassword(e.target.value)}
 							/>
 							<div className="checkbox-group">
-							
 								<Link
 									className="label"
 									to={"/SignUp"}

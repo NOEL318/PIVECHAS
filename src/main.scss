@@ -120,6 +120,116 @@ body::-webkit-scrollbar {
 		padding: 0;
 	}
 }
+.button.cancel {
+	background: #5d5d5d;
+}
+.button.delete {
+	background: #d62a2a;
+}
+
+@media (max-width: 1150px) {
+	.modal {
+		width: 100% !important;
+	}
+}
+
+.modal {
+	position: fixed;
+	z-index: 100;
+	width: 750px;
+	border-radius: 11px;
+	display: flex;
+	flex-direction: column;
+	transition: all 0.5s;
+	background-color: #16161e;
+	color: #ffffff;
+	box-shadow: 0 0 0.2rem #fff, 0 0 0.2rem #fff, 0 0 2rem #139cfe, 0 0 0.8rem #2c25ff, 0 0 2.8rem #4800ff, inset 0 0 1.3rem #2600ff;
+	.modal-header {
+		align-items: center;
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+		margin-top: 22px;
+		padding: 0 20px;
+		.modal-close {
+			display: flex;
+			align-items: center;
+			justify-content: flex-start;
+			width: 100%;
+			.close-icon-button {
+				color: #ffffff;
+				padding: 10px 0;
+				font-size: 25px;
+				background-color: transparent;
+				border: none;
+			}
+		}
+		.modal-icon-container {
+			width: 100%;
+			.modal-icon {
+				height: 70px;
+			}
+		}
+		.modal-title {
+			font-size: 30px;
+			font-weight: 600;
+			margin: 15px 10px 0;
+		}
+		.modal-subtitle {
+			font-size: 20px;
+			margin-top: 13px;
+		}
+	}
+	.modal-content {
+		display: flex;
+		flex-direction: column;
+		padding: 0 80px;
+		.modal-body {
+			margin-top: 45px;
+			width: 100%;
+			margin-bottom: 60px;
+			.buttons {
+				display: flex;
+				justify-content: center;
+				flex-direction: column;
+				align-items: center;
+				.qty {
+					width: 100px;
+					height: 40px;
+					color: #ffffff;
+					margin: 10px;
+					background-color: transparent;
+					border: solid 2px #ffffff;
+					border-radius: 11px;
+					font-size: 25px;
+				}
+				input[type="number"]:hover::-webkit-inner-spin-button,
+				input[type="number"]:focus::-webkit-inner-spin-button {
+					padding: 0 5px 0 5px;
+					margin-right: -2px;
+					height: 40px;
+				}
+				input:focus-visible {
+					padding-left: 10px;
+					outline: none;
+				}
+			}
+		}
+		.modal-footer {
+			border-top: 0.5px solid #65656a;
+			display: flex;
+			flex-wrap: wrap;
+			justify-content: space-between;
+			padding: 30px 20px;
+			.button {
+				border-color: #ffffff !important;
+				padding-left: 30px !important;
+				padding-right: 30px !important;
+			}
+		}
+	}
+}
+
 .main {
 	background-image: url("https://firebasestorage.googleapis.com/v0/b/pivechas.appspot.com/o/liquid-gradients-shapes-vector-background_liquid-gradients-shapes-vector-background.jpg?alt=media&token=82386757-18b8-480e-975f-469501925b6e");
 	background-size: cover;
@@ -556,44 +666,31 @@ body::-webkit-scrollbar {
 }
 .auth-container {
 	color: #ffffff;
-	padding-top: 50px;
+	padding-top: 44px;
 	background-color: #2d3949;
 	min-height: 100vh;
-	.blur-up {
-		img {
-			height: 100%;
-			width: 100%;
-			filter: saturate(2);
-			z-index: 1;
-			top: 0;
-			position: absolute;
-		}
-	}
-	.blur-right {
-		img {
-			height: 100%;
-			width: 100%;
 
-			filter: saturate(2);
-			z-index: 1;
-			right: 0;
-			bottom: 0;
-			position: absolute;
-		}
-	}
 	.form-container {
 		overflow: hidden;
 		width: 100%;
 		z-index: 90;
 		position: relative;
+		min-height: 80vh;
 		display: flex;
 		flex-wrap: wrap;
 		justify-content: space-evenly;
 		align-items: center;
+		padding-top: 50px;
+		padding-bottom: 50px;
 		.formulario {
-			width: 60%;
-			min-width: 600px;
-			min-height: 80vh;
+			background-color: #273240;
+			box-shadow: 1px -1px 84px -20px rgba(255, 255, 255, 0.72);
+			-webkit-box-shadow: 1px -1px 84px -20px rgba(255, 255, 255, 0.72);
+			-moz-box-shadow: 1px -1px 84px -20px rgba(255, 255, 255, 0.72);
+			border-radius: 30px;
+			max-width: 60%;
+			min-width: 300px;
+			min-height: 60vh;
 			padding: 20px;
 			display: flex;
 			justify-content: center;
@@ -601,8 +698,9 @@ body::-webkit-scrollbar {
 			flex-direction: column;
 			flex-wrap: nowrap;
 			.form {
+				width: 100%;
 				display: flex;
-				justify-content: flex-start;
+				justify-content: center;
 				flex-direction: column;
 				flex-wrap: nowrap;
 				label {
@@ -614,13 +712,19 @@ body::-webkit-scrollbar {
 					font-size: 15px;
 					text-decoration: none;
 					color: #898ca9;
+					display: flex;
+					align-items: center;
+					flex-wrap: nowrap;
+					justify-content: flex-start;
 				}
 				input.text {
-					width: 500px;
+					width: 90%;
+					max-width: 500px;
 					margin: 20px;
 					height: 50px;
-					background: #16161e;
+					background: transparent;
 					color: #ffffff;
+					font-size: 20px;
 					border-radius: 10px;
 					border-style: solid;
 				}
@@ -634,6 +738,8 @@ body::-webkit-scrollbar {
 					flex-wrap: nowrap;
 					input {
 						width: 20px;
+						height: 20px;
+						padding: 5px;
 						background: #16161e;
 						border-radius: 10px;
 						border-style: solid;
@@ -650,32 +756,18 @@ body::-webkit-scrollbar {
 				justify-content: center;
 				align-items: center;
 				flex-direction: row;
+				font-size: 30px;
 				img {
 					margin: 15px;
 				}
-			}
-		}
-		.imagen-formulario {
-			width: 30%;
-			font-size: 30px;
-			min-height: 90vh;
-			background-color: transparent;
-			flex-wrap: nowrap;
-			flex-direction: column;
-			display: flex;
-			justify-content: space-around;
-			align-items: center;
-			img {
-				min-width: 500px;
-				max-width: 100% !important;
 			}
 		}
 	}
 }
 
 @media (max-width: 950px) {
-	.imagen-formulario {
-		display: none !important;
+	.background-button {
+		max-width: 83% !important;
 	}
 	// .blur-up img {
 	// 	width: auto !important;
@@ -738,7 +830,7 @@ body::-webkit-scrollbar {
 	}
 	.leftbar.true {
 		transition: all 0.7s;
-		height: 95vh !important;
+		height: auto !important;
 		width: 100% !important;
 		overflow: hidden;
 		margin: 10px !important;
@@ -921,6 +1013,7 @@ body::-webkit-scrollbar {
 				width: 100%;
 				background-color: transparent;
 				font-size: 18px;
+				height: 50px;
 				border: none;
 				.text {
 					display: flex;
@@ -928,7 +1021,7 @@ body::-webkit-scrollbar {
 					align-items: center;
 					flex-direction: row;
 					color: #dddddd;
-					padding: 20px;
+					padding: 20px 0 20px 0;
 					z-index: 3;
 					position: relative;
 					.icon {
@@ -937,7 +1030,8 @@ body::-webkit-scrollbar {
 					}
 				}
 				.background-button {
-					width: 100%;
+					width: 90%;
+					max-width: 250px;
 					position: absolute;
 					display: flex;
 					justify-content: flex-start;
@@ -951,6 +1045,9 @@ body::-webkit-scrollbar {
 						height: 61.5px;
 						background: linear-gradient(100deg, #17c83d -2.87%, #ff00c7 114.28%);
 					}
+				}
+				a {
+					text-decoration: none;
 				}
 			}
 			.log-out-button:hover {
@@ -1004,66 +1101,51 @@ body::-webkit-scrollbar {
 					justify-content: center;
 					align-items: center;
 					width: auto;
-					.background {
-						box-shadow: 0 0 0.2rem #fff, 0 0 0.2rem #fff, 0 0 2rem #139cfe, 0 0 0.8rem #2c25ff, 0 0 2.8rem #4800ff,
-							inset 0 0 1.3rem #2600ff;
-						border-radius: 16px;
-						margin: 40px;
-						padding: 30px;
-						position: absolute;
-						width: 80%;
-						height: 100%;
-						opacity: 0.6;
-						background: #ffffff;
-						z-index: 5;
-						padding: 40px;
-					}
+					backdrop-filter: blur(10px);
+					background-color: #ffffff91;
+					box-shadow: 0 0 0.2rem #fff, 0 0 0.2rem #fff, 0 0 2rem #139cfe, 0 0 0.8rem #2c25ff, 0 0 2.8rem #4800ff,
+						inset 0 0 1.3rem #2600ff;
+					border-radius: 16px;
+					width: 90%;
 					.info {
 						min-height: 70vh;
 						position: relative;
 						z-index: 6;
-						width: 60%;
+						width: 80%;
 						height: 100%;
 						display: flex;
 						align-items: center;
 						justify-content: center;
 						flex-direction: column;
 						flex-wrap: wrap;
-						padding: 40px;
+						padding: 20px;
 						h1 {
 							font-size: 40px;
 							font-weight: 600;
 						}
 						.mision {
-							width: 15%;
+							width: 100px;
 							margin: 20px 30px 0 30px;
 						}
 						.vision {
-							width: 15%;
+							width: 100px;
+
 							margin: 20px 30px 0 30px;
 						}
 					}
 				}
 				.contactanos {
+					backdrop-filter: blur(10px);
+					background-color: #ffffff91;
+					box-shadow: 0 0 0.2rem #fff, 0 0 0.2rem #fff, 0 0 2rem #139cfe, 0 0 0.8rem #2c25ff, 0 0 2.8rem #4800ff,
+						inset 0 0 1.3rem #2600ff;
 					display: flex;
 					justify-content: center;
 					align-items: center;
 					flex-direction: column;
 					flex-wrap: nowrap;
-					.background {
-						border-radius: 16px;
-						margin: 40px;
-						padding: 30px;
-						position: absolute;
-						width: 90%;
-						height: 90%;
-						opacity: 0.6;
-						background: #ffffff;
-						z-index: 5;
-						padding: 40px;
-						box-shadow: 0 0 0.2rem #fff, 0 0 0.2rem #fff, 0 0 2rem #139cfe, 0 0 0.8rem #2c25ff, 0 0 2.8rem #4800ff,
-							inset 0 0 1.3rem #2600ff;
-					}
+					border-radius: 16px;
+
 					.info {
 						position: relative;
 						z-index: 6;
@@ -1096,26 +1178,16 @@ body::-webkit-scrollbar {
 					flex-direction: column;
 					flex-wrap: nowrap;
 					height: 100%;
-
+					backdrop-filter: blur(10px);
+					background-color: #ffffff91;
+					box-shadow: 0 0 0.2rem #fff, 0 0 0.2rem #fff, 0 0 2rem #139cfe, 0 0 0.8rem #2c25ff, 0 0 2.8rem #4800ff,
+						inset 0 0 1.3rem #2600ff;
+					border-radius: 16px;
 					.image_product {
 						width: 300px;
 						transition: all 0.3s;
 					}
 
-					.background {
-						box-shadow: 0 0 0.2rem #fff, 0 0 0.2rem #fff, 0 0 2rem #139cfe, 0 0 0.8rem #2c25ff, 0 0 2.8rem #4800ff,
-							inset 0 0 1.3rem #2600ff;
-						border-radius: 16px;
-						margin: 40px;
-						padding: 0px;
-						position: absolute;
-						width: 90%;
-						height: 90%;
-						opacity: 0.6;
-						background: #ffffff;
-						z-index: 5;
-						padding: 40px;
-					}
 					.info {
 						position: relative;
 						z-index: 6;
@@ -1257,20 +1329,11 @@ body::-webkit-scrollbar {
 					flex-direction: column;
 					flex-wrap: nowrap;
 
-					.background {
-						box-shadow: 0 0 0.2rem #fff, 0 0 0.2rem #fff, 0 0 2rem #139cfe, 0 0 0.8rem #2c25ff, 0 0 2.8rem #4800ff,
-							inset 0 0 1.3rem #2600ff;
-						border-radius: 16px;
-						margin: 40px;
-						padding: 30px;
-						position: absolute;
-						width: 90%;
-						height: 100%;
-						opacity: 0.6;
-						background: #ffffff;
-						z-index: 5;
-						padding: 40px;
-					}
+					backdrop-filter: blur(10px);
+					background-color: #ffffff91;
+					box-shadow: 0 0 0.2rem #fff, 0 0 0.2rem #fff, 0 0 2rem #139cfe, 0 0 0.8rem #2c25ff, 0 0 2.8rem #4800ff,
+						inset 0 0 1.3rem #2600ff;
+					border-radius: 16px;
 					.info {
 						position: relative;
 						z-index: 6;
@@ -1538,6 +1601,7 @@ body::-webkit-scrollbar {
 	align-items: flex-start;
 	flex-direction: row;
 	flex-wrap: wrap;
+	user-select: none;
 	.product-square {
 		transition: all 0.3s;
 		display: flex;
@@ -1548,19 +1612,10 @@ body::-webkit-scrollbar {
 		height: 380px;
 		position: relative;
 		margin: 40px;
-		.background {
-			width: 300px;
-			border-radius: 16px;
-			height: 380px;
-			margin: 40px;
-			position: absolute;
-			z-index: 5;
-			opacity: 0.6;
-			background: #ffffff;
-			backdrop-filter: blur(10px);
-			padding: 10px;
-		}
+
 		.prod-info {
+			background-color: rgba(255, 255, 255, 0.568627451);
+			backdrop-filter: blur(15px);
 			box-shadow: 0 0 0.2rem #fff, 0 0 0.2rem #fff, 0 0 2rem #139cfe, 0 0 0.8rem #2c25ff, 0 0 2.8rem #4800ff,
 				inset 0 0 1.3rem #2600ff;
 			border-radius: 16px;
@@ -1630,40 +1685,15 @@ body::-webkit-scrollbar {
 					width: 100%;
 				}
 			}
-			.buttons {
-				display: flex;
-				justify-content: center;
-				align-items: center;
-				.qty {
-					width: 60px;
-					height: 40px;
-					margin: 10px;
-					background-color: transparent;
-					border: solid 2px #000000;
-					border-radius: 11px;
-					font-size: 30px;
-				}
-				input[type="number"]:hover::-webkit-inner-spin-button,
-				input[type="number"]:focus::-webkit-inner-spin-button {
-					padding: 0 5px 0 5px;
-					margin-right: -2px;
-					height: 40px;
-				}
-				input:focus-visible {
-					outline: none;
-				}
-			}
 		}
 	}
-	.product-square.active .background {
-		background-color: #00ff37;
-
-		.prod-info {
-			opacity: 0.5;
-		}
+	.product-square.active {
+		background-color: #00c62b !important;
+		border-radius: 11px;
 	}
 	.product-square:hover {
 		scale: 1.03;
+		background-color: rgba(0, 38, 255, 0.569);
 	}
 }
 .no-cart {

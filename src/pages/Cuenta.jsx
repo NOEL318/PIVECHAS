@@ -37,7 +37,7 @@ export const Cuenta = () => {
 						<div className="rightbar">
 							<div className="right-container">
 								<div className="cuenta">
-									<div className="background"></div>
+		
 									<div className="info">
 										<img
 											src={user.photoURL}

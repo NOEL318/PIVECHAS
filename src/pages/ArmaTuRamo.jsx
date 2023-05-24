@@ -24,6 +24,7 @@ export const ArmaTuRamo = () => {
 	const [selectedarticles, setselectedarticles] = useState([]);
 	const [mainrate, setmainrate] = useState(0);
 	const [modal, setmodal] = useState(false);
+	const [selectedquantity, setselectedquantity] = useState();
 	var rate = 0;
 	const getProductsList = async () => {
 		const querySnapshot = await getDocs(query(collection(db, "inventario"), where("ramo_element", "==", true)));
@@ -93,6 +94,9 @@ export const ArmaTuRamo = () => {
 													className="qty"
 													min={1}
 													defaultValue={1}
+													onChange={(e) => {
+														setselectedquantity(parseInt(e.target.value));
+													}}
 												/>
 											</div>
 										</div>
@@ -103,7 +107,6 @@ export const ArmaTuRamo = () => {
 													var newselected = selectedarticles.filter((product) => product.id != modal.id);
 													if (newselected) {
 														setselectedarticles(newselected);
-														console.log("bbb");
 													}
 												}}
 											>
@@ -112,9 +115,20 @@ export const ArmaTuRamo = () => {
 											<button
 												className="button"
 												onClick={() => {
-													var article = selectedarticles.find((element) => element.id == modal.id);
-													setmodal();
-													setselectedarticles([...selectedarticles, modal]);
+													var newselected = selectedarticles.find((element) => element.id != modal.id);
+													if (newselected) {
+														var lqty = modal.quantity;
+														modal.quantity = modal.quantity + selectedquantity;
+
+														modal.precio = (modal.precio / lqty) * modal.quantity;
+														setselectedarticles([...selectedarticles, modal]);
+														console.log(article);
+														setmodal();
+													} else {
+														console.log(article);
+														setselectedarticles([...selectedarticles, modal]);
+														setmodal();
+													}
 												}}
 											>
 												Agregar a Ramo
@@ -191,7 +205,7 @@ export const ArmaTuRamo = () => {
 								var x = 0;
 								for (let i = 0; i < selectedarticles.length; i++) {
 									var element = selectedarticles[i];
-									x += element.precio;
+									x += element.precio * element.quantity;
 								}
 								var newramo = {
 									nombre: "Ramo Personalizado",

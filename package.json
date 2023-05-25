@@ -9,6 +9,7 @@
     "card-verification": "^1.0.9",
     "firebase": "^9.17.2",
     "loaders.css": "^0.1.2",
+    "pdfmake": "^0.2.7",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-icons": "^4.8.0",

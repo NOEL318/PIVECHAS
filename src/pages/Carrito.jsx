@@ -11,6 +11,7 @@ import blurright from "../assets/group228.png";
 import { BsTrash } from "react-icons/bs";
 import { useEffect, useState } from "react";
 import { toast } from "react-toastify";
+import { Link } from "react-router-dom";
 
 export const Carrito = () => {
 	const [newprice, setnewprice] = useState();
@@ -30,7 +31,6 @@ export const Carrito = () => {
 	return (
 		<>
 			<div className="app-container">
-				
 				<div className="bars">
 					<LeftBar active={"Carrito"} />
 					<div className="rightbar">
@@ -166,7 +166,9 @@ export const Carrito = () => {
 																			Elementos:
 																			<ul>
 																				{item.ramo_componentes.map((element) => (
-																					<li>{element}</li>
+																					<li>
+																						{element.nombre} ${element.precio} x{element.quantity}
+																					</li>
 																				))}
 																			</ul>
 																		</td>
@@ -281,7 +283,11 @@ export const Carrito = () => {
 											<br />
 											<hr className="hr" />
 											<h3>Total a pagar: $ {(carrito.total_price * 1.16 + carrito.costo_envio + carrito.iva).toFixed(2)}</h3>
-											{carrito.total_price > 0 && <button className="button">Finalizar Pedido</button>}
+											{carrito.total_price > 0 && (
+												<Link to={"/Finalizar_Pedido"}>
+													<button className="button">Finalizar Pedido</button>
+												</Link>
+											)}
 										</div>
 									)}
 								</div>

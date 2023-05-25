@@ -10,7 +10,6 @@ diferente. Si no hay productos para mostrar, se muestra una rueda giratoria de c
 
 import LeftBar from "../components/LeftBar";
 import "../main.scss";
-
 import Rater from "react-rater";
 import { useEffect, useState } from "react";
 import { collection, getDocs, where, query } from "firebase/firestore";
@@ -24,7 +23,7 @@ export const ArmaTuRamo = () => {
 	const [selectedarticles, setselectedarticles] = useState([]);
 	const [mainrate, setmainrate] = useState(0);
 	const [modal, setmodal] = useState(false);
-	const [selectedquantity, setselectedquantity] = useState();
+	const [selectedquantity, setselectedquantity] = useState(1);
 	var rate = 0;
 	const getProductsList = async () => {
 		const querySnapshot = await getDocs(query(collection(db, "inventario"), where("ramo_element", "==", true)));
@@ -93,12 +92,23 @@ export const ArmaTuRamo = () => {
 													type="number"
 													className="qty"
 													min={1}
-													defaultValue={1}
+													value={selectedquantity}
 													onChange={(e) => {
-														setselectedquantity(parseInt(e.target.value));
+														if (
+															parseInt(e.target.value) > modal.inventario.sucursal1 &&
+															parseInt(e.target.value) > modal.inventario.sucursal2 &&
+															parseInt(e.target.value) > modal.inventario.sucursal3 &&
+															parseInt(e.target.value) > modal.inventario.sucursal4
+														) {
+															toast("No tenemos tanto inventario de este producto", { type: "warning" });
+														} else {
+															console.log(modal);
+															setselectedquantity(parseInt(e.target.value));
+														}
 													}}
 												/>
 											</div>
+											<h2>Llevas: </h2>
 										</div>
 										<div className="modal-footer">
 											<button
@@ -115,20 +125,37 @@ export const ArmaTuRamo = () => {
 											<button
 												className="button"
 												onClick={() => {
-													var newselected = selectedarticles.find((element) => element.id != modal.id);
-													if (newselected) {
-														var lqty = modal.quantity;
-														modal.quantity = modal.quantity + selectedquantity;
+													var all = selectedarticles.filter((element) => element.id != modal.id);
+													var existent = selectedarticles.find((element) => element.id == modal.id);
 
-														modal.precio = (modal.precio / lqty) * modal.quantity;
-														setselectedarticles([...selectedarticles, modal]);
-														console.log(article);
-														setmodal();
-													} else {
-														console.log(article);
-														setselectedarticles([...selectedarticles, modal]);
-														setmodal();
+													if (existent) {
+														var newelement = {
+															descripcion: modal.descripcion,
+															id: modal.id,
+															image_url: modal.image_url,
+															nombre: modal.nombre,
+															precio: modal.precio,
+															quantity: selectedquantity + existent.quantity,
+															ramo: modal.ramo,
+															ramo_element: modal.ramo_element,
+															rate: modal.rate,
+														};
+													} else if (!existent) {
+														var newelement = {
+															descripcion: modal.descripcion,
+															id: modal.id,
+															image_url: modal.image_url,
+															nombre: modal.nombre,
+															precio: modal.precio,
+															quantity: selectedquantity,
+															ramo: modal.ramo,
+															ramo_element: modal.ramo_element,
+															rate: modal.rate,
+														};
 													}
+													setselectedarticles([...all, newelement]);
+													console.log(selectedarticles);
+													setmodal();
 												}}
 											>
 												Agregar a Ramo
@@ -141,47 +168,45 @@ export const ArmaTuRamo = () => {
 								{productos.length >= 1 ? (
 									productos.map((producto) => {
 										return (
-											<>
-												<div
-													className={`product-square ${
-														selectedarticles.find((element) => element.id == producto.id) ? "active" : ""
-													}`}
-													key={producto.id}
-													onClick={() => {
-														setmodal(producto);
-													}}
-												>
-													<div className="background"></div>
-													<div className="prod-info">
-														<img
-															src={producto.image_url}
-															alt=""
-															className="product_image"
+											<div
+												className={`product-square ${
+													selectedarticles.find((element) => element.id == producto.id) ? "active" : ""
+												}`}
+												key={producto.id}
+												onClick={() => {
+													setmodal(producto);
+												}}
+											>
+												<div className="background"></div>
+												<div className="prod-info">
+													<img
+														src={producto.image_url}
+														alt=""
+														className="product_image"
+													/>
+													<div className="product-text">
+														<h2>{producto.nombre}</h2>
+														<Rater
+															total={5}
+															rating={producto.rate}
+															interactive={false}
 														/>
-														<div className="product-text">
-															<h2>{producto.nombre}</h2>
-															<Rater
-																total={5}
-																rating={producto.rate}
-																interactive={false}
-															/>
-															{producto.colors && (
-																<div className="circles">
-																	{producto.colors.map((color) => (
-																		<div
-																			key={color[1] + color[2] + color[3] + color[4]}
-																			className="color-circle"
-																			style={{ background: color }}
-																		></div>
-																	))}
-																</div>
-															)}
+														{producto.colors && (
+															<div className="circles">
+																{producto.colors.map((color) => (
+																	<div
+																		key={color[1] + color[2] + color[3] + color[4]}
+																		className="color-circle"
+																		style={{ background: color }}
+																	></div>
+																))}
+															</div>
+														)}
 
-															<h2>$ {producto.precio}mxn</h2>
-														</div>
+														<h2>$ {producto.precio}mxn</h2>
 													</div>
 												</div>
-											</>
+											</div>
 										);
 									})
 								) : (
@@ -191,17 +216,33 @@ export const ArmaTuRamo = () => {
 								)}
 							</div>
 						</div>
-						<ol>
-							{selectedarticles.map((elemento) => {
-								return <li>{elemento.nombre}</li>;
-							})}
-						</ol>
+						<table className="tabla-ramo">
+							<thead>
+								<tr>
+									<td>Nombre</td>
+									<td>Cantidad</td>
+									<td>Precio</td>
+								</tr>
+							</thead>
+							<tbody>
+								{selectedarticles.map((elemento) => {
+									return (
+										<tr key={elemento.id}>
+											<td>{elemento.nombre}</td>
+											<td>{elemento.quantity}</td>
+											<td>${elemento.precio}</td>
+										</tr>
+									);
+								})}
+							</tbody>
+						</table>
+						<br />
+						<br />
 						<button
 							className="button"
 							onClick={() => {
 								var previousCart = localStorage.getItem("cart");
 								var lastcar = JSON.parse(previousCart);
-
 								var x = 0;
 								for (let i = 0; i < selectedarticles.length; i++) {
 									var element = selectedarticles[i];
@@ -216,7 +257,7 @@ export const ArmaTuRamo = () => {
 									quantity: 1,
 									ramo: true,
 									ramo_element: false,
-									ramo_componentes: selectedarticles.map((element) => element.nombre),
+									ramo_componentes: selectedarticles.map((element) => element),
 									image_url:
 										"https://firebasestorage.googleapis.com/v0/b/pivechas.appspot.com/o/silueta.png?alt=media&token=d4bd467a-c227-49c9-a120-3c4a119d258a",
 								};

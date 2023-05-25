@@ -21,7 +21,7 @@ import { Carrito } from "./pages/Carrito";
 import { ToastContainer } from "react-toastify";
 import ArmaTuRamo from "./pages/ArmaTuRamo";
 import Sucursales from "./pages/Sucursales";
-
+import { FinalizarPedido } from "./pages/FinalizarPedido";
 function App() {
 	const [user, setuser] = useState();
 	useEffect(() => {
@@ -92,6 +92,10 @@ function App() {
 					<Route
 						path="/SignUp"
 						element={user ? <Home /> : <SignUp />}
+					/>
+					<Route
+						path="/Finalizar_Pedido"
+						element={user ? <FinalizarPedido /> : <SignUp />}
 					/>
 				</Routes>
 			</BrowserRouter>

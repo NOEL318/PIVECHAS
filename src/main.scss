@@ -981,8 +981,8 @@ body::-webkit-scrollbar {
 				align-items: flex-start;
 				flex-direction: column;
 				li {
-					padding: 15px 15px 15px 10px;
-					margin: 15px 15px 15px 10px;
+					padding: 10px 10px 10px 10px;
+					margin: 10px 10px 10px 10px;
 					a {
 						display: flex;
 						justify-content: flex-start;
@@ -1384,6 +1384,7 @@ body::-webkit-scrollbar {
 			.right-container {
 				align-items: flex-start;
 				.carrito {
+					transition: all 3s;
 					width: 100%;
 					display: flex;
 					justify-content: space-between;
@@ -1568,6 +1569,9 @@ body::-webkit-scrollbar {
 							width: 60%;
 							border: solid 1px;
 							border-color: #000000;
+						}
+						a {
+							width: 100%;
 						}
 						.button {
 							margin-top: 50px;
@@ -1785,5 +1789,14 @@ body::-webkit-scrollbar {
 	}
 	.product-square:hover {
 		scale: 1.03;
+	}
+}
+.tabla-ramo {
+	border-collapse: collapse;
+	width: 50%;
+
+	td {
+		padding: 5px;
+		border: 1px solid #ffffff;
 	}
 }

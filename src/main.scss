@@ -1800,3 +1800,69 @@ body::-webkit-scrollbar {
 		border: 1px solid #ffffff;
 	}
 }
+
+.section-title {
+	text-align: center;
+}
+
+.formulario-compra {
+	background-color: #273240;
+	height: 100%;
+	min-height: 100vh;
+	color: #ffffff;
+	.form {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		flex-direction: row;
+		width: 100%;
+		flex-wrap: wrap;
+		.field {
+			display: flex;
+			justify-content: center;
+			flex-direction: column;
+		}
+		label {
+			margin-left: 20px;
+			font-size: 20px;
+		}
+		.label {
+			font-size: 15px;
+			text-decoration: none;
+			color: #898ca9;
+			display: flex;
+			align-items: center;
+			flex-wrap: nowrap;
+			justify-content: flex-start;
+		}
+		.select {
+			width: 250px;
+
+			margin: 20px;
+			height: 40px;
+			background: transparent;
+			color: #ffffff;
+			font-size: 20px;
+			border-radius: 10px;
+			border-style: solid;
+		}
+
+		input.text {
+			width: 250px;
+
+			margin: 20px;
+			height: 40px;
+			background: transparent;
+			color: #ffffff;
+			font-size: 20px;
+			border-radius: 10px;
+			border-style: solid;
+		}
+	}
+}
+.center-button {
+	width: 100%;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}

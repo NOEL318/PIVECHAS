@@ -266,6 +266,7 @@ export const ArmaTuRamo = () => {
 										items: [...lastcar.items, newramo],
 										item_count: lastcar.item_count + 1,
 										total_price: lastcar.total_price + newramo.precio,
+										descuentos: lastcar.descuentos + parseFloat((x * 0.2).toFixed(2)),
 									};
 									localStorage.setItem("cart", JSON.stringify(cart));
 									toast.success("Se agregó tu Ramo al Carrito", { icon: <AiOutlineShoppingCart /> });
@@ -274,6 +275,7 @@ export const ArmaTuRamo = () => {
 										items: [newramo],
 										item_count: 1,
 										total_price: newramo.precio,
+										descuentos: lastcar.descuentos + parseFloat((x * 0.2).toFixed(2)),
 									};
 									localStorage.setItem("cart", JSON.stringify(cart));
 									toast.success("Se agregó tu Ramo al Carrito", { icon: <AiOutlineShoppingCart /> });

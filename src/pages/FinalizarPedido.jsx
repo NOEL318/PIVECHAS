@@ -168,9 +168,9 @@ export const FinalizarPedido = () => {
 													columns: [
 														{ text: "Subtotal:\nIVA 16%:\nDescuentos:\nEnvío:", width: 150, fontSize: 11 },
 														{
-															text: `$${carrito.total_price}\n$${carrito.iva}\n$${
-																carrito.descuentos ? carrito.descuentos : 0
-															}\n$${carrito.costo_envio}`,
+															text: `$${carrito.total_price.toFixed(2)}\n$${carrito.iva.toFixed(2)}\n$${
+																carrito.descuentos ? carrito.descuentos.toFixed(2) : 0
+															}\n$${carrito.costo_envio.toFixed(2)}`,
 															fontSize: 11,
 														},
 													],
@@ -185,7 +185,7 @@ export const FinalizarPedido = () => {
 									width: 100,
 								},
 								{
-									text: `$${carrito.total_price + carrito.costo_envio + carrito.iva}MXN.`,
+									text: `$${(carrito.total_price + carrito.costo_envio + carrito.iva).toFixed(2)}MXN.`,
 									width: 200,
 									fontSize: 20,
 								},
@@ -234,9 +234,31 @@ export const FinalizarPedido = () => {
 				getItem();
 
 				await setDoc(doc(db, "ventas", `ES-${numero_factura}`), { factura: formulario, items: carrito.items });
-				await setDoc(doc(db, "estadisticas-diarias", `${date.getDate() + "-" + date.getMonth() + "-" + date.getFullYear()}`));
-				await setDoc(doc(db, "estadisticas-mensuales", `${date.getMonth() + "-" + date.getFullYear()}`), formulario);
-				await setDoc(doc(db, "estadisticas-anuales", `${date.getFullYear()}`), formulario);
+
+				await setDoc(
+					doc(db, "estadisticas-diarias", `${date.getDate() + "-" + date.getMonth() + "-" + date.getFullYear()}`),
+					{
+						ventas: increment(1),
+						dinero: increment(carrito.total_price + carrito.iva + carrito.costo_envio),
+					},
+					{ merge: true }
+				);
+				await setDoc(
+					doc(db, "estadisticas-mensuales", `${date.getMonth() + "-" + date.getFullYear()}`),
+					{
+						ventas: increment(1),
+						dinero: increment(carrito.total_price + carrito.iva + carrito.costo_envio),
+					},
+					{ merge: true }
+				);
+				await setDoc(
+					doc(db, "estadisticas-anuales", `${date.getFullYear()}`),
+					{
+						ventas: increment(1),
+						dinero: increment(carrito.total_price + carrito.iva + carrito.costo_envio),
+					},
+					{ merge: true }
+				);
 			});
 		}
 	};
@@ -568,6 +590,20 @@ export const FinalizarPedido = () => {
 							<option value="Ethereum">Ethereum</option>
 						</select>
 					</div>
+					{formulario.forma_pago == "En Efectivo" && (
+						<div className="field">
+							<label htmlFor="">Código Verificador de Pago en Efectivo:</label>
+							<input
+								required
+								type="text"
+								onChange={(e) => {
+									newitem.codigo = e.target.value;
+									setformulario((formulario) => ({ ...formulario, ...newitem }));
+								}}
+								className="text"
+							/>
+						</div>
+					)}
 				</form>
 				<div className="center-button">
 					<button

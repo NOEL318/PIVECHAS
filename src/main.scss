@@ -1328,12 +1328,28 @@ body::-webkit-scrollbar {
 					align-items: center;
 					flex-direction: column;
 					flex-wrap: nowrap;
-
 					backdrop-filter: blur(10px);
 					background-color: #ffffff91;
 					box-shadow: 0 0 0.2rem #fff, 0 0 0.2rem #fff, 0 0 2rem #139cfe, 0 0 0.8rem #2c25ff, 0 0 2.8rem #4800ff,
 						inset 0 0 1.3rem #2600ff;
 					border-radius: 16px;
+					label {
+						font-size: 20px;
+						font-weight: 600;
+					}
+					input {
+						width: 500px;
+						margin: 5px 15px 20px 0px;
+						height: 45px;
+						background: rgba(0, 0, 0, 0.05);
+						border: 1px solid rgba(0, 0, 0, 0.1);
+						border-radius: 10px;
+						color: #ffffff;
+						border-radius: 10px;
+						border-style: solid;
+						font-size: 20px;
+						padding: 5px;
+					}
 					.info {
 						position: relative;
 						z-index: 6;
@@ -1351,27 +1367,36 @@ body::-webkit-scrollbar {
 							align-items: flex-start;
 							justify-content: center;
 							flex-direction: column;
-							label {
-								font-size: 20px;
-								font-weight: 600;
-							}
-							input {
-								width: 500px;
-								margin: 5px 15px 20px 0px;
-								height: 45px;
-								background: rgba(0, 0, 0, 0.05);
-								border: 1px solid rgba(0, 0, 0, 0.1);
-								border-radius: 10px;
-								color: #ffffff;
-								border-radius: 10px;
-								border-style: solid;
-								font-size: 20px;
-								padding: 5px;
-							}
 						}
 						.profile-pic {
 							width: 300px;
 							margin-bottom: 20px;
+						}
+						.membresia {
+							width: 100%;
+							display: flex;
+							align-items: center;
+							flex-direction: column;
+							.info-membership {
+								padding-left: 40px;
+								width: 90%;
+								display: flex;
+								justify-content: flex-start;
+								align-items: flex-start;
+								flex-direction: column;
+							}
+							hr {
+								width: 80%;
+								border-color: #000000;
+							}
+							h1 {
+								padding-left: 40px;
+								text-align: left;
+								font-size: 30px;
+								margin-bottom: 20px;
+
+								font-weight: 600;
+							}
 						}
 					}
 					h1 {

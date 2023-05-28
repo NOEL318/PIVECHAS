@@ -16,7 +16,6 @@ export const Sucursales = () => {
 		querySnapshot.forEach((doc) => {
 			setsucursales((sucursales) => [...sucursales, doc.data()]);
 		});
-		console.log(sucursales, "sasa");
 	};
 	useEffect(() => {
 		getData();
@@ -24,7 +23,6 @@ export const Sucursales = () => {
 	return (
 		<>
 			<div className="app-container">
-				
 				<div className="bars">
 					<LeftBar active={"Sucursales"} />
 					<div className="rightbar column">
@@ -32,7 +30,10 @@ export const Sucursales = () => {
 							<div className="sucursales">
 								{sucursales.map((sucursal) => {
 									return (
-										<div className="sucursal-square">
+										<div
+											className="sucursal-square"
+											key={sucursal.id}
+										>
 											<div className="background"></div>
 											<div className="sucursal-info">
 												<br />

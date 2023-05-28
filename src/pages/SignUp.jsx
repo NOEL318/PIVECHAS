@@ -14,16 +14,23 @@ import rosa from "../assets/rosa.png";
 import { Link } from "react-router-dom";
 import logo from "../assets/logo.svg";
 import { createUserWithEmailAndPassword, updateProfile, sendEmailVerification } from "firebase/auth";
-import { useEffect, useState } from "react";
-import { auth } from "../firebase";
+import { useState } from "react";
+import { auth, db } from "../firebase";
 import { TopNavbar } from "../components/TopNavbar";
 import { toast } from "react-toastify";
+import { doc, setDoc } from "firebase/firestore";
 
 export const SignUp = () => {
 	const [email, setemail] = useState();
 	const [password, setpassword] = useState();
 	const [nombre, setnombre] = useState();
 	const [terms, setterms] = useState(true);
+	const [appaterno, setappaterno] = useState();
+	const [apmaterno, setapmaterno] = useState();
+	const [edad, setedad] = useState();
+	const [direccion, setdireccion] = useState();
+	let date = new Date();
+
 	const Su = async (nombre, email, password) => {
 		await createUserWithEmailAndPassword(auth, email, password)
 			.then(async (userCredential) => {
@@ -32,7 +39,26 @@ export const SignUp = () => {
 					displayName: nombre,
 					photoURL: `https://api.multiavatar.com/${nombre}.svg`,
 				});
-				sendEmailVerification(auth.currentUser).then(() => {});
+				sendEmailVerification(auth.currentUser).then(async () => {
+					// Add a new document in collection "cities"
+					await setDoc(doc(db, "users", `${email}`), {
+						email,
+						role: 'user',
+						nombre,
+						apmaterno,
+						appaterno,
+						edad,
+						direccion,
+						membresia: {
+							nombre: "Prueba Gratuita",
+							trial: true,
+							duration: 86400 * 30,
+							cost: 0,
+							start: date.getTime(),
+							total_compras: 0,
+						},
+					});
+				});
 			})
 			.catch((error) => {
 				const errorMessage = error.message;
@@ -43,9 +69,7 @@ export const SignUp = () => {
 		<>
 			<TopNavbar />
 			<div className="auth-container">
-			
 				<div className="form-container">
-				
 					<div className="formulario">
 						<div className="form-title">
 							<h1>Pivechas</h1>
@@ -54,7 +78,7 @@ export const SignUp = () => {
 								alt=""
 							/>
 						</div>
-				<h1 className="form-title">Crear Cuenta </h1>
+						<h1 className="form-title">Crear Cuenta </h1>
 						<form
 							className="form"
 							onSubmit={(e) => e.preventDefault()}
@@ -64,6 +88,37 @@ export const SignUp = () => {
 								className="text"
 								type="text"
 								onChange={(e) => setnombre(e.target.value)}
+								id="name"
+							/>
+
+							<label htmlFor="name">Apellido Paterno:</label>
+							<input
+								className="text"
+								type="text"
+								onChange={(e) => setappaterno(e.target.value)}
+								id="name"
+							/>
+							<label htmlFor="name">Apellido Materno:</label>
+							<input
+								className="text"
+								type="text"
+								onChange={(e) => setapmaterno(e.target.value)}
+								id="name"
+							/>
+
+							<label htmlFor="name">Dirección:</label>
+							<input
+								className="text"
+								type="text"
+								onChange={(e) => setdireccion(e.target.value)}
+								id="name"
+							/>
+
+							<label htmlFor="name">Edad:</label>
+							<input
+								className="text"
+								type="text"
+								onChange={(e) => setedad(e.target.value)}
 								id="name"
 							/>
 
@@ -81,6 +136,7 @@ export const SignUp = () => {
 								type="password"
 								id="password"
 							/>
+
 							<div className="checkbox-group">
 								<div className="terms">
 									<input

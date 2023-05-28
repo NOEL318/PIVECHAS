@@ -1,6 +1,11 @@
 import pdfMake from "pdfmake/build/pdfmake";
 import pdfFonts from "pdfmake/build/vfs_fonts";
 import { useState } from "react";
+import { doc, updateDoc, increment } from "firebase/firestore";
+import { getDoc, setDoc, where, query, collection, getDocs } from "firebase/firestore";
+
+import { db } from "../firebase";
+
 pdfMake.vfs = pdfFonts.pdfMake.vfs;
 
 export const FinalizarPedido = () => {
@@ -9,6 +14,7 @@ export const FinalizarPedido = () => {
 	var carrito = JSON.parse(localStorage.getItem("cart"));
 	const date = new Date();
 	const enddate = new Date("2030-01-17T16:45:30");
+	var numero_factura = (Math.random() * (9999 - -0o1) + -0o1).toFixed(0);
 	const tableRows = carrito.items.map((item) => [
 		item.quantity,
 		item.nombre,
@@ -51,10 +57,9 @@ export const FinalizarPedido = () => {
 						columns: [
 							{ text: "N˚ de Factura:\nFecha:\nN˚ de Pedido:\nFecha de Vencimiento:", width: 150 },
 							{
-								text: `ES-${(Math.random() * (9999 - -0o1) + -0o1).toFixed(0)}\n${date.toLocaleDateString()}\n${(
-									Math.random() * (9999 - -0o1) +
-									-0o1
-								).toFixed(0)}\n${enddate.toLocaleDateString()}`,
+								text: `ES-${numero_factura}\n${date.toLocaleDateString()}\n${(Math.random() * (9999 - -0o1) + -0o1).toFixed(
+									0
+								)}\n${enddate.toLocaleDateString()}`,
 							},
 						],
 					},
@@ -126,10 +131,10 @@ export const FinalizarPedido = () => {
 										costo_envio: carrito.costo_envio,
 									})}`,
 
-									fit: "150",
+									fit: "110",
 									margin: [0, 25, 0, 0],
 									fontSize: 20,
-									width: 150,
+									width: 110,
 								},
 								{
 									text: "Tipo de Pago:\nUso del CFDI:\nForma de Pago:\nSerie del Certificado del Emisor:\nFolio Fiscal:\nNo. Serie del Certificado del SAT:\nFecha y Hora de Certificación:",
@@ -197,6 +202,42 @@ export const FinalizarPedido = () => {
 	const GenerateFactura = async () => {
 		if (carrito) {
 			pdfMake.createPdf(docDefinition).download();
+
+			carrito.items.map(async (item) => {
+				const getItem = async () => {
+					newitem.fecha = date.toString();
+					setformulario((formulario) => ({ ...formulario, ...newitem }));
+					const ref = query(collection(db, "inventario"), where("id", "==", item.id));
+					var querySnapshot = await getDocs(ref);
+
+					querySnapshot.forEach(async (document) => {
+						console.log(document.data(), "aajaj");
+						const individualRef = doc(db, "inventario", document.id);
+
+						var sucursal =
+							document.data().inventario.sucursal1 >= item.quantity
+								? 1
+								: document.data().inventario.sucursal2 >= item.quantity
+								? 2
+								: document.data().inventario.sucursal3 >= item.quantity
+								? 3
+								: document.data().inventario.sucursal4 >= item.quantity
+								? 4
+								: 0;
+						const newinventario = document.data().inventario;
+						newinventario["sucursal" + sucursal] = document.data().inventario["sucursal" + sucursal] - item.quantity;
+						await updateDoc(individualRef, {
+							inventario: newinventario,
+						});
+					});
+				};
+				getItem();
+
+				await setDoc(doc(db, "ventas", `ES-${numero_factura}`), { factura: formulario, items: carrito.items });
+				await setDoc(doc(db, "estadisticas-diarias", `${date.getDate() + "-" + date.getMonth() + "-" + date.getFullYear()}`));
+				await setDoc(doc(db, "estadisticas-mensuales", `${date.getMonth() + "-" + date.getFullYear()}`), formulario);
+				await setDoc(doc(db, "estadisticas-anuales", `${date.getFullYear()}`), formulario);
+			});
 		}
 	};
 

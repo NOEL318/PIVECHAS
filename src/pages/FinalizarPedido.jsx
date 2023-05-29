@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 import { doc, updateDoc, increment } from "firebase/firestore";
 import { getDoc, setDoc, where, query, collection, getDocs } from "firebase/firestore";
 
-import { db } from "../firebase";
+import { auth, db } from "../firebase";
 
 pdfMake.vfs = pdfFonts.pdfMake.vfs;
 

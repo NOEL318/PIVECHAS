@@ -34,6 +34,7 @@ export const Cuenta = () => {
 	}, [auth]);
 	if (user && account) {
 		var d = new Date(account.membresia.start);
+		var cd = new Date();
 		var endd = account.membresia.start + 30 * 24 * 60 * 60 * 1000;
 		var ed = new Date(endd);
 		return (
@@ -46,86 +47,111 @@ export const Cuenta = () => {
 								<div className="cuenta">
 									<div className="info">
 										<img
-											src={`https://api.multiavatar.com/young-${date.getHours()}.svg`}
+											src={`https://api.multiavatar.com/young-${user.uid}${date.getHours()}.svg`}
 											className="profile-pic"
 											alt=""
 										/>
+										<h1>
+											{account.nombre + " " + account.appaterno + " " + account.apmaterno}{" "}
+											{user.emailVerified ? <GoVerified size={25} /> : ""}
+										</h1>
 										<div className="form">
-											<h1>
-												{account.nombre + " " + account.appaterno + " " + account.apmaterno}{" "}
-												{user.emailVerified ? <GoVerified size={25} /> : ""}
-											</h1>
-
-											<label htmlFor="name">Email</label>
-											<input
-												type="text"
-												name=""
-												id="email"
-												placeholder={user.email}
-												disabled
-											/>
-											<label htmlFor="direccion">Dirección</label>
-											<input
-												type="text"
-												name=""
-												id="direccion"
-												placeholder={account.direccion}
-												disabled
-											/>
-											<label htmlFor="edad">Edad</label>
-											<input
-												type="text"
-												name=""
-												id="edad"
-												placeholder={account.edad}
-												disabled
-											/>
+											<div className="input">
+												<label htmlFor="name">Email</label>
+												<input
+													type="text"
+													name=""
+													id="email"
+													placeholder={user.email}
+													disabled
+												/>
+											</div>
+											<div className="input">
+												<label htmlFor="direccion">Dirección</label>
+												<input
+													type="text"
+													name=""
+													id="direccion"
+													placeholder={account.direccion}
+													disabled
+												/>
+											</div>
+											<div className="input">
+												<label htmlFor="edad">Edad</label>
+												<input
+													type="text"
+													name=""
+													id="edad"
+													placeholder={account.edad}
+													disabled
+												/>
+											</div>
 										</div>
 										<div className="membresia">
 											<hr />
 											<br />
 											<h1>Membresía</h1>
 											<div className="info-membership">
-												<label htmlFor="edad">Tipo de Membresía</label>
-												<input
-													type="text"
-													name=""
-													id="edad"
-													placeholder={account.membresia.nombre}
-													disabled
-												/>
-												<label htmlFor="edad">Costo</label>
-												<input
-													type="text"
-													name=""
-													id="edad"
-													placeholder={"$" + account.membresia.cost + "mxn."}
-													disabled
-												/>
-												<label htmlFor="edad">Inició: </label>
-												<input
-													type="text"
-													name=""
-													id="edad"
-													placeholder={d.getDate() + "/" + (d.getMonth() + 1) + "/" + d.getFullYear()}
-													disabled
-												/>
-												<label htmlFor="edad">Termina: </label>
-												<input
-													type="text"
-													name=""
-													id="edad"
-													placeholder={ed.getDate() + "/" + (ed.getMonth() + 1) + "/" + ed.getFullYear()}
-													disabled
-												/>
-												<label htmlFor="edad">Duración: </label>
-												<input
-													type="text"
-													name=""
-													id="edad"
-													placeholder={account.membresia.duration / 24 / 60 / 60 + " Días"}
-													disabled
-												/>
+												<div className="input">
+													<label htmlFor="edad">Tipo de Membresía</label>
+													<input
+														type="text"
+														name=""
+														id="edad"
+														placeholder={account.membresia.nombre}
+														disabled
+													/>
+												</div>
+												<div className="input">
+													<label htmlFor="edad">Costo</label>
+													<input
+														type="text"
+														name=""
+														id="edad"
+														placeholder={"$" + account.membresia.cost + "mxn."}
+														disabled
+													/>
+												</div>
+												<div className="input">
+													<label htmlFor="start">Inició: </label>
+													<input
+														type="text"
+														name=""
+														id="start"
+														placeholder={d.getDate() + "/" + (d.getMonth() + 1) + "/" + d.getFullYear()}
+														disabled
+													/>
+												</div>
+												<div className="input">
+													<label htmlFor="end">Termina: </label>
+													<input
+														type="text"
+														name=""
+														id="end"
+														placeholder={ed.getDate() + "/" + (ed.getMonth() + 1) + "/" + ed.getFullYear()}
+														disabled
+													/>
+												</div>
+												<div className="input">
+													<label htmlFor="duracion">Duración: </label>
+													<input
+														type="text"
+														name=""
+														id="duracion"
+														placeholder={account.membresia.duration / 24 / 60 / 60 + " Días"}
+														disabled
+													/>
+												</div>
+												<div className="input">
+													<label htmlFor="quedan">Quedan: </label>
+													<input
+														type="text"
+														name=""
+														id="edad"
+														placeholder={((endd - cd.getTime()) / 24 / 60 / 60 / 1000).toFixed(0) + " Días"}
+														disabled
+													/>
+												</div>
 											</div>
 										</div>
 									</div>

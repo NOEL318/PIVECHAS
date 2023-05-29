@@ -90,3 +90,18 @@ export const TopNavbar = () => {
 		</>
 	);
 };
+export const Footer = () => {
+	return (
+		<>
+			<div className="footer">
+				<ul>
+					<li>PIVECHAS © 2023</li>
+					<li>Privacidad & Legalidad</li>
+					<li>Productos</li>
+					<li>Contacto</li>
+					<li>Sucursales</li>
+				</ul>
+			</div>
+		</>
+	);
+};

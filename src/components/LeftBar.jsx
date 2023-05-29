@@ -13,7 +13,9 @@ import { CiLogout, CiLogin } from "react-icons/ci";
 import { useEffect, useState } from "react";
 import { BiMenu, BiHomeAlt2 } from "react-icons/bi";
 import { onAuthStateChanged, signOut } from "firebase/auth";
-import { auth } from "../firebase";
+import { auth, db } from "../firebase";
+import { RiAdminLine } from "react-icons/ri";
+import { doc, getDoc } from "firebase/firestore";
 
 export const LeftBar = ({ active }) => {
 	const LogOut = async () => {
@@ -21,11 +23,14 @@ export const LeftBar = ({ active }) => {
 	};
 	const [isOpen, setisOpen] = useState(false);
 	const [user, setuser] = useState();
+	const [account, setaccount] = useState();
 	useEffect(() => {
-		onAuthStateChanged(auth, (usr) => {
+		onAuthStateChanged(auth, async (usr) => {
 			if (usr) {
-				const uid = usr.uid;
 				setuser(usr);
+				const docRef = doc(db, "users", usr.email);
+				const docSnap = await getDoc(docRef);
+				setaccount(docSnap.data());
 			} else {
 				setuser(null);
 			}
@@ -74,21 +79,18 @@ export const LeftBar = ({ active }) => {
 					</li>
 					<li className={`delay-2 ${active == "Nosotros" ? "active" : ""}`}>
 						<Link to={"/Nosotros"}>
-							{" "}
 							<TbGraph className="icon" />
 							Nosotros
 						</Link>
 					</li>
 					<li className={`delay-3 ${active == "Contacto" ? "active" : ""}`}>
 						<Link to={"/Contacto"}>
-							{" "}
 							<MdOutlineChatBubbleOutline className="icon" />
 							Contacto
 						</Link>
 					</li>
 					<li className={`delay-4 ${active == "Cuenta" ? "active" : ""}`}>
 						<Link to={"/Cuenta"}>
-							{" "}
 							<RiUser3Line className="icon" />
 							Cuenta
 						</Link>
@@ -99,6 +101,14 @@ export const LeftBar = ({ active }) => {
 							Carrito
 						</Link>
 					</li>
+					{account && account.role == "admin" && (
+						<li className={`delay-6 ${active == "Admin" ? "active" : ""}`}>
+							<Link to={"/Admin"}>
+								<RiAdminLine className="icon" />
+								Admin
+							</Link>
+						</li>
+					)}
 				</ul>
 				<div className="log-out-button">
 					<span className="background-button">

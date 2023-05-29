@@ -13,7 +13,7 @@ import Nosotros from "./pages/Nosotros";
 import Contacto from "./pages/Contacto";
 import Tienda from "./pages/Tienda";
 import { onAuthStateChanged } from "firebase/auth";
-import { auth } from "./firebase";
+import { auth, db } from "./firebase";
 import { useEffect, useState } from "react";
 import Cuenta from "./pages/Cuenta";
 import { ProductPage } from "./components/Product";
@@ -22,12 +22,20 @@ import { ToastContainer } from "react-toastify";
 import ArmaTuRamo from "./pages/ArmaTuRamo";
 import Sucursales from "./pages/Sucursales";
 import { FinalizarPedido } from "./pages/FinalizarPedido";
+import { Footer } from "./components/TopNavbar";
+import {Admin} from "./pages/Admin";
+import { doc, getDoc } from "firebase/firestore";
+
 function App() {
 	const [user, setuser] = useState();
+	const [account, setaccount] = useState();
 	useEffect(() => {
-		onAuthStateChanged(auth, (usr) => {
+		console.log(account, "sas");
+		onAuthStateChanged(auth, async (usr) => {
 			if (usr) {
-				const uid = usr.uid;
+				const docRef = doc(db, "users", usr.email);
+				const docSnap = await getDoc(docRef);
+				setaccount(docSnap.data());
 				setuser(usr);
 			} else {
 				setuser(null);
@@ -97,8 +105,14 @@ function App() {
 						path="/Finalizar_Pedido"
 						element={user ? <FinalizarPedido /> : <SignUp />}
 					/>
+
+					<Route
+						path="/Admin"
+						element={account && account.role == "admin" ? <Admin /> : <SignIn />}
+					/>
 				</Routes>
 			</BrowserRouter>
+			<Footer />
 		</>
 	);
 }

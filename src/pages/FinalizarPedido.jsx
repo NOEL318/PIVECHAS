@@ -1,6 +1,6 @@
 import pdfMake from "pdfmake/build/pdfmake";
 import pdfFonts from "pdfmake/build/vfs_fonts";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { doc, updateDoc, increment } from "firebase/firestore";
 import { getDoc, setDoc, where, query, collection, getDocs } from "firebase/firestore";
 
@@ -22,6 +22,19 @@ export const FinalizarPedido = () => {
 		item.precio,
 		item.quantity * item.precio,
 	]);
+
+	useEffect(() => {
+		onAuthStateChanged(auth, async (usr) => {
+			if (usr) {
+				setuser(usr);
+				const docRef = doc(db, "users", usr.email);
+				const docSnap = await getDoc(docRef);
+				setaccount(docSnap.data());
+			} else {
+				setuser(null);
+			}
+		});
+	}, [auth]);
 
 	var docDefinition = {
 		pageMargins: [40, 40, 40, 230],

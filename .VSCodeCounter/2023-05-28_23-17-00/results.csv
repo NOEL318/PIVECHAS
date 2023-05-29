@@ -1,0 +1,31 @@
+"filename", "language", "JavaScript", "JavaScript JSX", "SVG", "JSON", "SCSS", "HTML", "Markdown", "comment", "blank", "total"
+"/Users/noel/Desktop/REPOS/pivechas/README.md", "Markdown", 0, 0, 0, 0, 0, 0, 38, 0, 33, 71
+"/Users/noel/Desktop/REPOS/pivechas/package-lock.json", "JSON", 0, 0, 0, 32231, 0, 0, 0, 0, 1, 32232
+"/Users/noel/Desktop/REPOS/pivechas/package.json", "JSON", 0, 0, 0, 43, 0, 0, 0, 0, 1, 44
+"/Users/noel/Desktop/REPOS/pivechas/public/doom.html", "HTML", 0, 0, 0, 0, 0, 17, 0, 0, 3, 20
+"/Users/noel/Desktop/REPOS/pivechas/public/index.html", "HTML", 0, 0, 0, 0, 0, 17, 0, 0, 5, 22
+"/Users/noel/Desktop/REPOS/pivechas/public/logo.svg", "SVG", 0, 0, 9, 0, 0, 0, 0, 0, 1, 10
+"/Users/noel/Desktop/REPOS/pivechas/public/manifest.json", "JSON", 0, 0, 0, 25, 0, 0, 0, 0, 1, 26
+"/Users/noel/Desktop/REPOS/pivechas/src/App.js", "JavaScript", 109, 0, 0, 0, 0, 0, 0, 6, 6, 121
+"/Users/noel/Desktop/REPOS/pivechas/src/assets/logo.svg", "SVG", 0, 0, 9, 0, 0, 0, 0, 0, 1, 10
+"/Users/noel/Desktop/REPOS/pivechas/src/assets/qr.svg", "SVG", 0, 0, 1019, 0, 0, 0, 0, 0, 0, 1019
+"/Users/noel/Desktop/REPOS/pivechas/src/components/LeftBar.jsx", "JavaScript JSX", 0, 132, 0, 0, 0, 0, 0, 4, 3, 139
+"/Users/noel/Desktop/REPOS/pivechas/src/components/Product.jsx", "JavaScript JSX", 0, 276, 0, 0, 0, 0, 0, 7, 13, 296
+"/Users/noel/Desktop/REPOS/pivechas/src/components/TopNavbar.jsx", "JavaScript JSX", 0, 98, 0, 0, 0, 0, 0, 7, 3, 108
+"/Users/noel/Desktop/REPOS/pivechas/src/firebase.js", "JavaScript", 17, 0, 0, 0, 0, 0, 0, 5, 2, 24
+"/Users/noel/Desktop/REPOS/pivechas/src/index.js", "JavaScript", 11, 0, 0, 0, 0, 0, 0, 4, 2, 17
+"/Users/noel/Desktop/REPOS/pivechas/src/main.scss", "SCSS", 0, 0, 0, 0, 1970, 0, 0, 7, 55, 2032
+"/Users/noel/Desktop/REPOS/pivechas/src/pages/Admin.jsx", "JavaScript JSX", 0, 248, 0, 0, 0, 0, 0, 23, 9, 280
+"/Users/noel/Desktop/REPOS/pivechas/src/pages/ArmaTuRamo.jsx", "JavaScript JSX", 0, 279, 0, 0, 0, 0, 0, 9, 6, 294
+"/Users/noel/Desktop/REPOS/pivechas/src/pages/Carrito.jsx", "JavaScript JSX", 0, 288, 0, 0, 0, 0, 0, 7, 7, 302
+"/Users/noel/Desktop/REPOS/pivechas/src/pages/Contacto.jsx", "JavaScript JSX", 0, 35, 0, 0, 0, 0, 0, 5, 4, 44
+"/Users/noel/Desktop/REPOS/pivechas/src/pages/Cuenta.jsx", "JavaScript JSX", 0, 157, 0, 0, 0, 0, 0, 7, 4, 168
+"/Users/noel/Desktop/REPOS/pivechas/src/pages/FinalizarPedido.jsx", "JavaScript JSX", 0, 634, 0, 0, 0, 0, 0, 0, 18, 652
+"/Users/noel/Desktop/REPOS/pivechas/src/pages/Home.jsx", "JavaScript JSX", 0, 187, 0, 0, 0, 0, 0, 6, 3, 196
+"/Users/noel/Desktop/REPOS/pivechas/src/pages/Nosotros.jsx", "JavaScript JSX", 0, 53, 0, 0, 0, 0, 0, 4, 5, 62
+"/Users/noel/Desktop/REPOS/pivechas/src/pages/SignIn.jsx", "JavaScript JSX", 0, 80, 0, 0, 0, 0, 0, 9, 5, 94
+"/Users/noel/Desktop/REPOS/pivechas/src/pages/SignUp.jsx", "JavaScript JSX", 0, 160, 0, 0, 0, 0, 0, 9, 9, 178
+"/Users/noel/Desktop/REPOS/pivechas/src/pages/Sucursales.jsx", "JavaScript JSX", 0, 67, 0, 0, 0, 0, 0, 0, 4, 71
+"/Users/noel/Desktop/REPOS/pivechas/src/pages/Tienda.jsx", "JavaScript JSX", 0, 92, 0, 0, 0, 0, 0, 7, 5, 104
+"/Users/noel/Desktop/REPOS/pivechas/src/reportWebVitals.js", "JavaScript", 12, 0, 0, 0, 0, 0, 0, 0, 2, 14
+"Total", "-", 149, 2786, 1037, 32299, 1970, 34, 38, 126, 211, 38650

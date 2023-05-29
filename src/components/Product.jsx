@@ -273,8 +273,10 @@ export const ProductPage = () => {
 											<div className="ramo-description">
 												<h3>Elementos</h3>
 												<ul>
-													{producto.ramo_componentes.map((elemento) => (
-														<li>{elemento}</li>
+													{producto.ramo_componentes.map((element) => (
+														<li>
+															{element.nombre} {element.quantity}pzas. x ${element.precio}
+														</li>
 													))}
 												</ul>
 											</div>

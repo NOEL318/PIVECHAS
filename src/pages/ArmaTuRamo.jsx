@@ -102,13 +102,11 @@ export const ArmaTuRamo = () => {
 														) {
 															toast("No tenemos tanto inventario de este producto", { type: "warning" });
 														} else {
-															console.log(modal);
 															setselectedquantity(parseInt(e.target.value));
 														}
 													}}
 												/>
 											</div>
-											<h2>Llevas: </h2>
 										</div>
 										<div className="modal-footer">
 											<button
@@ -275,7 +273,7 @@ export const ArmaTuRamo = () => {
 										items: [newramo],
 										item_count: 1,
 										total_price: newramo.precio,
-										descuentos: lastcar.descuentos + parseFloat((x * 0.2).toFixed(2)),
+										descuentos: parseFloat((x * 0.2).toFixed(2)),
 									};
 									localStorage.setItem("cart", JSON.stringify(cart));
 									toast.success("Se agregó tu Ramo al Carrito", { icon: <AiOutlineShoppingCart /> });

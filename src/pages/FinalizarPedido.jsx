@@ -4,11 +4,14 @@ import { useEffect, useState } from "react";
 import { doc, updateDoc, increment } from "firebase/firestore";
 import { getDoc, setDoc, where, query, collection, getDocs } from "firebase/firestore";
 
-import { db } from "../firebase";
+import { auth, db } from "../firebase";
+import { onAuthStateChanged } from "firebase/auth";
 
 pdfMake.vfs = pdfFonts.pdfMake.vfs;
 
 export const FinalizarPedido = () => {
+	const [user, setuser] = useState();
+	const [account, setaccount] = useState();
 	const [formulario, setformulario] = useState({});
 	var newitem = {};
 	var carrito = JSON.parse(localStorage.getItem("cart"));
@@ -276,376 +279,379 @@ export const FinalizarPedido = () => {
 		}
 	};
 
-	return (
-		<>
-			<div className="formulario-compra">
-				<br />
-				<h1 className="page-title">Finalizar Compra</h1>
-				<br />
-				<br />
-				<h1 className="section-title">Datos de Facturación</h1>
-				<br />
-				<br />
-				<form
-					action=""
-					className="form"
-				>
-					<div className="field">
-						<label htmlFor="">Nombre:</label>
-						<input
-							required
-							type="text"
-							onChange={(e) => {
-								newitem.nombre_facturacion = e.target.value;
-								setformulario((formulario) => ({ ...formulario, ...newitem }));
-							}}
-							className="text"
-						/>
-					</div>
+	if (account)
+		return (
+			<>
+				<div className="formulario-compra">
 					<br />
-					<div className="field">
-						<label htmlFor="">Calle:</label>
-						<input
-							required
-							type="text"
-							onChange={(e) => {
-								newitem.calle_facturacion = e.target.value;
-								setformulario((formulario) => ({ ...formulario, ...newitem }));
-							}}
-							className="text"
-						/>
-					</div>
-					<div className="field">
-						<label htmlFor="">Numero:</label>
-						<input
-							required
-							type="text"
-							onChange={(e) => {
-								newitem.numero_facturacion = e.target.value;
-								setformulario((formulario) => ({ ...formulario, ...newitem }));
-							}}
-							className="text"
-						/>
-					</div>
-
-					<div className="field">
-						<label htmlFor="">Colonia:</label>
-						<input
-							required
-							type="text"
-							className="text"
-							onChange={(e) => {
-								newitem.colonia_facturacion = e.target.value;
-								setformulario((formulario) => ({ ...formulario, ...newitem }));
-							}}
-						/>
-					</div>
-					<div className="field">
-						<label htmlFor="">Delegación:</label>
-						<input
-							required
-							type="text"
-							onChange={(e) => {
-								newitem.delegacion_facturacion = e.target.value;
-								setformulario((formulario) => ({ ...formulario, ...newitem }));
-							}}
-							className="text"
-						/>
-					</div>
-					<div className="field">
-						<label htmlFor="">Código Postal:</label>
-						<input
-							required
-							type="text"
-							onChange={(e) => {
-								newitem.cp_facturacion = e.target.value;
-								setformulario((formulario) => ({ ...formulario, ...newitem }));
-							}}
-							className="text"
-						/>
-					</div>
-					<div className="field">
-						<label htmlFor="">Uso de CFDI:</label>
-						<select
-							name=""
-							className="select"
-							id=""
-							onChange={(e) => {
-								newitem.cfdi = e.target.value;
-								setformulario((formulario) => ({ ...formulario, ...newitem }));
-							}}
-						>
-							<option value=""></option>
-							<option value="Adquisisión de Mercancía">Adquisisión de Mercancía</option>
-							<option value="Gastos en General">Gastos en General</option>
-							<option
-								value="Devoluciones, descuentos o bonificaciones
-"
-							>
-								Devoluciones, descuentos o bonificaciones
-							</option>
-							<option value="Construcciones">Construcciones</option>
-							<option
-								value="Mobilario y equipo de oficina por inversiones
-"
-							>
-								Mobilario y equipo de oficina por inversiones
-							</option>
-							<option
-								value="Equipo de transporte
-"
-							>
-								Equipo de transporte
-							</option>
-							<option
-								value="Equipo de computo y accesorios
-"
-							>
-								Equipo de computo y accesorios
-							</option>
-							<option
-								value="Dados, troqueles, moldes, matrices y herramental
-"
-							>
-								Dados, troqueles, moldes, matrices y herramental
-							</option>
-							<option
-								value="Comunicaciones telefónicas
-"
-							>
-								Comunicaciones telefónicas
-							</option>
-							<option
-								value="Comunicaciones satelitales
-"
-							>
-								Comunicaciones satelitales
-							</option>
-							<option
-								value="Otra maquinaria y equipo
-"
-							>
-								Otra maquinaria y equipo
-							</option>
-							<option
-								value="Honorarios médicos, dentales y gastos hospitalarios.
-"
-							>
-								Honorarios médicos, dentales y gastos hospitalarios.
-							</option>
-							<option
-								value="Gastos médicos por incapacidad o discapacidad
-"
-							>
-								Gastos médicos por incapacidad o discapacidad
-							</option>
-							<option
-								value="Gastos funerales.
-"
-							>
-								Gastos funerales.
-							</option>
-							<option
-								value="Donativos.
-"
-							>
-								Donativos
-							</option>
-							<option
-								value="Intereses reales efectivamente pagados por créditos hipotecarios (casa habitación).
-"
-							>
-								Intereses reales efectivamente pagados por créditos hipotecarios (casa habitación).
-							</option>
-							<option
-								value="Aportaciones voluntarias al SAR.
-"
-							>
-								Aportaciones voluntarias al SAR.
-							</option>
-							<option
-								value="Primas por seguros de gastos médicos.
-"
-							>
-								Primas por seguros de gastos médicos.
-							</option>
-							<option
-								value="Gastos de transportación escolar obligatoria.
-"
-							>
-								Gastos de transportación escolar obligatoria.
-							</option>
-							<option
-								value="Depósitos en cuentas para el ahorro, primas que tengan como base planes de pensiones.
-"
-							>
-								Depósitos en cuentas para el ahorro, primas que tengan como base planes de pensiones.
-							</option>
-							<option
-								value="Pagos por servicios educativos (colegiaturas)
-"
-							>
-								Pagos por servicios educativos (colegiaturas)
-							</option>
-							<option
-								value="Por definir
-"
-							>
-								Por definir
-							</option>
-						</select>
-					</div>
-				</form>
-				<br />
-				<br />
-				<h1 className="section-title">Dirección de Envío</h1>
-				<br />
-				<br />
-				<form
-					action=""
-					className="form"
-				>
-					<div className="field">
-						<label htmlFor="">Nombre:</label>
-						<input
-							required
-							type="text"
-							onChange={(e) => {
-								newitem.nombre_envio = e.target.value;
-								setformulario((formulario) => ({ ...formulario, ...newitem }));
-							}}
-							className="text"
-						/>
-					</div>
+					<h1 className="page-title">Finalizar Compra</h1>
 					<br />
-					<div className="field">
-						<label htmlFor="">Calle:</label>
-						<input
-							required
-							type="text"
-							onChange={(e) => {
-								newitem.calle_envio = e.target.value;
-								setformulario((formulario) => ({ ...formulario, ...newitem }));
-							}}
-							className="text"
-						/>
-					</div>
-					<div className="field">
-						<label htmlFor="">Numero:</label>
-						<input
-							required
-							type="text"
-							onChange={(e) => {
-								newitem.numero_envio = e.target.value;
-								setformulario((formulario) => ({ ...formulario, ...newitem }));
-							}}
-							className="text"
-						/>
-					</div>
-
-					<div className="field">
-						<label htmlFor="">Colonia:</label>
-						<input
-							required
-							type="text"
-							onChange={(e) => {
-								newitem.colonia_envio = e.target.value;
-								setformulario((formulario) => ({ ...formulario, ...newitem }));
-							}}
-							className="text"
-						/>
-					</div>
-					<div className="field">
-						<label htmlFor="">Delegación:</label>
-						<input
-							required
-							type="text"
-							onChange={(e) => {
-								newitem.delegacion_envio = e.target.value;
-								setformulario((formulario) => ({ ...formulario, ...newitem }));
-							}}
-							className="text"
-						/>
-					</div>
-					<div className="field">
-						<label htmlFor="">Código Postal:</label>
-						<input
-							required
-							type="text"
-							onChange={(e) => {
-								newitem.cp_envio = e.target.value;
-								setformulario((formulario) => ({ ...formulario, ...newitem }));
-							}}
-							className="text"
-						/>
-					</div>
-				</form>
-				<form
-					action=""
-					className="form"
-				>
-					<div className="field">
-						<label htmlFor="">Método de Pago:</label>
-						<select
-							name=""
-							className="select"
-							id=""
-							onChange={(e) => {
-								newitem.forma_pago = e.target.value;
-								setformulario((formulario) => ({ ...formulario, ...newitem }));
-							}}
-						>
-							<option value=""></option>
-							<option value="En Efectivo">En Efectivo</option>
-							<option value="Tarjeta de Crédito">Tarjeta de Crédito</option>
-							<option value="Tarjeta de Débito">Tarjeta de Débito</option>
-							<option value="Bitcoin">Bitcoin</option>
-							<option value="Ethereum">Ethereum</option>
-						</select>
-					</div>
-					{formulario.forma_pago == "En Efectivo" && (
+					<br />
+					<h1 className="section-title">Datos de Facturación</h1>
+					<br />
+					<br />
+					<form
+						action=""
+						className="form"
+					>
 						<div className="field">
-							<label htmlFor="">Código Verificador de Pago en Efectivo:</label>
+							<label htmlFor="">Nombre:</label>
 							<input
 								required
 								type="text"
 								onChange={(e) => {
-									newitem.codigo = e.target.value;
+									newitem.nombre_facturacion = e.target.value;
 									setformulario((formulario) => ({ ...formulario, ...newitem }));
 								}}
 								className="text"
 							/>
 						</div>
-					)}
-				</form>
-				<div className="center-button">
-					<button
-						className="button"
-						onClick={() => {
-							GenerateFactura();
-						}}
-						disabled={
-							!formulario.calle_envio ||
-							!formulario.calle_facturacion ||
-							!formulario.cfdi ||
-							!formulario.colonia_envio ||
-							!formulario.colonia_facturacion ||
-							!formulario.cp_envio ||
-							!formulario.cp_facturacion ||
-							!formulario.delegacion_envio ||
-							!formulario.delegacion_facturacion ||
-							!formulario.forma_pago ||
-							!formulario.nombre_envio ||
-							!formulario.nombre_facturacion ||
-							!formulario.numero_envio ||
-							!formulario.numero_facturacion
-						}
+						<br />
+						<div className="field">
+							<label htmlFor="">Calle:</label>
+							<input
+								required
+								type="text"
+								onChange={(e) => {
+									newitem.calle_facturacion = e.target.value;
+									setformulario((formulario) => ({ ...formulario, ...newitem }));
+								}}
+								className="text"
+							/>
+						</div>
+						<div className="field">
+							<label htmlFor="">Numero:</label>
+							<input
+								required
+								type="text"
+								onChange={(e) => {
+									newitem.numero_facturacion = e.target.value;
+									setformulario((formulario) => ({ ...formulario, ...newitem }));
+								}}
+								className="text"
+							/>
+						</div>
+
+						<div className="field">
+							<label htmlFor="">Colonia:</label>
+							<input
+								required
+								type="text"
+								className="text"
+								onChange={(e) => {
+									newitem.colonia_facturacion = e.target.value;
+									setformulario((formulario) => ({ ...formulario, ...newitem }));
+								}}
+							/>
+						</div>
+						<div className="field">
+							<label htmlFor="">Delegación:</label>
+							<input
+								required
+								type="text"
+								onChange={(e) => {
+									newitem.delegacion_facturacion = e.target.value;
+									setformulario((formulario) => ({ ...formulario, ...newitem }));
+								}}
+								className="text"
+							/>
+						</div>
+						<div className="field">
+							<label htmlFor="">Código Postal:</label>
+							<input
+								required
+								type="text"
+								onChange={(e) => {
+									newitem.cp_facturacion = e.target.value;
+									setformulario((formulario) => ({ ...formulario, ...newitem }));
+								}}
+								className="text"
+							/>
+						</div>
+						<div className="field">
+							<label htmlFor="">Uso de CFDI:</label>
+							<select
+								name=""
+								className="select"
+								id=""
+								onChange={(e) => {
+									newitem.cfdi = e.target.value;
+									setformulario((formulario) => ({ ...formulario, ...newitem }));
+								}}
+							>
+								<option value=""></option>
+								<option value="Adquisisión de Mercancía">Adquisisión de Mercancía</option>
+								<option value="Gastos en General">Gastos en General</option>
+								<option
+									value="Devoluciones, descuentos o bonificaciones
+"
+								>
+									Devoluciones, descuentos o bonificaciones
+								</option>
+								<option value="Construcciones">Construcciones</option>
+								<option
+									value="Mobilario y equipo de oficina por inversiones
+"
+								>
+									Mobilario y equipo de oficina por inversiones
+								</option>
+								<option
+									value="Equipo de transporte
+"
+								>
+									Equipo de transporte
+								</option>
+								<option
+									value="Equipo de computo y accesorios
+"
+								>
+									Equipo de computo y accesorios
+								</option>
+								<option
+									value="Dados, troqueles, moldes, matrices y herramental
+"
+								>
+									Dados, troqueles, moldes, matrices y herramental
+								</option>
+								<option
+									value="Comunicaciones telefónicas
+"
+								>
+									Comunicaciones telefónicas
+								</option>
+								<option
+									value="Comunicaciones satelitales
+"
+								>
+									Comunicaciones satelitales
+								</option>
+								<option
+									value="Otra maquinaria y equipo
+"
+								>
+									Otra maquinaria y equipo
+								</option>
+								<option
+									value="Honorarios médicos, dentales y gastos hospitalarios.
+"
+								>
+									Honorarios médicos, dentales y gastos hospitalarios.
+								</option>
+								<option
+									value="Gastos médicos por incapacidad o discapacidad
+"
+								>
+									Gastos médicos por incapacidad o discapacidad
+								</option>
+								<option
+									value="Gastos funerales.
+"
+								>
+									Gastos funerales.
+								</option>
+								<option
+									value="Donativos.
+"
+								>
+									Donativos
+								</option>
+								<option
+									value="Intereses reales efectivamente pagados por créditos hipotecarios (casa habitación).
+"
+								>
+									Intereses reales efectivamente pagados por créditos hipotecarios (casa habitación).
+								</option>
+								<option
+									value="Aportaciones voluntarias al SAR.
+"
+								>
+									Aportaciones voluntarias al SAR.
+								</option>
+								<option
+									value="Primas por seguros de gastos médicos.
+"
+								>
+									Primas por seguros de gastos médicos.
+								</option>
+								<option
+									value="Gastos de transportación escolar obligatoria.
+"
+								>
+									Gastos de transportación escolar obligatoria.
+								</option>
+								<option
+									value="Depósitos en cuentas para el ahorro, primas que tengan como base planes de pensiones.
+"
+								>
+									Depósitos en cuentas para el ahorro, primas que tengan como base planes de pensiones.
+								</option>
+								<option
+									value="Pagos por servicios educativos (colegiaturas)
+"
+								>
+									Pagos por servicios educativos (colegiaturas)
+								</option>
+								<option
+									value="Por definir
+"
+								>
+									Por definir
+								</option>
+							</select>
+						</div>
+					</form>
+					<br />
+					<br />
+					<h1 className="section-title">Dirección de Envío</h1>
+					<br />
+					<br />
+					<form
+						action=""
+						className="form"
 					>
-						Comprar y Facturar
-					</button>
+						<div className="field">
+							<label htmlFor="">Nombre:</label>
+							<input
+								required
+								type="text"
+								onChange={(e) => {
+									newitem.nombre_envio = e.target.value;
+									setformulario((formulario) => ({ ...formulario, ...newitem }));
+								}}
+								className="text"
+							/>
+						</div>
+						<br />
+						<div className="field">
+							<label htmlFor="">Calle:</label>
+							<input
+								required
+								type="text"
+								onChange={(e) => {
+									newitem.calle_envio = e.target.value;
+									setformulario((formulario) => ({ ...formulario, ...newitem }));
+								}}
+								className="text"
+							/>
+						</div>
+						<div className="field">
+							<label htmlFor="">Numero:</label>
+							<input
+								required
+								type="text"
+								onChange={(e) => {
+									newitem.numero_envio = e.target.value;
+									setformulario((formulario) => ({ ...formulario, ...newitem }));
+								}}
+								className="text"
+							/>
+						</div>
+
+						<div className="field">
+							<label htmlFor="">Colonia:</label>
+							<input
+								required
+								type="text"
+								onChange={(e) => {
+									newitem.colonia_envio = e.target.value;
+									setformulario((formulario) => ({ ...formulario, ...newitem }));
+								}}
+								className="text"
+							/>
+						</div>
+						<div className="field">
+							<label htmlFor="">Delegación:</label>
+							<input
+								required
+								type="text"
+								onChange={(e) => {
+									newitem.delegacion_envio = e.target.value;
+									setformulario((formulario) => ({ ...formulario, ...newitem }));
+								}}
+								className="text"
+							/>
+						</div>
+						<div className="field">
+							<label htmlFor="">Código Postal:</label>
+							<input
+								required
+								type="text"
+								onChange={(e) => {
+									newitem.cp_envio = e.target.value;
+									setformulario((formulario) => ({ ...formulario, ...newitem }));
+								}}
+								className="text"
+							/>
+						</div>
+					</form>
+					<form
+						action=""
+						className="form"
+					>
+						<div className="field">
+							<label htmlFor="">Método de Pago:</label>
+							<select
+								name=""
+								className="select"
+								id=""
+								onChange={(e) => {
+									newitem.forma_pago = e.target.value;
+									setformulario((formulario) => ({ ...formulario, ...newitem }));
+								}}
+							>
+								<option value=""></option>
+								{account.role == "admin" && <option value="En Efectivo">En Efectivo</option>}
+								<option value="Tarjeta de Crédito">Tarjeta de Crédito</option>
+								<option value="Tarjeta de Débito">Tarjeta de Débito</option>
+								<option value="Bitcoin">Bitcoin</option>
+								<option value="Ethereum">Ethereum</option>
+							</select>
+						</div>
+						{formulario.forma_pago == "En Efectivo" && (
+							<div className="field">
+								<label htmlFor="">Código Verificador de Pago en Efectivo:</label>
+								<input
+									required
+									type="text"
+									onChange={(e) => {
+										newitem.codigo = parseInt(e.target.value);
+										setformulario((formulario) => ({ ...formulario, ...newitem }));
+									}}
+									className="text"
+								/>
+							</div>
+						)}
+					</form>
+					<div className="center-button">
+						<button
+							className="button"
+							onClick={() => {
+								GenerateFactura();
+							}}
+							disabled={
+								!formulario.calle_envio ||
+								!formulario.calle_facturacion ||
+								!formulario.cfdi ||
+								!formulario.colonia_envio ||
+								!formulario.colonia_facturacion ||
+								!formulario.cp_envio ||
+								!formulario.cp_facturacion ||
+								!formulario.delegacion_envio ||
+								!formulario.delegacion_facturacion ||
+								!formulario.forma_pago ||
+								!formulario.nombre_envio ||
+								!formulario.nombre_facturacion ||
+								!formulario.numero_envio ||
+								!formulario.numero_facturacion ||
+								formulario.codigo != account.code
+							}
+						>
+							Comprar y Facturar
+						</button>
+						<br /><br />
+					</div>
 				</div>
-			</div>
-		</>
-	);
+			</>
+		);
 };
 export default FinalizarPedido;

@@ -167,7 +167,7 @@ export const Carrito = () => {
 																			<ul>
 																				{item.ramo_componentes.map((element) => (
 																					<li>
-																						{element.nombre} ${element.precio} x{element.quantity}
+																						{element.nombre} {element.quantity}pzas. x ${element.precio}
 																					</li>
 																				))}
 																			</ul>

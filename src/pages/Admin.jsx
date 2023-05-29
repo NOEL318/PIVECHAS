@@ -12,7 +12,8 @@ export const Admin = () => {
 	const [colors, setcolors] = useState(["#000000", "000000", "#000000"]);
 	const [email, setemail] = useState();
 	const [sucursal, setsucursal] = useState();
-	const [id, setid] = useState();
+
+	const [code, setcode] = useState();
 	useEffect(() => {
 		console.log(employee);
 	}, [employee]);
@@ -22,10 +23,14 @@ export const Admin = () => {
 		toast.success("Se agregó el producto");
 	};
 	const AddEmpleado = async () => {
+		setcode(parseInt((Math.random() * (50000 - 50) + 50).toFixed(0)));
 		const ref = doc(db, "users", email);
-		await updateDoc(ref, {
-			role: "admin",
-		});
+		if (code) {
+			await updateDoc(ref, {
+				role: "admin",
+				code: code,
+			});
+		}
 		toast.success("Se agregó como administrador el empleado");
 	};
 	// const DeleteProduct=async()=>{
@@ -248,24 +253,39 @@ export const Admin = () => {
 									</form>
 								</div> */}
 								<br />
-								<div className="add-employee">
+								<div>
 									<h1>Agregar Empleado</h1>
-									<form className="form">
-										<input
-											type="email"
-											className="text"
-											onChange={(e) => {
-												setemail(e.target.value);
-											}}
-											placeholder="Ingrese el email del empleado:"
-										/>
-										<button
-											type="button"
-											className="button"
-											onClick={AddEmpleado}
-										>
-											Agregar Empleado
-										</button>
+									<form className="form add-employee">
+										<div className="employee">
+											<input
+												type="email"
+												className="text"
+												onChange={(e) => {
+													setemail(e.target.value);
+												}}
+												placeholder="Ingrese el email del empleado:"
+											/>
+											<button
+												type="button"
+												className="button"
+												onClick={AddEmpleado}
+											>
+												Agregar Empleado
+											</button>
+										</div>
+										<br />
+										<br />
+										{code && (
+											<div className="code">
+												<label htmlFor="">Su código para compra en efectivo es:</label>
+												<input
+													type="text"
+													className="text"
+													disabled
+													placeholder={code}
+												/>
+											</div>
+										)}
 									</form>
 								</div>
 							</div>

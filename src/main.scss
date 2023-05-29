@@ -1262,7 +1262,7 @@ body::-webkit-scrollbar {
 						input.text {
 							min-width: max-content;
 							width: 300px;
-							margin: 5px 15px 20px 0px;
+							margin: 15px;
 							height: 45px;
 							background: rgba(0, 0, 0, 0.05);
 							border: 1px solid rgba(0, 0, 0, 0.1);
@@ -1280,6 +1280,7 @@ body::-webkit-scrollbar {
 							display: flex;
 							align-items: center;
 							justify-content: space-between;
+
 							border-radius: 11px;
 							border: 1px solid rgba(0, 0, 0, 0.248);
 
@@ -1290,6 +1291,18 @@ body::-webkit-scrollbar {
 								height: 30px;
 							}
 						}
+						.employee {
+							display: flex;
+							justify-content: center;
+							align-items: center;
+							flex-direction: row;
+						}
+					}
+					.add-employee {
+						display: flex;
+						justify-content: center;
+						flex-direction: column;
+						align-items: center;
 					}
 				}
 

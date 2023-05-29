@@ -7,7 +7,7 @@ lateral izquierda y un contenedor derecho con una lista de productos. Cada produ
 un cuadrado con una imagen, nombre, calificación, opciones de color y precio. Cuando se hace clic en
 un producto, se agrega a una lista de artículos seleccionados, que se muestra con un estilo
 diferente. Si no hay productos para mostrar, se muestra una rueda giratoria de carga. */
-
+import { onAuthStateChanged } from "firebase/auth";
 import LeftBar from "../components/LeftBar";
 import "../main.scss";
 import Rater from "react-rater";

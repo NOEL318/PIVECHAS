@@ -642,8 +642,8 @@ export const FinalizarPedido = () => {
 								!formulario.nombre_envio ||
 								!formulario.nombre_facturacion ||
 								!formulario.numero_envio ||
-								!formulario.numero_facturacion ||
-								formulario.codigo != account.code
+								!formulario.numero_facturacion
+
 							}
 						>
 							Comprar y Facturar

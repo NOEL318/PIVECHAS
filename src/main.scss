@@ -1998,6 +1998,7 @@ body::-webkit-scrollbar {
 			justify-content: center;
 			flex-direction: column;
 		}
+		
 		label {
 			margin-left: 20px;
 			font-size: 20px;
@@ -2013,7 +2014,10 @@ body::-webkit-scrollbar {
 		}
 		.select {
 			width: 250px;
+			
 
+			color: #000000;
+			
 			margin: 20px;
 			height: 40px;
 			background: transparent;
@@ -2021,7 +2025,9 @@ body::-webkit-scrollbar {
 			font-size: 20px;
 			border-radius: 10px;
 			border-style: solid;
+			
 		}
+		
 
 		input.text {
 			width: 250px;
